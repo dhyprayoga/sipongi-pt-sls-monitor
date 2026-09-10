@@ -1,17 +1,49 @@
 {
   "pt_name": "PT SLS",
   "sipongi_endpoint": "https://opsroom.sipongidata.my.id/api/opsroom/indoHotspot",
-  "late_hours": 24,
+
+  "mode": "date_range",
+
+  "days_back": 30,
+
   "satelit": [
     "NASA-MODIS",
     "NASA-SNPP",
     "NASA-NOAA20"
   ],
+
   "confidence": [
     "low",
     "medium",
     "high"
   ],
-  "keep_days": 7,
+
+  "distance_max_km": 5,
+
+  "zones_km": [
+    {
+      "name": "Inside HGU",
+      "min_km": 0,
+      "max_km": 0
+    },
+    {
+      "name": "0–1 km",
+      "min_km": 0,
+      "max_km": 1
+    },
+    {
+      "name": "1–3 km",
+      "min_km": 1,
+      "max_km": 3
+    },
+    {
+      "name": "3–5 km",
+      "min_km": 3,
+      "max_km": 5
+    }
+  ],
+
+  "keep_days": 30,
+
   "timezone_label": "WIB"
 }
