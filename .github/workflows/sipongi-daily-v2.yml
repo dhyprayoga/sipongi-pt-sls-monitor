@@ -19,53 +19,121 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # ==================================================
+      # CHECKOUT REPOSITORY
+      # ==================================================
+
       - name: Checkout latest main
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
 
+
+      # ==================================================
+      # SYNCHRONIZE REPOSITORY
+      # ==================================================
+
       - name: Synchronize repository
         run: |
           git fetch origin main
           git reset --hard origin/main
+
+
+      # ==================================================
+      # SETUP PYTHON
+      # ==================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+
+      # ==================================================
+      # INSTALL DEPENDENCIES
+      # ==================================================
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: Fetch SiPongi, filter PT, update rolling 7 days
+
+      # ==================================================
+      # FETCH SIPONGI
+      # ==================================================
+
+      - name: Fetch SiPongi, filter PT, update 30 day analysis
         run: |
           python scripts/update_sipongi.py
 
+
+      # ==================================================
+      # COMMIT DATA
+      # ==================================================
+
       - name: Commit updated data
         run: |
+
           git config user.name "github-actions[bot]"
+
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/rolling_7days.json site/data/
+
+          # Add hasil analisis 30 hari
+
+          git add data/rolling_30days.json
+
+          git add site/data/
+
+
+          # Cek apakah ada perubahan
 
           if git diff --cached --quiet; then
+
             echo "No data change."
+
           else
-            git commit -m "Update SiPongi hotspot data"
+
+            git commit -m "Update SiPongi 30 day hotspot data"
+
+
+            # Pastikan branch terbaru
+
             git fetch origin main
+
             git rebase origin/main
+
+
+            # Push
+
             git push origin main
+
           fi
+
+
+      # ==================================================
+      # GITHUB PAGES
+      # ==================================================
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+
+
+      # ==================================================
+      # UPLOAD WEBSITE
+      # ==================================================
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: "site"
+
+
+      # ==================================================
+      # DEPLOY
+      # ==================================================
 
       - name: Deploy to GitHub Pages
         id: deployment
