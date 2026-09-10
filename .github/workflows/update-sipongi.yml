@@ -25,6 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Setup Python
@@ -42,12 +43,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add data/rolling_7days.json site/data/
+
           if git diff --cached --quiet; then
             echo "No data change."
           else
             git commit -m "Update SiPongi hotspot data"
-            git push
+
+            git pull --rebase origin main
+
+            git push origin main
           fi
 
       - name: Configure GitHub Pages
