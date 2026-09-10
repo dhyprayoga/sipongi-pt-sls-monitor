@@ -1,0 +1,17 @@
+{
+  "pt_name": "PT SLS",
+  "sipongi_endpoint": "https://opsroom.sipongidata.my.id/api/opsroom/indoHotspot",
+  "late_hours": 24,
+  "satelit": [
+    "NASA-MODIS",
+    "NASA-SNPP",
+    "NASA-NOAA20"
+  ],
+  "confidence": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "keep_days": 7,
+  "timezone_label": "WIB"
+}

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SiPongi PT Hotspot Monitor</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  >
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, Arial, sans-serif; background:#f4f6f8; color:#1f2933; }
+    .header { padding:18px 22px; background:#fff; border-bottom:1px solid #ddd; }
+    .title { font-size:22px; font-weight:700; }
+    .subtitle { margin-top:4px; font-size:12px; color:#667085; }
+    .wrap { padding:16px; max-width:1500px; margin:auto; }
+    .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:12px; }
+    .card { background:#fff; border:1px solid #e2e5e8; border-radius:10px; padding:14px; }
+    .label { font-size:12px; color:#667085; }
+    .value { font-size:28px; font-weight:700; margin-top:5px; }
+    .grid { display:grid; grid-template-columns:2fr 1fr; gap:12px; }
+    .panel { background:#fff; border:1px solid #e2e5e8; border-radius:10px; overflow:hidden; }
+    .panel h3 { margin:0; padding:12px 14px; font-size:14px; border-bottom:1px solid #eee; }
+    .panel-body { padding:12px 14px; }
+    #map { height:570px; }
+    .summary { line-height:1.6; font-size:14px; }
+    .summary strong { font-weight:700; }
+    .status { display:inline-block; padding:4px 8px; border:1px solid #bbb; border-radius:999px; font-size:12px; }
+    .footer { padding:14px 0 3px; font-size:11px; color:#667085; }
+    @media (max-width: 950px) {
+      .cards { grid-template-columns:repeat(2,1fr); }
+      .grid { grid-template-columns:1fr; }
+      #map { height:520px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title" id="ptName">SiPongi PT Hotspot Monitor</div>
+    <div class="subtitle">Sumber: SIPONGI KEMENHUT · Data mode: 24 jam terakhir · Update 1× sehari</div>
+  </div>
+
+  <div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="label">Hotspot 24 Jam</div><div class="value" id="total">–</div></div>
+      <div class="card"><div class="label">High</div><div class="value" id="high">–</div></div>
+      <div class="card"><div class="label">Medium</div><div class="value" id="medium">–</div></div>
+      <div class="card"><div class="label">Low</div><div class="value" id="low">–</div></div>
+      <div class="card"><div class="label">Vs Kemarin</div><div class="value" id="vsPrev">–</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h3>Peta Hotspot</h3>
+        <div id="map"></div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <h3>Summary</h3>
+          <div class="panel-body summary">
+            <div>Status: <span class="status" id="status">–</span></div>
+            <div>Rata-rata 7 hari: <strong id="avg7">–</strong></div>
+            <div>Minimum 7 hari: <strong id="min7">–</strong></div>
+            <div>Maksimum 7 hari: <strong id="max7">–</strong></div>
+            <div>Snapshot: <strong id="snapshotDate">–</strong></div>
+            <div>Update UTC: <strong id="updated">–</strong></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:12px;">
+          <h3>Trend 7 Hari</h3>
+          <div class="panel-body">
+            <canvas id="trendChart" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Hotspot adalah indikasi anomali suhu/titik panas dan tidak otomatis berarti kebakaran aktual.
+      Gunakan informasi ini untuk screening dan verifikasi lapangan.
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    const map = L.map('map').setView([-2.5, 118], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const colors = {
+      high: '#b00020',
+      medium: '#e67e22',
+      low: '#2e7d32',
+      unknown: '#555'
+    };
+
+    Promise.all([
+      fetch('data/current.geojson').then(r => r.json()),
+      fetch('data/trend_7days.json').then(r => r.json()),
+      fetch('data/summary.json').then(r => r.json()),
+      fetch('data/pt_boundary.geojson').then(r => r.json())
+    ]).then(([hotspots, trend, summary, boundary]) => {
+
+      const boundaryLayer = L.geoJSON(boundary, {
+        style: { color:'#111', weight:2, fill:false }
+      }).addTo(map);
+
+      if (boundaryLayer.getBounds().isValid()) {
+        map.fitBounds(boundaryLayer.getBounds(), { padding:[20,20] });
+      }
+
+      L.geoJSON(hotspots, {
+        pointToLayer: (feature, latlng) => {
+          const p = feature.properties || {};
+          const c = p.confidence || 'unknown';
+          return L.circleMarker(latlng, {
+            radius: c === 'high' ? 8 : c === 'medium' ? 6 : 5,
+            color: colors[c] || colors.unknown,
+            fillColor: colors[c] || colors.unknown,
+            fillOpacity: 0.85,
+            weight: 1
+          });
+        },
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const c = p.confidence || 'unknown';
+          const html = `
+            <b>Hotspot ${c.toUpperCase()}</b><br>
+            Confidence: ${p.confidence_value ?? '-'}<br>
+            Tanggal: ${p.date_hotspot ?? '-'}<br>
+            Tanggal asli: ${p.date_hotspot_ori ?? '-'}<br>
+            Sumber/Satelit: ${p.sumber ?? '-'}<br>
+            Provinsi: ${p.provinsi ?? '-'}<br>
+            Kab/Kota: ${p.kabkota ?? '-'}<br>
+            Desa: ${p.desa ?? '-'}<br>
+            Kawasan: ${p.kawasan ?? '-'}<br>
+            Koordinat: ${feature.geometry.coordinates[1].toFixed(5)},
+            ${feature.geometry.coordinates[0].toFixed(5)}
+          `;
+          layer.bindPopup(html);
+        }
+      }).addTo(map);
+
+      document.getElementById('ptName').textContent = summary.pt_name || 'SiPongi PT Hotspot Monitor';
+      document.getElementById('total').textContent = summary.total ?? 0;
+      document.getElementById('high').textContent = summary.high ?? 0;
+      document.getElementById('medium').textContent = summary.medium ?? 0;
+      document.getElementById('low').textContent = summary.low ?? 0;
+
+      document.getElementById('vsPrev').textContent =
+        summary.vs_previous_pct == null ? '–' : `${summary.vs_previous_pct > 0 ? '+' : ''}${summary.vs_previous_pct}%`;
+
+      document.getElementById('status').textContent = summary.status || '–';
+      document.getElementById('avg7').textContent = summary.average_7_days ?? 0;
+      document.getElementById('min7').textContent = summary.min_7_days ?? 0;
+      document.getElementById('max7').textContent = summary.max_7_days ?? 0;
+      document.getElementById('snapshotDate').textContent = summary.snapshot_date || '–';
+      document.getElementById('updated').textContent = summary.last_updated_utc || '–';
+
+      new Chart(document.getElementById('trendChart'), {
+        type: 'line',
+        data: {
+          labels: trend.dates || [],
+          datasets: [
+            {
+              label: 'Total',
+              data: (trend.series || []).map(x => x.total),
+              tension: 0.25,
+              borderWidth: 2
+            },
+            {
+              label: 'High',
+              data: (trend.series || []).map(x => x.high),
+              tension: 0.25,
+              borderWidth: 2
+            },
+            {
+              label: 'Medium',
+              data: (trend.series || []).map(x => x.medium),
+              tension: 0.25,
+              borderWidth: 2
+            },
+            {
+              label: 'Low',
+              data: (trend.series || []).map(x => x.low),
+              tension: 0.25,
+              borderWidth: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'bottom' } },
+          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+        }
+      });
+    }).catch(err => {
+      console.error(err);
+      alert('Data belum tersedia. Jalankan GitHub Actions terlebih dahulu.');
+    });
+  </script>
+</body>
+</html>
