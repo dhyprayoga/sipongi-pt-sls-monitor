@@ -3,212 +3,1879 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SiPongi PT Hotspot Monitor</title>
 
+  <title>SiPongi PT SLS Hotspot Monitor</title>
+
+  <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     crossorigin=""
   >
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
   <style>
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: Inter, Arial, sans-serif; background:#f4f6f8; color:#1f2933; }
-    .header { padding:18px 22px; background:#fff; border-bottom:1px solid #ddd; }
-    .title { font-size:22px; font-weight:700; }
-    .subtitle { margin-top:4px; font-size:12px; color:#667085; }
-    .wrap { padding:16px; max-width:1500px; margin:auto; }
-    .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:12px; }
-    .card { background:#fff; border:1px solid #e2e5e8; border-radius:10px; padding:14px; }
-    .label { font-size:12px; color:#667085; }
-    .value { font-size:28px; font-weight:700; margin-top:5px; }
-    .grid { display:grid; grid-template-columns:2fr 1fr; gap:12px; }
-    .panel { background:#fff; border:1px solid #e2e5e8; border-radius:10px; overflow:hidden; }
-    .panel h3 { margin:0; padding:12px 14px; font-size:14px; border-bottom:1px solid #eee; }
-    .panel-body { padding:12px 14px; }
-    #map { height:570px; }
-    .summary { line-height:1.6; font-size:14px; }
-    .summary strong { font-weight:700; }
-    .status { display:inline-block; padding:4px 8px; border:1px solid #bbb; border-radius:999px; font-size:12px; }
-    .footer { padding:14px 0 3px; font-size:11px; color:#667085; }
-    @media (max-width: 950px) {
-      .cards { grid-template-columns:repeat(2,1fr); }
-      .grid { grid-template-columns:1fr; }
-      #map { height:520px; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2933;
+    }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #dfe3e8;
+      padding: 18px 24px;
+    }
+
+    .header-inner {
+      max-width: 1500px;
+      margin: auto;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #667085;
+      line-height: 1.5;
+    }
+
+    .source {
+      margin-top: 5px;
+      font-size: 11px;
+      color: #475467;
+    }
+
+    .wrap {
+      max-width: 1500px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    /* =========================
+       CARDS
+       ========================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e5e8;
+      border-radius: 10px;
+      padding: 14px;
+      min-height: 92px;
+    }
+
+    .label {
+      font-size: 12px;
+      color: #667085;
+    }
+
+    .value {
+      font-size: 29px;
+      font-weight: 700;
+      margin-top: 7px;
+      color: #101828;
+    }
+
+    .value.small {
+      font-size: 21px;
+    }
+
+    /* =========================
+       MAIN GRID
+       ========================= */
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #e2e5e8;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .panel-title {
+      margin: 0;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #eeeeee;
+      background: #ffffff;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    /* =========================
+       MAP
+       ========================= */
+
+    #map {
+      width: 100%;
+      height: 600px;
+    }
+
+    .map-status {
+      padding: 8px 14px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      font-size: 11px;
+      color: #667085;
+    }
+
+    /* =========================
+       SUMMARY
+       ========================= */
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .summary-item {
+      border: 1px solid #eaecf0;
+      border-radius: 8px;
+      padding: 11px;
+      background: #fafafa;
+    }
+
+    .summary-item-label {
+      font-size: 11px;
+      color: #667085;
+    }
+
+    .summary-item-value {
+      margin-top: 4px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #101828;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border: 1px solid #d0d5dd;
+      border-radius: 999px;
+      background: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .summary-text {
+      margin-top: 12px;
+      padding: 11px;
+      border-left: 3px solid #344054;
+      background: #f9fafb;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #475467;
+    }
+
+    /* =========================
+       TREND
+       ========================= */
+
+    .trend-container {
+      position: relative;
+      width: 100%;
+      height: 340px;
+    }
+
+    /* =========================
+       LEGEND
+       ========================= */
+
+    .legend {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      border-top: 1px solid #eee;
+      font-size: 11px;
+      color: #475467;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .legend-high {
+      background: #b00020;
+    }
+
+    .legend-medium {
+      background: #e67e22;
+    }
+
+    .legend-low {
+      background: #2e7d32;
+    }
+
+    /* =========================
+       LOADING
+       ========================= */
+
+    .loading {
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    .error-box {
+      display: none;
+      margin: 12px 0;
+      padding: 12px;
+      border: 1px solid #f1b5b5;
+      background: #fff5f5;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #9b1c1c;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    .footer {
+      margin-top: 14px;
+      padding: 14px 2px 5px;
+      font-size: 11px;
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 1100px) {
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #map {
+        height: 550px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 16px;
+      }
+
+      .wrap {
+        padding: 10px;
+      }
+
+      #map {
+        height: 470px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .value {
+        font-size: 23px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="header">
-    <div class="title" id="ptName">SiPongi PT Hotspot Monitor</div>
-    <div class="subtitle">Sumber: SIPONGI KEMENHUT · Data mode: 24 jam terakhir · Update 1× sehari</div>
-  </div>
 
-  <div class="wrap">
-    <div class="cards">
-      <div class="card"><div class="label">Hotspot 24 Jam</div><div class="value" id="total">–</div></div>
-      <div class="card"><div class="label">High</div><div class="value" id="high">–</div></div>
-      <div class="card"><div class="label">Medium</div><div class="value" id="medium">–</div></div>
-      <div class="card"><div class="label">Low</div><div class="value" id="low">–</div></div>
-      <div class="card"><div class="label">Vs Kemarin</div><div class="value" id="vsPrev">–</div></div>
-    </div>
+  <!-- =========================
+       HEADER
+       ========================= -->
 
-    <div class="grid">
-      <div class="panel">
-        <h3>Peta Hotspot</h3>
-        <div id="map"></div>
+  <header class="header">
+    <div class="header-inner">
+
+      <div class="title" id="ptName">
+        SiPongi PT SLS Hotspot Monitor
       </div>
+
+      <div class="subtitle">
+        Monitoring hotspot 24 jam terakhir pada areal HGU PT SLS
+      </div>
+
+      <div class="source">
+        Sumber data: <strong>SIPONGI KEMENHUT</strong>
+        · Update sistem: 1× sehari
+        · Periode data: 24 jam terakhir
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
+
+  <main class="wrap">
+
+    <!-- Error -->
+    <div id="errorBox" class="error-box"></div>
+
+
+    <!-- =========================
+         KPI CARDS
+         ========================= -->
+
+    <section class="cards">
+
+      <div class="card">
+        <div class="label">
+          Hotspot 24 Jam
+        </div>
+
+        <div class="value" id="total">
+          –
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="label">
+          High
+        </div>
+
+        <div class="value" id="high">
+          –
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="label">
+          Medium
+        </div>
+
+        <div class="value" id="medium">
+          –
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="label">
+          Low
+        </div>
+
+        <div class="value" id="low">
+          –
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="label">
+          Vs Hari Sebelumnya
+        </div>
+
+        <div class="value small" id="vsPrev">
+          –
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAP + SUMMARY
+         ========================= -->
+
+    <section class="main-grid">
+
+      <!-- MAP -->
+
+      <div class="panel">
+
+        <h3 class="panel-title">
+          Peta Hotspot PT SLS
+        </h3>
+
+        <div id="map">
+          <div class="loading">
+            Memuat data hotspot SiPongi...
+          </div>
+        </div>
+
+        <div class="legend">
+
+          <div class="legend-item">
+            <span class="legend-dot legend-high"></span>
+            High
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-dot legend-medium"></span>
+            Medium
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-dot legend-low"></span>
+            Low
+          </div>
+
+        </div>
+
+        <div class="map-status">
+
+          Update terakhir:
+          <strong id="updatedMap">
+            –
+          </strong>
+
+          ·
+
+          Total titik:
+          <strong id="mapTotal">
+            –
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT COLUMN -->
 
       <div>
+
+        <!-- SUMMARY -->
+
         <div class="panel">
-          <h3>Summary</h3>
-          <div class="panel-body summary">
-            <div>Status: <span class="status" id="status">–</span></div>
-            <div>Rata-rata 7 hari: <strong id="avg7">–</strong></div>
-            <div>Minimum 7 hari: <strong id="min7">–</strong></div>
-            <div>Maksimum 7 hari: <strong id="max7">–</strong></div>
-            <div>Snapshot: <strong id="snapshotDate">–</strong></div>
-            <div>Update UTC: <strong id="updated">–</strong></div>
-          </div>
-        </div>
 
-        <div class="panel" style="margin-top:12px;">
-          <h3>Trend 7 Hari</h3>
+          <h3 class="panel-title">
+            Summary
+          </h3>
+
           <div class="panel-body">
-            <canvas id="trendChart" height="250"></canvas>
+
+            <div class="summary-grid">
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Status
+                </div>
+
+                <div class="summary-item-value">
+
+                  <span
+                    class="status-badge"
+                    id="status"
+                  >
+                    –
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Snapshot
+                </div>
+
+                <div
+                  class="summary-item-value"
+                  id="snapshotDate"
+                >
+                  –
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Rata-rata 7 Hari
+                </div>
+
+                <div
+                  class="summary-item-value"
+                  id="avg7"
+                >
+                  –
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Maksimum 7 Hari
+                </div>
+
+                <div
+                  class="summary-item-value"
+                  id="max7"
+                >
+                  –
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Minimum 7 Hari
+                </div>
+
+                <div
+                  class="summary-item-value"
+                  id="min7"
+                >
+                  –
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-item-label">
+                  Update Data
+                </div>
+
+                <div
+                  class="summary-item-value"
+                  id="updated"
+                >
+                  –
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="summary-text"
+              id="summaryText"
+            >
+              Menunggu data...
+            </div>
+
           </div>
+
         </div>
+
+
+        <!-- TREND -->
+
+        <div
+          class="panel"
+          style="margin-top:12px;"
+        >
+
+          <h3 class="panel-title">
+            Trend Hotspot 7 Hari
+          </h3>
+
+          <div class="panel-body">
+
+            <div class="trend-container">
+
+              <canvas id="trendChart"></canvas>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="footer">
-      Hotspot adalah indikasi anomali suhu/titik panas dan tidak otomatis berarti kebakaran aktual.
-      Gunakan informasi ini untuk screening dan verifikasi lapangan.
-    </div>
-  </div>
+    </section>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="footer">
+
+      <strong>Catatan:</strong>
+
+      Hotspot merupakan indikasi anomali suhu/titik panas dan
+      tidak otomatis berarti kebakaran aktual.
+
+      Data digunakan sebagai informasi pemantauan awal dan
+      tetap membutuhkan verifikasi lapangan.
+
+      <br><br>
+
+      <strong>Sumber:</strong>
+      SIPONGI KEMENHUT.
+
+    </footer>
+
+  </main>
+
+
+  <!-- =========================
+       LEAFLET JS
+       ========================= -->
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+
+
+  <!-- =========================
+       APPLICATION
+       ========================= -->
 
   <script>
-    const map = L.map('map').setView([-2.5, 118], 5);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    /*
+     * ==========================================
+     * CONFIGURATION
+     * ==========================================
+     */
 
-    const colors = {
-      high: '#b00020',
-      medium: '#e67e22',
-      low: '#2e7d32',
-      unknown: '#555'
+    const DATA_PATH = "data/";
+
+    const FILES = {
+
+      current:
+        DATA_PATH + "current.geojson",
+
+      trend:
+        DATA_PATH + "trend_7days.json",
+
+      summary:
+        DATA_PATH + "summary.json",
+
+      boundary:
+        DATA_PATH + "pt_boundary.geojson"
+
     };
 
-    Promise.all([
-      fetch('data/current.geojson').then(r => r.json()),
-      fetch('data/trend_7days.json').then(r => r.json()),
-      fetch('data/summary.json').then(r => r.json()),
-      fetch('data/pt_boundary.geojson').then(r => r.json())
-    ]).then(([hotspots, trend, summary, boundary]) => {
 
-      const boundaryLayer = L.geoJSON(boundary, {
-        style: { color:'#111', weight:2, fill:false }
-      }).addTo(map);
+    /*
+     * ==========================================
+     * MAP INITIALIZATION
+     * ==========================================
+     */
 
-      if (boundaryLayer.getBounds().isValid()) {
-        map.fitBounds(boundaryLayer.getBounds(), { padding:[20,20] });
+    const map = L.map("map", {
+
+      zoomControl: true,
+
+      attributionControl: true
+
+    }).setView(
+
+      [-2.5, 118],
+
+      5
+
+    );
+
+
+    /*
+     * BASEMAP
+     */
+
+    L.tileLayer(
+
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+      {
+
+        maxZoom: 19,
+
+        attribution:
+          "&copy; OpenStreetMap contributors"
+
       }
 
-      L.geoJSON(hotspots, {
-        pointToLayer: (feature, latlng) => {
-          const p = feature.properties || {};
-          const c = p.confidence || 'unknown';
-          return L.circleMarker(latlng, {
-            radius: c === 'high' ? 8 : c === 'medium' ? 6 : 5,
-            color: colors[c] || colors.unknown,
-            fillColor: colors[c] || colors.unknown,
-            fillOpacity: 0.85,
-            weight: 1
-          });
-        },
-        onEachFeature: (feature, layer) => {
-          const p = feature.properties || {};
-          const c = p.confidence || 'unknown';
-          const html = `
-            <b>Hotspot ${c.toUpperCase()}</b><br>
-            Confidence: ${p.confidence_value ?? '-'}<br>
-            Tanggal: ${p.date_hotspot ?? '-'}<br>
-            Tanggal asli: ${p.date_hotspot_ori ?? '-'}<br>
-            Sumber/Satelit: ${p.sumber ?? '-'}<br>
-            Provinsi: ${p.provinsi ?? '-'}<br>
-            Kab/Kota: ${p.kabkota ?? '-'}<br>
-            Desa: ${p.desa ?? '-'}<br>
-            Kawasan: ${p.kawasan ?? '-'}<br>
-            Koordinat: ${feature.geometry.coordinates[1].toFixed(5)},
-            ${feature.geometry.coordinates[0].toFixed(5)}
-          `;
-          layer.bindPopup(html);
+    ).addTo(map);
+
+
+    /*
+     * ==========================================
+     * COLORS
+     * ==========================================
+     */
+
+    const COLORS = {
+
+      high:
+        "#b00020",
+
+      medium:
+        "#e67e22",
+
+      low:
+        "#2e7d32",
+
+      unknown:
+        "#555555"
+
+    };
+
+
+    /*
+     * ==========================================
+     * LAYERS
+     * ==========================================
+     */
+
+    let hotspotLayer = null;
+
+    let boundaryLayer = null;
+
+    let trendChart = null;
+
+
+    /*
+     * ==========================================
+     * HELPER: FORMAT NUMBER
+     * ==========================================
+     */
+
+    function formatNumber(value) {
+
+      if (
+        value === null ||
+        value === undefined ||
+        value === ""
+      ) {
+
+        return "–";
+
+      }
+
+      return Number(value).toLocaleString("id-ID");
+
+    }
+
+
+    /*
+     * ==========================================
+     * HELPER: FORMAT DATE
+     * ==========================================
+     */
+
+    function formatDateTime(value) {
+
+      if (!value) {
+
+        return "–";
+
+      }
+
+      try {
+
+        const date = new Date(value);
+
+        return date.toLocaleString(
+
+          "id-ID",
+
+          {
+
+            timeZone:
+              "Asia/Jakarta",
+
+            dateStyle:
+              "medium",
+
+            timeStyle:
+              "short"
+
+          }
+
+        ) + " WIB";
+
+      }
+
+      catch (error) {
+
+        return value;
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================
+     * HELPER: SAFE FETCH
+     * ==========================================
+     */
+
+    async function loadJSON(url) {
+
+      const response = await fetch(
+
+        url + "?v=" + Date.now(),
+
+        {
+
+          cache: "no-store"
+
         }
-      }).addTo(map);
 
-      document.getElementById('ptName').textContent = summary.pt_name || 'SiPongi PT Hotspot Monitor';
-      document.getElementById('total').textContent = summary.total ?? 0;
-      document.getElementById('high').textContent = summary.high ?? 0;
-      document.getElementById('medium').textContent = summary.medium ?? 0;
-      document.getElementById('low').textContent = summary.low ?? 0;
+      );
 
-      document.getElementById('vsPrev').textContent =
-        summary.vs_previous_pct == null ? '–' : `${summary.vs_previous_pct > 0 ? '+' : ''}${summary.vs_previous_pct}%`;
+      if (!response.ok) {
 
-      document.getElementById('status').textContent = summary.status || '–';
-      document.getElementById('avg7').textContent = summary.average_7_days ?? 0;
-      document.getElementById('min7').textContent = summary.min_7_days ?? 0;
-      document.getElementById('max7').textContent = summary.max_7_days ?? 0;
-      document.getElementById('snapshotDate').textContent = summary.snapshot_date || '–';
-      document.getElementById('updated').textContent = summary.last_updated_utc || '–';
+        throw new Error(
 
-      new Chart(document.getElementById('trendChart'), {
-        type: 'line',
-        data: {
-          labels: trend.dates || [],
-          datasets: [
-            {
-              label: 'Total',
-              data: (trend.series || []).map(x => x.total),
-              tension: 0.25,
-              borderWidth: 2
-            },
-            {
-              label: 'High',
-              data: (trend.series || []).map(x => x.high),
-              tension: 0.25,
-              borderWidth: 2
-            },
-            {
-              label: 'Medium',
-              data: (trend.series || []).map(x => x.medium),
-              tension: 0.25,
-              borderWidth: 2
-            },
-            {
-              label: 'Low',
-              data: (trend.series || []).map(x => x.low),
-              tension: 0.25,
-              borderWidth: 2
+          "Gagal memuat " +
+          url +
+          " (HTTP " +
+          response.status +
+          ")"
+
+        );
+
+      }
+
+      return await response.json();
+
+    }
+
+
+    /*
+     * ==========================================
+     * ERROR HANDLER
+     * ==========================================
+     */
+
+    function showError(message) {
+
+      const errorBox =
+        document.getElementById(
+          "errorBox"
+        );
+
+      errorBox.style.display =
+        "block";
+
+      errorBox.innerHTML =
+        "<strong>Data belum dapat dimuat.</strong><br>" +
+        message;
+
+    }
+
+
+    /*
+     * ==========================================
+     * HOTSPOT MARKER
+     * ==========================================
+     */
+
+    function createHotspotMarker(
+
+      feature
+
+    ) {
+
+      const properties =
+        feature.properties || {};
+
+      const confidence =
+        String(
+          properties.confidence ||
+          "unknown"
+        ).toLowerCase();
+
+      const color =
+        COLORS[confidence] ||
+        COLORS.unknown;
+
+
+      let radius = 5;
+
+
+      if (
+        confidence === "high"
+      ) {
+
+        radius = 8;
+
+      }
+
+      else if (
+        confidence === "medium"
+      ) {
+
+        radius = 6;
+
+      }
+
+
+      const coordinates =
+        feature.geometry.coordinates;
+
+
+      const latitude =
+        coordinates[1];
+
+      const longitude =
+        coordinates[0];
+
+
+      const popup = `
+
+        <div
+          style="
+            min-width:240px;
+            line-height:1.6;
+          "
+        >
+
+          <div
+            style="
+              font-size:16px;
+              font-weight:700;
+              margin-bottom:5px;
+            "
+          >
+
+            HOTSPOT ${confidence.toUpperCase()}
+
+          </div>
+
+
+          <b>Confidence:</b>
+          ${properties.confidence_value ?? "-"}
+
+          <br>
+
+
+          <b>Tanggal:</b>
+          ${properties.date_hotspot ?? "-"}
+
+          <br>
+
+
+          <b>Tanggal asli:</b>
+          ${properties.date_hotspot_ori ?? "-"}
+
+          <br>
+
+
+          <b>Sumber/Satelit:</b>
+          ${properties.sumber ?? "-"}
+
+          <br>
+
+
+          <b>Provinsi:</b>
+          ${properties.provinsi ?? "-"}
+
+          <br>
+
+
+          <b>Kab/Kota:</b>
+          ${properties.kabkota ?? "-"}
+
+          <br>
+
+
+          <b>Desa:</b>
+          ${properties.desa ?? "-"}
+
+          <br>
+
+
+          <b>Kawasan:</b>
+          ${properties.kawasan ?? "-"}
+
+          <br>
+
+
+          <b>Koordinat:</b>
+          ${latitude.toFixed(5)},
+          ${longitude.toFixed(5)}
+
+          <hr
+            style="
+              border:0;
+              border-top:1px solid #eeeeee;
+              margin:7px 0;
+            "
+          >
+
+          <div
+            style="
+              font-size:10px;
+              color:#667085;
+            "
+          >
+
+            Sumber:
+            SIPONGI KEMENHUT
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      return L.circleMarker(
+
+        [latitude, longitude],
+
+        {
+
+          radius:
+            radius,
+
+          color:
+            color,
+
+          fillColor:
+            color,
+
+          fillOpacity:
+            0.85,
+
+          weight:
+            1
+
+        }
+
+      ).bindPopup(
+
+        popup
+
+      );
+
+    }
+
+
+    /*
+     * ==========================================
+     * LOAD MAP
+     * ==========================================
+     */
+
+    function renderMap(
+
+      hotspots,
+
+      boundary
+
+    ) {
+
+
+      /*
+       * REMOVE OLD LAYERS
+       */
+
+      if (
+        hotspotLayer
+      ) {
+
+        map.removeLayer(
+          hotspotLayer
+        );
+
+      }
+
+
+      if (
+        boundaryLayer
+      ) {
+
+        map.removeLayer(
+          boundaryLayer
+        );
+
+      }
+
+
+      /*
+       * BOUNDARY PT
+       */
+
+      boundaryLayer =
+        L.geoJSON(
+
+          boundary,
+
+          {
+
+            style: {
+
+              color:
+                "#111111",
+
+              weight:
+                2,
+
+              fill:
+                false,
+
+              opacity:
+                0.9
+
             }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { position: 'bottom' } },
-          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+
+          }
+
+        ).addTo(map);
+
+
+      /*
+       * HOTSPOTS
+       */
+
+      hotspotLayer =
+        L.geoJSON(
+
+          hotspots,
+
+          {
+
+            pointToLayer:
+
+              function(
+
+                feature,
+                latlng
+
+              ) {
+
+                const marker =
+                  createHotspotMarker(
+                    feature
+                  );
+
+                marker.setLatLng(
+                  latlng
+                );
+
+                return marker;
+
+              }
+
+          }
+
+        ).addTo(map);
+
+
+      /*
+       * FIT BOUNDARY
+       */
+
+      if (
+        boundaryLayer
+          .getBounds()
+          .isValid()
+      ) {
+
+        map.fitBounds(
+
+          boundaryLayer.getBounds(),
+
+          {
+
+            padding:
+              [25, 25]
+
+          }
+
+        );
+
+      }
+
+
+      /*
+       * MAP TOTAL
+       */
+
+      document.getElementById(
+        "mapTotal"
+      ).textContent =
+        formatNumber(
+          hotspots.features
+            ? hotspots.features.length
+            : 0
+        );
+
+    }
+
+
+    /*
+     * ==========================================
+     * UPDATE SUMMARY
+     * ==========================================
+     */
+
+    function renderSummary(
+
+      summary
+
+    ) {
+
+      document.getElementById(
+        "ptName"
+      ).textContent =
+        summary.pt_name ||
+        "SiPongi PT SLS Hotspot Monitor";
+
+
+      document.getElementById(
+        "total"
+      ).textContent =
+        formatNumber(
+          summary.total
+        );
+
+
+      document.getElementById(
+        "high"
+      ).textContent =
+        formatNumber(
+          summary.high
+        );
+
+
+      document.getElementById(
+        "medium"
+      ).textContent =
+        formatNumber(
+          summary.medium
+        );
+
+
+      document.getElementById(
+        "low"
+      ).textContent =
+        formatNumber(
+          summary.low
+        );
+
+
+      /*
+       * VS PREVIOUS
+       */
+
+      if (
+        summary.vs_previous_pct ===
+        null ||
+        summary.vs_previous_pct ===
+        undefined
+      ) {
+
+        document.getElementById(
+          "vsPrev"
+        ).textContent =
+          "–";
+
+      }
+
+      else {
+
+        const value =
+          Number(
+            summary.vs_previous_pct
+          );
+
+        document.getElementById(
+          "vsPrev"
+        ).textContent =
+          (
+            value > 0
+              ? "+"
+              : ""
+          ) +
+          value +
+          "%";
+
+      }
+
+
+      /*
+       * SUMMARY INFORMATION
+       */
+
+      document.getElementById(
+        "status"
+      ).textContent =
+        summary.status ||
+        "–";
+
+
+      document.getElementById(
+        "snapshotDate"
+      ).textContent =
+        summary.snapshot_date ||
+        "–";
+
+
+      document.getElementById(
+        "avg7"
+      ).textContent =
+        formatNumber(
+          summary.average_7_days
+        );
+
+
+      document.getElementById(
+        "min7"
+      ).textContent =
+        formatNumber(
+          summary.min_7_days
+        );
+
+
+      document.getElementById(
+        "max7"
+      ).textContent =
+        formatNumber(
+          summary.max_7_days
+        );
+
+
+      document.getElementById(
+        "updated"
+      ).textContent =
+        formatDateTime(
+          summary.last_updated_utc
+        );
+
+
+      document.getElementById(
+        "updatedMap"
+      ).textContent =
+        formatDateTime(
+          summary.last_updated_utc
+        );
+
+
+      /*
+       * SUMMARY TEXT
+       */
+
+      const total =
+        Number(
+          summary.total || 0
+        );
+
+      const avg =
+        Number(
+          summary.average_7_days || 0
+        );
+
+      let trendText = "";
+
+
+      if (
+        summary.vs_previous_pct !== null &&
+        summary.vs_previous_pct !== undefined
+      ) {
+
+        const change =
+          Number(
+            summary.vs_previous_pct
+          );
+
+        if (
+          change > 0
+        ) {
+
+          trendText =
+            "Jumlah hotspot meningkat " +
+            change +
+            "% dibandingkan hari sebelumnya.";
+
         }
-      });
-    }).catch(err => {
-      console.error(err);
-      alert('Data belum tersedia. Jalankan GitHub Actions terlebih dahulu.');
-    });
+
+        else if (
+          change < 0
+        ) {
+
+          trendText =
+            "Jumlah hotspot menurun " +
+            Math.abs(change) +
+            "% dibandingkan hari sebelumnya.";
+
+        }
+
+        else {
+
+          trendText =
+            "Jumlah hotspot relatif sama dibandingkan hari sebelumnya.";
+
+        }
+
+      }
+
+
+      let averageText = "";
+
+      if (
+        avg > 0
+      ) {
+
+        if (
+          total > avg
+        ) {
+
+          averageText =
+            "Jumlah hotspot hari ini berada di atas rata-rata 7 hari.";
+
+        }
+
+        else if (
+          total < avg
+        ) {
+
+          averageText =
+            "Jumlah hotspot hari ini berada di bawah rata-rata 7 hari.";
+
+        }
+
+        else {
+
+          averageText =
+            "Jumlah hotspot hari ini berada pada kisaran rata-rata 7 hari.";
+
+        }
+
+      }
+
+
+      document.getElementById(
+        "summaryText"
+      ).textContent =
+        [
+          "Dalam 24 jam terakhir terdapat " +
+          total +
+          " hotspot di dalam areal HGU PT SLS.",
+          trendText,
+          averageText
+        ]
+        .filter(Boolean)
+        .join(" ");
+
+    }
+
+
+    /*
+     * ==========================================
+     * TREND CHART
+     * ==========================================
+     */
+
+    function renderTrend(
+
+      trend
+
+    ) {
+
+      const labels =
+        trend.dates || [];
+
+
+      const series =
+        trend.series || [];
+
+
+      const context =
+        document
+          .getElementById(
+            "trendChart"
+          )
+          .getContext(
+            "2d"
+          );
+
+
+      if (
+        trendChart
+      ) {
+
+        trendChart.destroy();
+
+      }
+
+
+      trendChart =
+        new Chart(
+
+          context,
+
+          {
+
+            type:
+              "line",
+
+
+            data:
+
+              {
+
+                labels:
+                  labels,
+
+
+                datasets:
+
+                  [
+
+                    {
+
+                      label:
+                        "Total",
+
+                      data:
+                        series.map(
+                          x => x.total
+                        ),
+
+                      borderWidth:
+                        3,
+
+                      tension:
+                        0.25,
+
+                      fill:
+                        false
+
+                    },
+
+
+                    {
+
+                      label:
+                        "High",
+
+                      data:
+                        series.map(
+                          x => x.high
+                        ),
+
+                      borderWidth:
+                        2,
+
+                      tension:
+                        0.25,
+
+                      fill:
+                        false
+
+                    },
+
+
+                    {
+
+                      label:
+                        "Medium",
+
+                      data:
+                        series.map(
+                          x => x.medium
+                        ),
+
+                      borderWidth:
+                        2,
+
+                      tension:
+                        0.25,
+
+                      fill:
+                        false
+
+                    },
+
+
+                    {
+
+                      label:
+                        "Low",
+
+                      data:
+                        series.map(
+                          x => x.low
+                        ),
+
+                      borderWidth:
+                        2,
+
+                      tension:
+                        0.25,
+
+                      fill:
+                        false
+
+                    }
+
+                  ]
+
+              },
+
+
+            options:
+
+              {
+
+                responsive:
+                  true,
+
+                maintainAspectRatio:
+                  false,
+
+
+                interaction:
+
+                  {
+
+                    mode:
+                      "index",
+
+                    intersect:
+                      false
+
+                  },
+
+
+                plugins:
+
+                  {
+
+                    legend:
+
+                      {
+
+                        position:
+                          "bottom"
+
+                      }
+
+                  },
+
+
+                scales:
+
+                  {
+
+                    y:
+
+                      {
+
+                        beginAtZero:
+                          true,
+
+                        ticks:
+
+                          {
+
+                            precision:
+                              0
+
+                          }
+
+                      }
+
+                  }
+
+              }
+
+          }
+
+        );
+
+    }
+
+
+    /*
+     * ==========================================
+     * LOAD ALL DATA
+     * ==========================================
+     */
+
+    async function initializeDashboard() {
+
+      try {
+
+
+        /*
+         * LOAD PARALLEL
+         */
+
+        const [
+
+          hotspots,
+
+          trend,
+
+          summary,
+
+          boundary
+
+        ] = await Promise.all(
+
+          [
+
+            loadJSON(
+              FILES.current
+            ),
+
+            loadJSON(
+              FILES.trend
+            ),
+
+            loadJSON(
+              FILES.summary
+            ),
+
+            loadJSON(
+              FILES.boundary
+            )
+
+          ]
+
+        );
+
+
+        /*
+         * RENDER
+         */
+
+        renderMap(
+
+          hotspots,
+
+          boundary
+
+        );
+
+
+        renderSummary(
+
+          summary
+
+        );
+
+
+        renderTrend(
+
+          trend
+
+        );
+
+
+        /*
+         * REMOVE LOADING
+         */
+
+        const loading =
+          document.querySelector(
+            "#map .loading"
+          );
+
+        if (
+          loading
+        ) {
+
+          loading.remove();
+
+        }
+
+      }
+
+      catch (
+        error
+      ) {
+
+        console.error(
+          error
+        );
+
+
+        showError(
+
+          error.message +
+          "<br><br>" +
+          "Pastikan GitHub Actions sudah berhasil dijalankan " +
+          "dan file data tersedia di folder site/data/."
+
+        );
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================
+     * START
+     * ==========================================
+     */
+
+    initializeDashboard();
+
+
   </script>
+
 </body>
 </html>
