@@ -2,13 +2,16 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
   <title>PT SLS — SiPongi Hotspot Monitor</title>
 
-  <!-- ======================================================
+  <!-- =====================================================
        LEAFLET
-       ====================================================== -->
+       ===================================================== -->
 
   <link
     rel="stylesheet"
@@ -16,42 +19,31 @@
     crossorigin=""
   >
 
-  <!-- ======================================================
+  <!-- =====================================================
        CHART.JS
-       ====================================================== -->
+       ===================================================== -->
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-
-  <!-- ======================================================
-       TURF.JS
-       Untuk membuat buffer 5 km dari boundary HGU
-       ====================================================== -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+  ></script>
 
 
   <style>
-
-    /* ======================================================
-       BASE
-       ====================================================== */
 
     * {
       box-sizing: border-box;
     }
 
+
     html,
     body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      min-height: 100%;
+
       font-family:
         Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
         Arial,
+        Helvetica,
         sans-serif;
 
       background: #f4f6f8;
@@ -59,105 +51,136 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        HEADER
-       ====================================================== */
+       ===================================================== */
 
     .header {
       background: #ffffff;
       border-bottom: 1px solid #e4e7ec;
     }
 
+
     .header-inner {
       width: 100%;
       max-width: 1600px;
+
       margin: 0 auto;
-      padding: 22px 24px;
+
+      padding: 20px 24px;
     }
+
 
     .eyebrow {
       font-size: 11px;
       font-weight: 700;
+
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: .08em;
+
       color: #667085;
+
       margin-bottom: 6px;
     }
 
+
     .title {
       font-size: 28px;
-      font-weight: 750;
+      font-weight: 800;
+
       line-height: 1.15;
-      color: #101828;
     }
+
 
     .subtitle {
       margin-top: 6px;
+
       font-size: 13px;
+
       color: #667085;
     }
 
+
     .meta {
-      margin-top: 8px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 18px;
+
+      gap: 8px 18px;
+
+      margin-top: 8px;
+
       font-size: 11px;
+
       color: #475467;
     }
 
 
-    /* ======================================================
-       LAYOUT
-       ====================================================== */
+    /* =====================================================
+       CONTAINER
+       ===================================================== */
 
     .container {
       width: 100%;
       max-width: 1600px;
+
       margin: 0 auto;
-      padding: 18px 24px 28px;
+
+      padding: 16px 24px 28px;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        STATUS BAR
-       ====================================================== */
+       ===================================================== */
 
     .status-bar {
       display: flex;
+
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+
+      gap: 10px;
+
       flex-wrap: wrap;
 
       padding: 10px 13px;
+
       margin-bottom: 14px;
 
       background: #ffffff;
-      border: 1px solid #e4e7ec;
+
+      border:
+        1px solid #e4e7ec;
+
       border-radius: 10px;
 
       font-size: 11px;
+
       color: #475467;
     }
 
+
     .status-left {
       display: flex;
-      gap: 15px;
+
       flex-wrap: wrap;
+
+      gap: 12px 18px;
     }
+
 
     .status-right {
-      font-weight: 600;
+      font-weight: 700;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        KPI
-       ====================================================== */
+       ===================================================== */
 
     .kpi-grid {
       display: grid;
+
       grid-template-columns:
         repeat(8, minmax(0, 1fr));
 
@@ -166,43 +189,51 @@
       margin-bottom: 14px;
     }
 
+
     .kpi {
-      min-height: 104px;
+      min-height: 105px;
 
       background: #ffffff;
 
-      border: 1px solid #e4e7ec;
+      border:
+        1px solid #e4e7ec;
+
       border-radius: 11px;
 
       padding: 14px;
     }
 
+
     .kpi-label {
       font-size: 11px;
+
       color: #667085;
     }
 
+
     .kpi-value {
-      margin-top: 6px;
+      margin-top: 7px;
 
       font-size: 27px;
+
       line-height: 1;
 
-      font-weight: 750;
-      color: #101828;
+      font-weight: 800;
     }
+
 
     .kpi-sub {
       margin-top: 7px;
 
       font-size: 10px;
+
       color: #98a2b3;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        MAIN GRID
-       ====================================================== */
+       ===================================================== */
 
     .main-grid {
       display: grid;
@@ -215,25 +246,26 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        PANEL
-       ====================================================== */
+       ===================================================== */
 
     .panel {
       background: #ffffff;
 
-      border: 1px solid #e4e7ec;
+      border:
+        1px solid #e4e7ec;
 
       border-radius: 11px;
 
       overflow: hidden;
     }
 
+
     .panel-header {
       display: flex;
 
       justify-content: space-between;
-
       align-items: center;
 
       gap: 10px;
@@ -244,30 +276,40 @@
         1px solid #eaecf0;
     }
 
+
     .panel-title {
       font-size: 14px;
-      font-weight: 700;
+
+      font-weight: 750;
     }
 
+
     .panel-note {
+      margin-top: 3px;
+
       font-size: 10px;
+
       color: #98a2b3;
     }
+
 
     .panel-body {
       padding: 14px;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        MAP
-       ====================================================== */
+       ===================================================== */
 
     #map {
       width: 100%;
-      height: 620px;
-      background: #eef2f6;
+
+      height: 650px;
+
+      background: #d7d7d7;
     }
+
 
     .map-footer {
       padding: 9px 13px;
@@ -276,15 +318,14 @@
         1px solid #eaecf0;
 
       font-size: 10px;
-      color: #667085;
 
-      background: #ffffff;
+      color: #667085;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        LEGEND
-       ====================================================== */
+       ===================================================== */
 
     .legend {
       display: flex;
@@ -303,57 +344,55 @@
       color: #475467;
     }
 
+
     .legend-item {
       display: inline-flex;
 
       align-items: center;
 
-      gap: 5px;
+      gap: 6px;
     }
+
 
     .legend-dot {
       width: 10px;
       height: 10px;
 
+      display: inline-block;
+
       border-radius: 50%;
     }
+
 
     .dot-high {
       background: #b00020;
     }
 
+
     .dot-medium {
       background: #e67e22;
     }
+
 
     .dot-low {
       background: #2e7d32;
     }
 
-    .dot-hgu {
-      width: 12px;
-      height: 12px;
 
-      border-radius: 2px;
+    .legend-line {
+      width: 17px;
+      height: 0;
 
-      border: 2px solid #111111;
-      background: transparent;
-    }
+      display: inline-block;
 
-    .dot-buffer {
-      width: 12px;
-      height: 12px;
-
-      border-radius: 2px;
-
-      border: 1px dashed #667085;
-      background: rgba(102, 112, 133, 0.08);
+      border-top:
+        2px solid #111111;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        SUMMARY
-       ====================================================== */
+       ===================================================== */
 
     .summary-grid {
       display: grid;
@@ -364,16 +403,18 @@
       gap: 9px;
     }
 
+
     .summary-card {
       padding: 12px;
-
-      background: #f8fafc;
 
       border:
         1px solid #eaecf0;
 
       border-radius: 8px;
+
+      background: #f8fafc;
     }
+
 
     .summary-label {
       font-size: 10px;
@@ -381,20 +422,15 @@
       color: #667085;
     }
 
+
     .summary-value {
       margin-top: 4px;
 
       font-size: 18px;
 
       font-weight: 750;
-
-      color: #101828;
     }
 
-
-    /* ======================================================
-       STATUS
-       ====================================================== */
 
     .status-badge {
       display: inline-flex;
@@ -403,22 +439,22 @@
 
       padding: 5px 9px;
 
+      border:
+        1px solid #d0d5dd;
+
       border-radius: 999px;
+
+      background: #ffffff;
 
       font-size: 10px;
 
       font-weight: 700;
-
-      border:
-        1px solid #d0d5dd;
-
-      background: #ffffff;
     }
 
 
-    /* ======================================================
-       INSIGHT TEXT
-       ====================================================== */
+    /* =====================================================
+       INSIGHT
+       ===================================================== */
 
     .insight {
       margin-top: 12px;
@@ -438,47 +474,37 @@
     }
 
 
-    /* ======================================================
-       CHART
-       ====================================================== */
-
-    .chart-box {
-      position: relative;
-
-      width: 100%;
-
-      height: 370px;
-    }
-
-
-    /* ======================================================
+    /* =====================================================
        ZONE SUMMARY
-       ====================================================== */
+       ===================================================== */
 
     .zone-list {
       display: grid;
 
-      gap: 7px;
+      gap: 8px;
 
-      margin-top: 12px;
+      margin-top: 13px;
     }
+
 
     .zone-row {
       display: grid;
 
       grid-template-columns:
-        80px 1fr 42px;
-
-      align-items: center;
+        80px 1fr 40px;
 
       gap: 8px;
+
+      align-items: center;
 
       font-size: 10px;
     }
 
+
     .zone-name {
       color: #475467;
     }
+
 
     .zone-bar {
       height: 7px;
@@ -490,11 +516,13 @@
       overflow: hidden;
     }
 
+
     .zone-fill {
       height: 100%;
 
       border-radius: 999px;
     }
+
 
     .zone-count {
       text-align: right;
@@ -505,26 +533,22 @@
     }
 
 
-    /* ======================================================
-       FOOTER
-       ====================================================== */
+    /* =====================================================
+       CHART
+       ===================================================== */
 
-    .footer {
-      margin-top: 14px;
+    .chart-box {
+      position: relative;
 
-      padding: 13px 3px 4px;
+      width: 100%;
 
-      font-size: 10px;
-
-      line-height: 1.6;
-
-      color: #667085;
+      height: 380px;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        ERROR
-       ====================================================== */
+       ===================================================== */
 
     #errorBox {
       display: none;
@@ -533,12 +557,12 @@
 
       padding: 12px;
 
-      background: #fff5f5;
-
       border:
         1px solid #fecdca;
 
       border-radius: 9px;
+
+      background: #fff5f5;
 
       color: #b42318;
 
@@ -548,24 +572,26 @@
     }
 
 
-    /* ======================================================
-       LOADING
-       ====================================================== */
+    /* =====================================================
+       FOOTER
+       ===================================================== */
 
-    .loading {
-      padding: 35px;
+    .footer {
+      margin-top: 14px;
 
-      text-align: center;
+      padding: 12px 3px 4px;
+
+      font-size: 10px;
+
+      line-height: 1.65;
 
       color: #667085;
-
-      font-size: 12px;
     }
 
 
-    /* ======================================================
+    /* =====================================================
        RESPONSIVE
-       ====================================================== */
+       ===================================================== */
 
     @media (max-width: 1300px) {
 
@@ -580,10 +606,9 @@
     @media (max-width: 1000px) {
 
       .main-grid {
-
         grid-template-columns: 1fr;
-
       }
+
 
       #map {
         height: 560px;
@@ -596,28 +621,26 @@
 
       .header-inner,
       .container {
-
         padding-left: 12px;
         padding-right: 12px;
-
       }
+
 
       .title {
         font-size: 23px;
       }
 
-      .kpi-grid {
 
+      .kpi-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
-
       }
+
 
       .summary-grid {
-
         grid-template-columns: 1fr;
-
       }
+
 
       #map {
         height: 470px;
@@ -632,9 +655,9 @@
 <body>
 
 
-  <!-- ======================================================
+  <!-- =====================================================
        HEADER
-       ====================================================== -->
+       ===================================================== -->
 
   <header class="header">
 
@@ -644,6 +667,7 @@
         HOTSPOT MONITORING
       </div>
 
+
       <div
         class="title"
         id="ptName"
@@ -651,17 +675,23 @@
         PT SLS
       </div>
 
+
       <div class="subtitle">
-        Monitoring hotspot SiPongi dalam HGU
-        dan radius 5 km dari HGU
+        Monitoring hotspot SiPongi
+        dalam HGU dan sekitar HGU
+        dengan radius maksimum 5 km
       </div>
+
 
       <div class="meta">
 
         <span>
           Sumber:
-          <strong>SIPONGI KEMENHUT</strong>
+          <strong>
+            SIPONGI KEMENHUT
+          </strong>
         </span>
+
 
         <span>
           Periode:
@@ -669,6 +699,7 @@
             –
           </strong>
         </span>
+
 
         <span>
           Update:
@@ -684,10 +715,9 @@
   </header>
 
 
-
-  <!-- ======================================================
-       CONTENT
-       ====================================================== -->
+  <!-- =====================================================
+       MAIN CONTAINER
+       ===================================================== -->
 
   <main class="container">
 
@@ -697,9 +727,9 @@
     <div id="errorBox"></div>
 
 
-    <!-- ====================================================
-         STATUS BAR
-         ==================================================== -->
+    <!-- ===================================================
+         STATUS
+         =================================================== -->
 
     <div class="status-bar">
 
@@ -712,12 +742,22 @@
           </strong>
         </span>
 
+
         <span>
-          Radius monitoring:
+          Filter spasial:
           <strong>
-            5 km
+            ≤ 5 km dari HGU
           </strong>
         </span>
+
+
+        <span>
+          Basemap:
+          <strong>
+            Satellite
+          </strong>
+        </span>
+
 
         <span>
           Satelit:
@@ -728,21 +768,20 @@
 
       </div>
 
-      <div class="status-right">
 
-        <span id="systemStatus">
-          Memuat data...
-        </span>
-
+      <div
+        class="status-right"
+        id="systemStatus"
+      >
+        Memuat data...
       </div>
 
     </div>
 
 
-
-    <!-- ====================================================
+    <!-- ===================================================
          KPI
-         ==================================================== -->
+         =================================================== -->
 
     <section class="kpi-grid">
 
@@ -801,7 +840,7 @@
         </div>
 
         <div class="kpi-sub">
-          sangat dekat HGU
+          klasifikasi analitik
         </div>
 
       </div>
@@ -821,7 +860,7 @@
         </div>
 
         <div class="kpi-sub">
-          sekitar HGU
+          klasifikasi analitik
         </div>
 
       </div>
@@ -841,7 +880,7 @@
         </div>
 
         <div class="kpi-sub">
-          area sekitar HGU
+          klasifikasi analitik
         </div>
 
       </div>
@@ -910,17 +949,16 @@
     </section>
 
 
-
-    <!-- ====================================================
-         MAIN
-         ==================================================== -->
+    <!-- ===================================================
+         MAIN GRID
+         =================================================== -->
 
     <section class="main-grid">
 
 
-      <!-- ==================================================
+      <!-- =================================================
            MAP
-           ================================================== -->
+           ================================================= -->
 
       <div class="panel">
 
@@ -929,12 +967,12 @@
           <div>
 
             <div class="panel-title">
-              Peta Hotspot PT SLS
+              Peta Satelit Hotspot PT SLS
             </div>
 
             <div class="panel-note">
-              Seluruh hotspot dalam radius 5 km
-              selama periode 30 hari
+              Hanya boundary HGU dan seluruh titik hotspot
+              yang telah lolos filter radius ≤5 km
             </div>
 
           </div>
@@ -945,11 +983,13 @@
         <div id="map">
 
           <div class="loading">
-            Memuat peta...
+            Memuat citra satelit...
           </div>
 
         </div>
 
+
+        <!-- LEGEND -->
 
         <div class="legend">
 
@@ -982,18 +1022,9 @@
 
           <div class="legend-item">
 
-            <span class="legend-dot dot-hgu"></span>
+            <span class="legend-line"></span>
 
             HGU PT SLS
-
-          </div>
-
-
-          <div class="legend-item">
-
-            <span class="legend-dot dot-buffer"></span>
-
-            Radius 5 km
 
           </div>
 
@@ -1002,7 +1033,7 @@
 
         <div class="map-footer">
 
-          Total titik yang ditampilkan:
+          Titik hotspot ditampilkan:
           <strong id="mapTotal">
             –
           </strong>
@@ -1019,10 +1050,9 @@
       </div>
 
 
-
-      <!-- ==================================================
+      <!-- =================================================
            RIGHT COLUMN
-           ================================================== -->
+           ================================================= -->
 
       <div>
 
@@ -1034,7 +1064,7 @@
           <div class="panel-header">
 
             <div class="panel-title">
-              Summary
+              Summary 30 Hari
             </div>
 
           </div>
@@ -1133,7 +1163,7 @@
               <div class="summary-card">
 
                 <div class="summary-label">
-                  Perubahan vs Hari Sebelumnya
+                  Vs Hari Sebelumnya
                 </div>
 
                 <div
@@ -1145,19 +1175,20 @@
 
               </div>
 
-
             </div>
 
+
+            <!-- INSIGHT -->
 
             <div
               class="insight"
               id="insight"
             >
-              Menunggu analisis...
+              Menunggu data...
             </div>
 
 
-            <!-- ZONES -->
+            <!-- ZONE ANALYTIC SUMMARY -->
 
             <div class="zone-list">
 
@@ -1285,8 +1316,9 @@
         </div>
 
 
-
-        <!-- TREND -->
+        <!-- =================================================
+             TREND
+             ================================================= -->
 
         <div
           class="panel"
@@ -1328,36 +1360,49 @@
     </section>
 
 
-
-    <!-- ====================================================
+    <!-- ===================================================
          FOOTER
-         ==================================================== -->
+         =================================================== -->
 
     <footer class="footer">
 
       <strong>Catatan:</strong>
 
-      Hotspot merupakan indikasi anomali suhu/titik panas
-      dan tidak otomatis berarti kebakaran aktual.
+      Titik hotspot yang ditampilkan pada peta
+      merupakan titik yang telah lolos filter spasial
+      di dalam HGU PT SLS atau sampai dengan 5 km
+      dari boundary HGU.
 
-      Data digunakan sebagai informasi pemantauan awal
-      dan tetap membutuhkan verifikasi lapangan.
+      Zona 0–1 km, 1–3 km, dan 3–5 km digunakan
+      untuk klasifikasi analitik dan tidak
+      divisualisasikan sebagai polygon pada peta.
+
+      <br><br>
+
+      <strong>Hotspot</strong> merupakan indikasi
+      anomali suhu/titik panas dan tidak otomatis
+      berarti kebakaran aktual.
+
+      Informasi tetap membutuhkan verifikasi lapangan.
+
+      <br><br>
+
+      <strong>Basemap:</strong>
+      Esri World Imagery.
 
       <br>
 
-      <strong>Sumber:</strong>
+      <strong>Data hotspot:</strong>
       SIPONGI KEMENHUT.
 
     </footer>
 
-
   </main>
 
 
-
-  <!-- ======================================================
+  <!-- =====================================================
        LEAFLET JS
-       ====================================================== -->
+       ===================================================== -->
 
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -1365,12 +1410,11 @@
   ></script>
 
 
-
   <script>
 
-    /* ======================================================
-       CONFIG
-       ====================================================== */
+    /* =====================================================
+       DATA FILES
+       ===================================================== */
 
     const DATA_PATH = "data/";
 
@@ -1396,41 +1440,63 @@
     };
 
 
-    /* ======================================================
+    /* =====================================================
        MAP
-       ====================================================== */
+       ===================================================== */
 
     const map =
-      L.map("map")
-        .setView(
-          [-2.5, 118],
-          5
-        );
+      L.map(
+
+        "map",
+
+        {
+
+          preferCanvas:
+            true,
+
+          zoomControl:
+            true,
+
+          attributionControl:
+            true
+
+        }
+
+      ).setView(
+
+        [-2.5, 118],
+
+        5
+
+      );
 
 
-    /* ======================================================
-       BASEMAP
-       ====================================================== */
+    /* =====================================================
+       SATELLITE BASEMAP
+       ===================================================== */
 
     L.tileLayer(
 
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
 
       {
 
-        maxZoom: 19,
+        maxZoom:
+          19,
 
         attribution:
-          "&copy; OpenStreetMap contributors"
+          "Tiles &copy; Esri"
 
       }
 
-    ).addTo(map);
+    ).addTo(
+      map
+    );
 
 
-    /* ======================================================
-       COLORS
-       ====================================================== */
+    /* =====================================================
+       HOTSPOT COLORS
+       ===================================================== */
 
     const COLORS = {
 
@@ -1449,36 +1515,32 @@
     };
 
 
-    /* ======================================================
-       LAYERS
-       ====================================================== */
-
-    let hotspotLayer = null;
-
-    let hguLayer = null;
-
-    let bufferLayer = null;
-
-    let trendChart = null;
+    let trendChart =
+      null;
 
 
-    /* ======================================================
-       FORMAT NUMBER
-       ====================================================== */
+    /* =====================================================
+       NUMBER FORMAT
+       ===================================================== */
 
     function formatNumber(
       value
     ) {
 
       if (
+
         value === null ||
+
         value === undefined ||
+
         value === ""
+
       ) {
 
         return "–";
 
       }
+
 
       return Number(
         value
@@ -1489,9 +1551,9 @@
     }
 
 
-    /* ======================================================
-       DATE FORMAT
-       ====================================================== */
+    /* =====================================================
+       DATETIME
+       ===================================================== */
 
     function formatDateTime(
       value
@@ -1544,60 +1606,54 @@
     }
 
 
-    /* ======================================================
-       DATE LABEL
-       ====================================================== */
+    /* =====================================================
+       SHORT DATE
+       ===================================================== */
 
     function shortDate(
-      dateString
+      value
     ) {
 
-      if (!dateString) {
+      if (!value) {
 
         return "–";
 
       }
 
 
-      try {
-
-        const parts =
-          dateString.split(
-            "-"
-          );
-
-
-        if (
-          parts.length !== 3
-        ) {
-
-          return dateString;
-
-        }
-
-
-        return (
-          parts[2] +
-          "/" +
-          parts[1]
+      const parts =
+        String(
+          value
+        ).split(
+          "-"
         );
 
-      }
 
-      catch (
-        error
+      if (
+        parts.length !== 3
       ) {
 
-        return dateString;
+        return value;
 
       }
+
+
+      return (
+
+        parts[2] +
+
+        "/" +
+
+        parts[1]
+
+      );
 
     }
 
 
-    /* ======================================================
-       SAFE FETCH
-       ====================================================== */
+    /* =====================================================
+       JSON LOADER
+       ===================================================== */
 
     async function loadJSON(
       url
@@ -1607,7 +1663,9 @@
         await fetch(
 
           url +
+
           "?v=" +
+
           Date.now(),
 
           {
@@ -1620,16 +1678,18 @@
         );
 
 
-      if (
-        !response.ok
-      ) {
+      if (!response.ok) {
 
         throw new Error(
 
           "Gagal memuat " +
+
           url +
+
           " (HTTP " +
+
           response.status +
+
           ")"
 
         );
@@ -1642,9 +1702,9 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        ERROR
-       ====================================================== */
+       ===================================================== */
 
     function showError(
       message
@@ -1664,27 +1724,20 @@
 
         "<strong>Data belum dapat dimuat.</strong><br>" +
 
-        message +
-
-        "<br><br>" +
-
-        "Pastikan workflow SiPongi berhasil " +
-
-        "dan file data tersedia di site/data/.";
+        message;
 
     }
 
 
-    /* ======================================================
-       UPDATE SUMMARY
-       ====================================================== */
+    /* =====================================================
+       RENDER SUMMARY
+       ===================================================== */
 
     function renderSummary(
       summary
     ) {
 
-
-      /* PT NAME */
+      /* PT */
 
       document.getElementById(
         "ptName"
@@ -1695,49 +1748,75 @@
         "PT SLS";
 
 
-      /* PERIOD */
+      /* Period */
 
       document.getElementById(
         "period"
       ).textContent =
 
-        summary.period_start +
+        (
 
-        " – " +
+          summary.period_start ||
 
-        summary.period_end;
+          "–"
+
+        )
+
+        +
+
+        " – "
+
+        +
+
+        (
+
+          summary.period_end ||
+
+          "–"
+
+        );
 
 
-      /* UPDATED */
+      /* Update */
 
       const updated =
         formatDateTime(
+
           summary.last_updated_utc
+
         );
 
 
       document.getElementById(
         "updatedHeader"
       ).textContent =
+
         updated;
 
 
       document.getElementById(
         "updatedMap"
       ).textContent =
+
         updated;
 
 
-      /* KPI */
+      /* =================================================
+         KPI
+         ================================================= */
 
       document.getElementById(
         "total"
       ).textContent =
 
         formatNumber(
+
           summary.total_within_5km ??
+
           summary.total ??
+
           0
+
         );
 
 
@@ -1746,8 +1825,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.inside_hgu ??
+
           0
+
         );
 
 
@@ -1756,8 +1838,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.zone_0_1 ??
+
           0
+
         );
 
 
@@ -1766,8 +1851,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.zone_1_3 ??
+
           0
+
         );
 
 
@@ -1776,8 +1864,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.zone_3_5 ??
+
           0
+
         );
 
 
@@ -1786,8 +1877,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.high ??
+
           0
+
         );
 
 
@@ -1796,8 +1890,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.medium ??
+
           0
+
         );
 
 
@@ -1806,18 +1903,24 @@
       ).textContent =
 
         formatNumber(
+
           summary.low ??
+
           0
+
         );
 
 
-      /* SUMMARY */
+      /* =================================================
+         SUMMARY
+         ================================================= */
 
       document.getElementById(
         "status"
       ).textContent =
 
         summary.status ||
+
         "–";
 
 
@@ -1826,8 +1929,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.latest_day_total ??
+
           0
+
         );
 
 
@@ -1836,8 +1942,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.average_30_days ??
+
           0
+
         );
 
 
@@ -1846,8 +1955,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.max_30_days ??
+
           0
+
         );
 
 
@@ -1856,8 +1968,11 @@
       ).textContent =
 
         formatNumber(
+
           summary.min_30_days ??
+
           0
+
         );
 
 
@@ -1865,108 +1980,145 @@
         summary.vs_previous_pct;
 
 
-      if (
-        previous === null ||
-        previous === undefined
-      ) {
+      document.getElementById(
+        "vsPrevious"
+      ).textContent =
 
-        document.getElementById(
-          "vsPrevious"
-        ).textContent =
-          "–";
+        (
 
-      }
+          previous === null ||
 
-      else {
+          previous === undefined
 
-        document.getElementById(
-          "vsPrevious"
-        ).textContent =
+        )
+
+          ?
+
+          "–"
+
+          :
 
           (
-            previous > 0
-              ? "+"
-              : ""
-          ) +
 
-          previous +
+            previous > 0
+
+              ?
+
+              "+"
+
+              :
+
+              ""
+
+          )
+
+          +
+
+          previous
+
+          +
 
           "%";
 
-      }
 
-
-      /* INSIGHT */
+      /* =================================================
+         INSIGHT
+         ================================================= */
 
       const total =
         Number(
+
           summary.total_within_5km ??
+
           summary.total ??
+
           0
+
         );
 
 
       const inside =
         Number(
+
           summary.inside_hgu ??
+
           0
+
         );
 
 
       const zone01 =
         Number(
+
           summary.zone_0_1 ??
+
           0
+
         );
 
 
       const zone13 =
         Number(
+
           summary.zone_1_3 ??
+
           0
+
         );
 
 
       const zone35 =
         Number(
+
           summary.zone_3_5 ??
+
           0
+
         );
 
 
-      let trendSentence =
+      let trendText =
         "";
 
 
       if (
+
         previous !== null &&
+
         previous !== undefined
+
       ) {
 
+        const change =
+          Number(
+            previous
+          );
+
+
         if (
-          Number(previous) > 0
+          change > 0
         ) {
 
-          trendSentence =
+          trendText =
 
             "Jumlah hotspot meningkat " +
 
-            previous +
+            change +
 
             "% dibandingkan hari sebelumnya.";
 
         }
 
         else if (
-          Number(previous) < 0
+          change < 0
         ) {
 
-          trendSentence =
+          trendText =
 
             "Jumlah hotspot menurun " +
 
             Math.abs(
-              Number(previous)
+              change
             ) +
 
             "% dibandingkan hari sebelumnya.";
@@ -1975,37 +2127,13 @@
 
         else {
 
-          trendSentence =
+          trendText =
+
             "Jumlah hotspot sama dengan hari sebelumnya.";
 
         }
 
       }
-
-
-      const locationSentence =
-
-        "Dari total " +
-
-        total +
-
-        " hotspot dalam radius 5 km, " +
-
-        inside +
-
-        " berada di dalam HGU, " +
-
-        zone01 +
-
-        " berada pada 0–1 km, " +
-
-        zone13 +
-
-        " pada 1–3 km, dan " +
-
-        zone35 +
-
-        " pada 3–5 km.";
 
 
       document.getElementById(
@@ -2014,7 +2142,7 @@
 
         (
 
-          "Periode monitoring " +
+          "Dalam periode " +
 
           summary.period_start +
 
@@ -2022,18 +2150,36 @@
 
           summary.period_end +
 
-          ". " +
+          ", terdapat " +
 
-          locationSentence +
+          total +
 
-          " " +
+          " hotspot dalam HGU atau radius ≤5 km. " +
 
-          trendSentence
+          inside +
+
+          " berada di dalam HGU, " +
+
+          zone01 +
+
+          " pada 0–1 km, " +
+
+          zone13 +
+
+          " pada 1–3 km, dan " +
+
+          zone35 +
+
+          " pada 3–5 km. " +
+
+          trendText
 
         ).trim();
 
 
-      /* ZONE BARS */
+      /* =================================================
+         ZONE BARS
+         ================================================= */
 
       const denominator =
         Math.max(
@@ -2076,26 +2222,36 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        ZONE BAR
-       ====================================================== */
+       ===================================================== */
 
     function setBar(
+
       barId,
+
       countId,
+
       value,
+
       denominator
+
     ) {
 
       const percentage =
+
         Math.min(
 
           100,
 
-          (
-            Number(value) /
-            Number(denominator)
-          ) *
+          Number(value)
+
+          /
+
+          Number(denominator)
+
+          *
+
           100
 
         );
@@ -2121,9 +2277,9 @@
     }
 
 
-    /* ======================================================
-       MAP MARKER
-       ====================================================== */
+    /* =====================================================
+       HOTSPOT MARKER
+       ===================================================== */
 
     function createMarker(
       feature
@@ -2144,39 +2300,33 @@
         ).toLowerCase();
 
 
-      const zone =
-        properties.zone ||
-        "-";
-
-
       const color =
         COLORS[
           confidence
         ] ||
+
         COLORS.unknown;
 
 
       let radius =
-        5;
+        4;
 
 
       if (
-        confidence ===
-        "high"
+        confidence === "high"
       ) {
 
         radius =
-          8;
+          7;
 
       }
 
       else if (
-        confidence ===
-        "medium"
+        confidence === "medium"
       ) {
 
         radius =
-          6;
+          5;
 
       }
 
@@ -2186,23 +2336,27 @@
           .coordinates;
 
 
-      const latitude =
+      const lat =
         Number(
           coordinates[1]
         );
 
 
-      const longitude =
+      const lon =
         Number(
           coordinates[0]
         );
 
 
+      /* =================================================
+         POPUP
+         ================================================= */
+
       const popup = `
 
         <div
           style="
-            min-width:245px;
+            min-width:250px;
             line-height:1.6;
           "
         >
@@ -2210,8 +2364,8 @@
           <div
             style="
               font-size:15px;
-              font-weight:700;
-              margin-bottom:6px;
+              font-weight:750;
+              margin-bottom:7px;
             "
           >
             HOTSPOT
@@ -2219,8 +2373,14 @@
           </div>
 
 
-          <b>Zona:</b>
-          ${zone}
+          <b>Lokasi:</b>
+          ${properties.location_status ?? "-"}
+
+          <br>
+
+
+          <b>Zona jarak:</b>
+          ${properties.zone ?? "-"}
 
           <br>
 
@@ -2274,21 +2434,15 @@
           <br>
 
 
-          <b>Status:</b>
-          ${properties.location_status ?? "-"}
-
-          <br>
-
-
           <b>Koordinat:</b>
-          ${latitude.toFixed(5)},
-          ${longitude.toFixed(5)}
+          ${lat.toFixed(5)},
+          ${lon.toFixed(5)}
 
           <hr
             style="
               border:0;
               border-top:1px solid #eaecf0;
-              margin:7px 0;
+              margin:8px 0;
             "
           >
 
@@ -2311,30 +2465,27 @@
       return L.circleMarker(
 
         [
-          latitude,
-          longitude
+          lat,
+
+          lon
+
         ],
 
         {
 
           radius:
-
             radius,
 
           color:
-
             color,
 
           fillColor:
-
             color,
 
           fillOpacity:
-
-            0.85,
+            .85,
 
           weight:
-
             1
 
         }
@@ -2346,9 +2497,9 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        RENDER MAP
-       ====================================================== */
+       ===================================================== */
 
     function renderMap(
 
@@ -2358,8 +2509,7 @@
 
     ) {
 
-
-      /* Remove loading */
+      /* Hapus loading */
 
       const loading =
         document.querySelector(
@@ -2376,9 +2526,11 @@
       }
 
 
-      /* HGU */
+      /* =================================================
+         HGU BOUNDARY ONLY
+         ================================================= */
 
-      hguLayer =
+      const hguLayer =
         L.geoJSON(
 
           boundary,
@@ -2397,85 +2549,28 @@
                 false,
 
               opacity:
-                0.95
+                1
 
             }
 
           }
 
-        ).addTo(map);
-
-
-      /* ----------------------------------------------------
-         Buffer 5 km
-
-         Turf buffer menggunakan satuan kilometer.
-         ---------------------------------------------------- */
-
-      try {
-
-        const buffered =
-          turf.buffer(
-
-            boundary,
-
-            5,
-
-            {
-              units:
-                "kilometers"
-            }
-
-          );
-
-
-        bufferLayer =
-          L.geoJSON(
-
-            buffered,
-
-            {
-
-              style: {
-
-                color:
-                  "#667085",
-
-                weight:
-                  1,
-
-                dashArray:
-                  "6 5",
-
-                fillColor:
-                  "#98A2B3",
-
-                fillOpacity:
-                  0.08
-
-              }
-
-            }
-
-          ).addTo(map);
-
-      }
-
-      catch (
-        error
-      ) {
-
-        console.warn(
-          "Buffer 5 km tidak dapat dibuat:",
-          error
+        ).addTo(
+          map
         );
 
-      }
 
+      /* =================================================
+         HOTSPOTS
+         
+         PENTING:
+         Tidak ada buffer polygon.
+         Tidak ada zona polygon.
+         Semua hotspot sudah difilter oleh Python
+         sehingga hanya <= 5 km yang masuk.
+         ================================================= */
 
-      /* Hotspot */
-
-      hotspotLayer =
+      const hotspotLayer =
         L.geoJSON(
 
           hotspots,
@@ -2485,8 +2580,11 @@
             pointToLayer:
 
               function(
+
                 feature,
+
                 latlng
+
               ) {
 
                 const marker =
@@ -2506,12 +2604,49 @@
 
           }
 
-        ).addTo(map);
+        ).addTo(
+          map
+        );
 
 
-      /* Fit HGU */
+      /* =================================================
+         FIT TO DATA
+         ================================================= */
+
+      const combinedBounds =
+        L.featureGroup(
+
+          [
+
+            hguLayer,
+
+            hotspotLayer
+
+          ]
+
+        ).getBounds();
+
 
       if (
+        combinedBounds.isValid()
+      ) {
+
+        map.fitBounds(
+
+          combinedBounds,
+
+          {
+
+            padding:
+              [25, 25]
+
+          }
+
+        );
+
+      }
+
+      else if (
 
         hguLayer
           .getBounds()
@@ -2535,7 +2670,9 @@
       }
 
 
-      /* Total */
+      /* =================================================
+         TOTAL
+         ================================================= */
 
       document.getElementById(
         "mapTotal"
@@ -2544,22 +2681,27 @@
         formatNumber(
 
           hotspots.features
-            ? hotspots.features.length
-            : 0
+
+            ?
+
+            hotspots.features.length
+
+            :
+
+            0
 
         );
 
     }
 
 
-    /* ======================================================
-       RENDER TREND
-       ====================================================== */
+    /* =====================================================
+       TREND
+       ===================================================== */
 
     function renderTrend(
       trend
     ) {
-
 
       const series =
         trend.series ||
@@ -2582,7 +2724,8 @@
 
           item =>
             Number(
-              item.total || 0
+              item.total ||
+              0
             )
 
         );
@@ -2593,7 +2736,8 @@
 
           item =>
             Number(
-              item.inside_hgu || 0
+              item.inside_hgu ||
+              0
             )
 
         );
@@ -2604,7 +2748,8 @@
 
           item =>
             Number(
-              item.zone_0_1 || 0
+              item.zone_0_1 ||
+              0
             )
 
         );
@@ -2615,7 +2760,8 @@
 
           item =>
             Number(
-              item.zone_1_3 || 0
+              item.zone_1_3 ||
+              0
             )
 
         );
@@ -2626,21 +2772,10 @@
 
           item =>
             Number(
-              item.zone_3_5 || 0
+              item.zone_3_5 ||
+              0
             )
 
-        );
-
-
-      const canvas =
-        document.getElementById(
-          "trendChart"
-        );
-
-
-      const context =
-        canvas.getContext(
-          "2d"
         );
 
 
@@ -2654,9 +2789,16 @@
 
 
       trendChart =
+
         new Chart(
 
-          context,
+          document
+            .getElementById(
+              "trendChart"
+            )
+            .getContext(
+              "2d"
+            ),
 
           {
 
@@ -2688,7 +2830,7 @@
                         3,
 
                       tension:
-                        0.25,
+                        .25,
 
                       fill:
                         false
@@ -2708,7 +2850,7 @@
                         2,
 
                       tension:
-                        0.25,
+                        .25,
 
                       fill:
                         false
@@ -2728,7 +2870,7 @@
                         2,
 
                       tension:
-                        0.25,
+                        .25,
 
                       fill:
                         false
@@ -2748,7 +2890,7 @@
                         2,
 
                       tension:
-                        0.25,
+                        .25,
 
                       fill:
                         false
@@ -2768,7 +2910,7 @@
                         2,
 
                       tension:
-                        0.25,
+                        .25,
 
                       fill:
                         false
@@ -2813,25 +2955,7 @@
                       {
 
                         position:
-                          "bottom",
-
-                        labels:
-
-                          {
-
-                            boxWidth:
-                              10,
-
-                            font:
-
-                              {
-
-                                size:
-                                  9
-
-                              }
-
-                          }
+                          "bottom"
 
                       }
 
@@ -2850,23 +2974,11 @@
 
                           {
 
-                            maxRotation:
-                              0,
-
                             autoSkip:
                               true,
 
                             maxTicksLimit:
-                              10,
-
-                            font:
-
-                              {
-
-                                size:
-                                  9
-
-                              }
+                              10
 
                           }
 
@@ -2885,16 +2997,7 @@
                           {
 
                             precision:
-                              0,
-
-                            font:
-
-                              {
-
-                                size:
-                                  9
-
-                              }
+                              0
 
                           }
 
@@ -2911,9 +3014,9 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        INITIALIZE
-       ====================================================== */
+       ===================================================== */
 
     async function initializeDashboard() {
 
@@ -2954,18 +3057,25 @@
         );
 
 
-        /* Render */
+        /* Render summary */
 
         renderSummary(
           summary
         );
 
 
+        /* Render map */
+
         renderMap(
+
           hotspots,
+
           boundary
+
         );
 
+
+        /* Render trend */
 
         renderTrend(
           trend
@@ -2980,8 +3090,8 @@
 
           "Data berhasil dimuat";
 
-
       }
+
 
       catch (
         error
@@ -3008,14 +3118,13 @@
     }
 
 
-    /* ======================================================
+    /* =====================================================
        START
-       ====================================================== */
+       ===================================================== */
 
     initializeDashboard();
 
   </script>
-
 
 </body>
 </html>
