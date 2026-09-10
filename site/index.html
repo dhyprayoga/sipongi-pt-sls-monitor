@@ -2,11 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PT SLS — SiPongi Hotspot Monitor</title>
 
   <!-- =====================================================
@@ -23,9 +19,7 @@
        CHART.JS
        ===================================================== -->
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
-  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
 
   <style>
@@ -33,7 +27,6 @@
     * {
       box-sizing: border-box;
     }
-
 
     html,
     body {
@@ -60,57 +53,40 @@
       border-bottom: 1px solid #e4e7ec;
     }
 
-
     .header-inner {
       width: 100%;
       max-width: 1600px;
-
       margin: 0 auto;
-
       padding: 20px 24px;
     }
-
 
     .eyebrow {
       font-size: 11px;
       font-weight: 700;
-
       text-transform: uppercase;
       letter-spacing: .08em;
-
       color: #667085;
-
       margin-bottom: 6px;
     }
-
 
     .title {
       font-size: 28px;
       font-weight: 800;
-
       line-height: 1.15;
     }
 
-
     .subtitle {
       margin-top: 6px;
-
       font-size: 13px;
-
       color: #667085;
     }
-
 
     .meta {
       display: flex;
       flex-wrap: wrap;
-
       gap: 8px 18px;
-
       margin-top: 8px;
-
       font-size: 11px;
-
       color: #475467;
     }
 
@@ -122,10 +98,78 @@
     .container {
       width: 100%;
       max-width: 1600px;
-
       margin: 0 auto;
-
       padding: 16px 24px 28px;
+    }
+
+
+    /* =====================================================
+       PERIOD MENU
+       ===================================================== */
+
+    .period-panel {
+      background: #ffffff;
+      border: 1px solid #e4e7ec;
+      border-radius: 11px;
+      padding: 13px 15px;
+      margin-bottom: 14px;
+    }
+
+    .period-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .period-title {
+      font-size: 12px;
+      font-weight: 750;
+      color: #344054;
+    }
+
+    .period-description {
+      font-size: 10px;
+      color: #98a2b3;
+    }
+
+    .period-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .period-button {
+      appearance: none;
+      border: 1px solid #d0d5dd;
+      background: #ffffff;
+      color: #344054;
+
+      border-radius: 8px;
+
+      padding: 8px 15px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+    }
+
+    .period-button:hover {
+      border-color: #98a2b3;
+      background: #f8fafc;
+    }
+
+    .period-button.active {
+      background: #101828;
+      border-color: #101828;
+      color: #ffffff;
     }
 
 
@@ -135,16 +179,13 @@
 
     .status-bar {
       display: flex;
-
       justify-content: space-between;
       align-items: center;
 
       gap: 10px;
-
       flex-wrap: wrap;
 
       padding: 10px 13px;
-
       margin-bottom: 14px;
 
       background: #ffffff;
@@ -155,19 +196,14 @@
       border-radius: 10px;
 
       font-size: 11px;
-
       color: #475467;
     }
 
-
     .status-left {
       display: flex;
-
       flex-wrap: wrap;
-
       gap: 12px 18px;
     }
-
 
     .status-right {
       font-weight: 700;
@@ -189,7 +225,6 @@
       margin-bottom: 14px;
     }
 
-
     .kpi {
       min-height: 105px;
 
@@ -203,13 +238,10 @@
       padding: 14px;
     }
 
-
     .kpi-label {
       font-size: 11px;
-
       color: #667085;
     }
-
 
     .kpi-value {
       margin-top: 7px;
@@ -220,7 +252,6 @@
 
       font-weight: 800;
     }
-
 
     .kpi-sub {
       margin-top: 7px;
@@ -261,7 +292,6 @@
       overflow: hidden;
     }
 
-
     .panel-header {
       display: flex;
 
@@ -276,22 +306,16 @@
         1px solid #eaecf0;
     }
 
-
     .panel-title {
       font-size: 14px;
-
       font-weight: 750;
     }
 
-
     .panel-note {
       margin-top: 3px;
-
       font-size: 10px;
-
       color: #98a2b3;
     }
-
 
     .panel-body {
       padding: 14px;
@@ -304,12 +328,9 @@
 
     #map {
       width: 100%;
-
       height: 650px;
-
       background: #d7d7d7;
     }
-
 
     .map-footer {
       padding: 9px 13px;
@@ -344,7 +365,6 @@
       color: #475467;
     }
 
-
     .legend-item {
       display: inline-flex;
 
@@ -352,7 +372,6 @@
 
       gap: 6px;
     }
-
 
     .legend-dot {
       width: 10px;
@@ -363,21 +382,17 @@
       border-radius: 50%;
     }
 
-
     .dot-high {
       background: #b00020;
     }
-
 
     .dot-medium {
       background: #e67e22;
     }
 
-
     .dot-low {
       background: #2e7d32;
     }
-
 
     .legend-line {
       width: 17px;
@@ -403,7 +418,6 @@
       gap: 9px;
     }
 
-
     .summary-card {
       padding: 12px;
 
@@ -415,13 +429,10 @@
       background: #f8fafc;
     }
 
-
     .summary-label {
       font-size: 10px;
-
       color: #667085;
     }
-
 
     .summary-value {
       margin-top: 4px;
@@ -430,7 +441,6 @@
 
       font-weight: 750;
     }
-
 
     .status-badge {
       display: inline-flex;
@@ -475,7 +485,7 @@
 
 
     /* =====================================================
-       ZONE SUMMARY
+       ZONE ANALYSIS
        ===================================================== */
 
     .zone-list {
@@ -485,7 +495,6 @@
 
       margin-top: 13px;
     }
-
 
     .zone-row {
       display: grid;
@@ -500,11 +509,9 @@
       font-size: 10px;
     }
 
-
     .zone-name {
       color: #475467;
     }
-
 
     .zone-bar {
       height: 7px;
@@ -516,13 +523,11 @@
       overflow: hidden;
     }
 
-
     .zone-fill {
       height: 100%;
 
       border-radius: 999px;
     }
-
 
     .zone-count {
       text-align: right;
@@ -590,7 +595,7 @@
 
 
     /* =====================================================
-       RESPONSIVE
+       MOBILE
        ===================================================== */
 
     @media (max-width: 1300px) {
@@ -602,20 +607,17 @@
 
     }
 
-
     @media (max-width: 1000px) {
 
       .main-grid {
         grid-template-columns: 1fr;
       }
 
-
       #map {
         height: 560px;
       }
 
     }
-
 
     @media (max-width: 650px) {
 
@@ -625,22 +627,18 @@
         padding-right: 12px;
       }
 
-
       .title {
         font-size: 23px;
       }
-
 
       .kpi-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
 
-
       .summary-grid {
         grid-template-columns: 1fr;
       }
-
 
       #map {
         height: 470px;
@@ -667,7 +665,6 @@
         HOTSPOT MONITORING
       </div>
 
-
       <div
         class="title"
         id="ptName"
@@ -675,13 +672,10 @@
         PT SLS
       </div>
 
-
       <div class="subtitle">
-        Monitoring hotspot SiPongi
-        dalam HGU dan sekitar HGU
-        dengan radius maksimum 5 km
+        Monitoring hotspot SiPongi dalam HGU
+        dan sekitar HGU dengan radius maksimum 5 km
       </div>
-
 
       <div class="meta">
 
@@ -692,14 +686,12 @@
           </strong>
         </span>
 
-
         <span>
-          Periode:
+          Periode data:
           <strong id="period">
             –
           </strong>
         </span>
-
 
         <span>
           Update:
@@ -715,16 +707,83 @@
   </header>
 
 
-  <!-- =====================================================
-       MAIN CONTAINER
-       ===================================================== -->
-
   <main class="container">
 
 
-    <!-- ERROR -->
+    <!-- ===================================================
+         ERROR
+         =================================================== -->
 
     <div id="errorBox"></div>
+
+
+    <!-- ===================================================
+         PERIOD MENU
+         =================================================== -->
+
+    <section class="period-panel">
+
+      <div class="period-header">
+
+        <div>
+
+          <div class="period-title">
+            PERIODE MONITORING
+          </div>
+
+          <div class="period-description">
+            Klik periode untuk mengubah seluruh statistik,
+            peta, dan trend
+          </div>
+
+        </div>
+
+        <div
+          class="period-description"
+          id="selectedPeriodLabel"
+        >
+          Sebulan
+        </div>
+
+      </div>
+
+
+      <div class="period-buttons">
+
+        <button
+          class="period-button"
+          data-days="1"
+        >
+          Hari Ini
+        </button>
+
+
+        <button
+          class="period-button"
+          data-days="7"
+        >
+          Seminggu
+        </button>
+
+
+        <button
+          class="period-button"
+          data-days="14"
+        >
+          Dua Minggu
+        </button>
+
+
+        <button
+          class="period-button active"
+          data-days="30"
+        >
+          Sebulan
+        </button>
+
+      </div>
+
+    </section>
 
 
     <!-- ===================================================
@@ -736,20 +795,18 @@
       <div class="status-left">
 
         <span>
-          Mode:
-          <strong>
-            Rolling 30 Hari
+          Periode aktif:
+          <strong id="activePeriod">
+            30 hari
           </strong>
         </span>
 
-
         <span>
-          Filter spasial:
+          Radius:
           <strong>
             ≤ 5 km dari HGU
           </strong>
         </span>
-
 
         <span>
           Basemap:
@@ -757,7 +814,6 @@
             Satellite
           </strong>
         </span>
-
 
         <span>
           Satelit:
@@ -789,7 +845,7 @@
       <div class="kpi">
 
         <div class="kpi-label">
-          Total Hotspot ≤5 km
+          Total Hotspot
         </div>
 
         <div
@@ -800,7 +856,7 @@
         </div>
 
         <div class="kpi-sub">
-          seluruh periode 30 hari
+          periode terpilih
         </div>
 
       </div>
@@ -840,7 +896,7 @@
         </div>
 
         <div class="kpi-sub">
-          klasifikasi analitik
+          dari boundary HGU
         </div>
 
       </div>
@@ -860,7 +916,7 @@
         </div>
 
         <div class="kpi-sub">
-          klasifikasi analitik
+          dari boundary HGU
         </div>
 
       </div>
@@ -880,7 +936,7 @@
         </div>
 
         <div class="kpi-sub">
-          klasifikasi analitik
+          dari boundary HGU
         </div>
 
       </div>
@@ -945,12 +1001,11 @@
 
       </div>
 
-
     </section>
 
 
     <!-- ===================================================
-         MAIN GRID
+         MAIN
          =================================================== -->
 
     <section class="main-grid">
@@ -971,8 +1026,8 @@
             </div>
 
             <div class="panel-note">
-              Hanya boundary HGU dan seluruh titik hotspot
-              yang telah lolos filter radius ≤5 km
+              Hanya boundary HGU dan titik hotspot
+              yang lolos radius ≤5 km
             </div>
 
           </div>
@@ -988,8 +1043,6 @@
 
         </div>
 
-
-        <!-- LEGEND -->
 
         <div class="legend">
 
@@ -1040,6 +1093,13 @@
 
           ·
 
+          Periode:
+          <strong id="mapPeriod">
+            –
+          </strong>
+
+          ·
+
           Update:
           <strong id="updatedMap">
             –
@@ -1057,14 +1117,16 @@
       <div>
 
 
-        <!-- SUMMARY -->
+        <!-- =================================================
+             SUMMARY
+             ================================================= -->
 
         <div class="panel">
 
           <div class="panel-header">
 
             <div class="panel-title">
-              Summary 30 Hari
+              Summary
             </div>
 
           </div>
@@ -1178,8 +1240,6 @@
             </div>
 
 
-            <!-- INSIGHT -->
-
             <div
               class="insight"
               id="insight"
@@ -1188,7 +1248,10 @@
             </div>
 
 
-            <!-- ZONE ANALYTIC SUMMARY -->
+            <!-- =================================================
+                 ANALYTIC ZONE SUMMARY
+                 Tidak membuat polygon pada peta.
+                 ================================================= -->
 
             <div class="zone-list">
 
@@ -1330,11 +1393,14 @@
             <div>
 
               <div class="panel-title">
-                Trend Hotspot 30 Hari
+                Trend Hotspot
               </div>
 
-              <div class="panel-note">
-                Jumlah hotspot per tanggal
+              <div
+                class="panel-note"
+                id="trendNote"
+              >
+                Trend 30 hari
               </div>
 
             </div>
@@ -1346,7 +1412,9 @@
 
             <div class="chart-box">
 
-              <canvas id="trendChart"></canvas>
+              <canvas
+                id="trendChart"
+              ></canvas>
 
             </div>
 
@@ -1368,21 +1436,17 @@
 
       <strong>Catatan:</strong>
 
-      Titik hotspot yang ditampilkan pada peta
-      merupakan titik yang telah lolos filter spasial
-      di dalam HGU PT SLS atau sampai dengan 5 km
-      dari boundary HGU.
+      Titik pada peta hanya menampilkan hotspot
+      yang berada di dalam HGU PT SLS atau
+      maksimal 5 km dari boundary HGU.
 
-      Zona 0–1 km, 1–3 km, dan 3–5 km digunakan
-      untuk klasifikasi analitik dan tidak
-      divisualisasikan sebagai polygon pada peta.
+      Polygon zona 0–1 km, 1–3 km, dan 3–5 km
+      tidak ditampilkan pada peta.
 
       <br><br>
 
-      <strong>Hotspot</strong> merupakan indikasi
-      anomali suhu/titik panas dan tidak otomatis
-      berarti kebakaran aktual.
-
+      Hotspot merupakan indikasi anomali suhu/titik panas
+      dan tidak otomatis berarti kebakaran aktual.
       Informasi tetap membutuhkan verifikasi lapangan.
 
       <br><br>
@@ -1401,7 +1465,7 @@
 
 
   <!-- =====================================================
-       LEAFLET JS
+       LEAFLET
        ===================================================== -->
 
   <script
@@ -1417,7 +1481,6 @@
        ===================================================== */
 
     const DATA_PATH = "data/";
-
 
     const FILES = {
 
@@ -1495,7 +1558,7 @@
 
 
     /* =====================================================
-       HOTSPOT COLORS
+       COLORS
        ===================================================== */
 
     const COLORS = {
@@ -1515,12 +1578,48 @@
     };
 
 
-    let trendChart =
-      null;
+    /* =====================================================
+       STATE
+       ===================================================== */
+
+    let allHotspots = null;
+
+    let allTrend = null;
+
+    let boundaryData = null;
+
+    let hguLayer = null;
+
+    let hotspotLayer = null;
+
+    let trendChart = null;
+
+    let currentDays = 30;
 
 
     /* =====================================================
-       NUMBER FORMAT
+       PERIOD LABELS
+       ===================================================== */
+
+    const PERIOD_LABELS = {
+
+      1:
+        "Hari Ini",
+
+      7:
+        "Seminggu",
+
+      14:
+        "Dua Minggu",
+
+      30:
+        "Sebulan"
+
+    };
+
+
+    /* =====================================================
+       NUMBER
        ===================================================== */
 
     function formatNumber(
@@ -1552,7 +1651,7 @@
 
 
     /* =====================================================
-       DATETIME
+       DATE FORMAT
        ===================================================== */
 
     function formatDateTime(
@@ -1606,10 +1705,6 @@
     }
 
 
-    /* =====================================================
-       SHORT DATE
-       ===================================================== */
-
     function shortDate(
       value
     ) {
@@ -1652,7 +1747,262 @@
 
 
     /* =====================================================
-       JSON LOADER
+       DATE UTILITY
+       ===================================================== */
+
+    const MONTHS_ID = {
+
+      januari:
+        1,
+
+      februari:
+        2,
+
+      maret:
+        3,
+
+      april:
+        4,
+
+      mei:
+        5,
+
+      juni:
+        6,
+
+      juli:
+        7,
+
+      agustus:
+        8,
+
+      september:
+        9,
+
+      oktober:
+        10,
+
+      november:
+        11,
+
+      desember:
+        12
+
+    };
+
+
+    /* =====================================================
+       NORMALIZE DATE TO YYYY-MM-DD
+       ===================================================== */
+
+    function normalizeHotspotDate(
+      value
+    ) {
+
+      if (!value) {
+
+        return null;
+
+      }
+
+
+      const text =
+        String(
+          value
+        ).trim();
+
+
+      /* -----------------------------------------------
+         YYYY-MM-DD
+         ----------------------------------------------- */
+
+      const isoMatch =
+        text.match(
+          /(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+      if (
+        isoMatch
+      ) {
+
+        return (
+
+          isoMatch[1] +
+
+          "-" +
+
+          isoMatch[2] +
+
+          "-" +
+
+          isoMatch[3]
+
+        );
+
+      }
+
+
+      /* -----------------------------------------------
+         Indonesian date:
+         Kamis, 10 September 2026 01:15:00
+         ----------------------------------------------- */
+
+      const cleaned =
+        text.replace(
+          /,/g,
+          " "
+        );
+
+
+      const parts =
+        cleaned.split(
+          /\s+/
+        );
+
+
+      for (
+        let i = 0;
+        i < parts.length;
+        i++
+      ) {
+
+        const month =
+          MONTHS_ID[
+            String(
+              parts[i]
+            ).toLowerCase()
+          ];
+
+
+        if (!month) {
+
+          continue;
+
+        }
+
+
+        if (
+          i < 1 ||
+          i + 1 >= parts.length
+        ) {
+
+          continue;
+
+        }
+
+
+        const day =
+          Number(
+            parts[i - 1]
+          );
+
+
+        const year =
+          Number(
+            parts[i + 1]
+          );
+
+
+        if (
+
+          Number.isInteger(day) &&
+
+          Number.isInteger(year) &&
+
+          day >= 1 &&
+
+          day <= 31
+
+        ) {
+
+          return (
+
+            String(year) +
+
+            "-" +
+
+            String(month).padStart(
+              2,
+              "0"
+            ) +
+
+            "-" +
+
+            String(day).padStart(
+              2,
+              "0"
+            )
+
+          );
+
+        }
+
+      }
+
+
+      /* -----------------------------------------------
+         Try Javascript Date as final fallback
+         ----------------------------------------------- */
+
+      const parsed =
+        new Date(
+          text
+        );
+
+
+      if (
+        !Number.isNaN(
+          parsed.getTime()
+        )
+      ) {
+
+        const y =
+          parsed.getFullYear();
+
+
+        const m =
+          String(
+            parsed.getMonth() + 1
+          ).padStart(
+            2,
+            "0"
+          );
+
+
+        const d =
+          String(
+            parsed.getDate()
+          ).padStart(
+            2,
+            "0"
+          );
+
+
+        return (
+
+          y +
+
+          "-" +
+
+          m +
+
+          "-" +
+
+          d
+
+        );
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* =====================================================
+       SAFE JSON LOAD
        ===================================================== */
 
     async function loadJSON(
@@ -1730,93 +2080,737 @@
 
 
     /* =====================================================
+       GET FEATURE DATE
+       ===================================================== */
+
+    function getFeatureDate(
+      feature
+    ) {
+
+      const properties =
+        feature.properties ||
+        {};
+
+
+      return (
+
+        normalizeHotspotDate(
+
+          properties.date_hotspot_ori
+
+        )
+
+        ||
+
+        normalizeHotspotDate(
+
+          properties.date_hotspot
+
+        )
+
+      );
+
+    }
+
+
+    /* =====================================================
+       GET LATEST DATE FROM TREND
+       ===================================================== */
+
+    function getLatestTrendDate() {
+
+      if (
+
+        !allTrend ||
+
+        !Array.isArray(
+          allTrend.series
+        )
+
+      ) {
+
+        return null;
+
+      }
+
+
+      const dates =
+        allTrend.series
+
+          .map(
+            item => item.date
+          )
+
+          .filter(
+            Boolean
+          );
+
+
+      if (!dates.length) {
+
+        return null;
+
+      }
+
+
+      return dates[
+        dates.length - 1
+      ];
+
+    }
+
+
+    /* =====================================================
+       DATE RANGE
+       ===================================================== */
+
+    function getSelectedRange(
+      days
+    ) {
+
+      const latest =
+        getLatestTrendDate();
+
+
+      if (!latest) {
+
+        return null;
+
+      }
+
+
+      const end =
+        new Date(
+          latest +
+          "T00:00:00"
+        );
+
+
+      const start =
+        new Date(
+          end
+        );
+
+
+      start.setDate(
+
+        start.getDate()
+
+        -
+
+        (
+          days - 1
+        )
+
+      );
+
+
+      function toISO(
+        value
+      ) {
+
+        const y =
+          value.getFullYear();
+
+
+        const m =
+          String(
+            value.getMonth() + 1
+          ).padStart(
+            2,
+            "0"
+          );
+
+
+        const d =
+          String(
+            value.getDate()
+          ).padStart(
+            2,
+            "0"
+          );
+
+
+        return (
+
+          y +
+
+          "-" +
+
+          m +
+
+          "-" +
+
+          d
+
+        );
+
+      }
+
+
+      return {
+
+        start:
+          toISO(
+            start
+          ),
+
+        end:
+          toISO(
+            end
+          )
+
+      };
+
+    }
+
+
+    /* =====================================================
+       FILTER HOTSPOTS
+       ===================================================== */
+
+    function getFilteredHotspots(
+      days
+    ) {
+
+      const range =
+        getSelectedRange(
+          days
+        );
+
+
+      if (
+        !range ||
+        !allHotspots
+      ) {
+
+        return {
+
+          type:
+            "FeatureCollection",
+
+          features:
+            []
+
+        };
+
+      }
+
+
+      const features =
+        (
+          allHotspots.features
+          ||
+          []
+        ).filter(
+
+          feature => {
+
+            const featureDate =
+              getFeatureDate(
+                feature
+              );
+
+
+            if (!featureDate) {
+
+              return false;
+
+            }
+
+
+            return (
+
+              featureDate >=
+              range.start
+
+              &&
+
+              featureDate <=
+              range.end
+
+            );
+
+          }
+
+        );
+
+
+      return {
+
+        type:
+          "FeatureCollection",
+
+        features:
+          features
+
+      };
+
+    }
+
+
+    /* =====================================================
+       FILTER TREND
+       ===================================================== */
+
+    function getFilteredTrend(
+      days
+    ) {
+
+      const range =
+        getSelectedRange(
+          days
+        );
+
+
+      if (
+        !range ||
+        !allTrend
+      ) {
+
+        return [];
+
+      }
+
+
+      return (
+
+        allTrend.series ||
+
+        []
+
+      ).filter(
+
+        item => (
+
+          item.date >=
+          range.start
+
+          &&
+
+          item.date <=
+          range.end
+
+        )
+
+      );
+
+    }
+
+
+    /* =====================================================
+       CALCULATE STATISTICS
+       ===================================================== */
+
+    function calculateStatistics(
+      features,
+      trendSeries
+    ) {
+
+      const confidence = {
+
+        high:
+          0,
+
+        medium:
+          0,
+
+        low:
+          0,
+
+        unknown:
+          0
+
+      };
+
+
+      const zones = {
+
+        "Inside HGU":
+          0,
+
+        "0–1 km":
+          0,
+
+        "1–3 km":
+          0,
+
+        "3–5 km":
+          0
+
+      };
+
+
+      for (
+        const feature of features
+      ) {
+
+        const properties =
+          feature.properties ||
+          {};
+
+
+        const c =
+          String(
+
+            properties.confidence
+
+            ||
+
+            "unknown"
+
+          ).toLowerCase();
+
+
+        if (
+          Object.prototype.hasOwnProperty.call(
+            confidence,
+            c
+          )
+        ) {
+
+          confidence[c]++;
+
+        }
+
+        else {
+
+          confidence.unknown++;
+
+        }
+
+
+        const zone =
+          properties.zone;
+
+
+        if (
+          Object.prototype.hasOwnProperty.call(
+            zones,
+            zone
+          )
+        ) {
+
+          zones[zone]++;
+
+        }
+
+      }
+
+
+      const dailyTotals =
+        trendSeries.map(
+
+          item =>
+            Number(
+              item.total ||
+              0
+            )
+
+        );
+
+
+      const total =
+        features.length;
+
+
+      const average =
+        dailyTotals.length
+
+          ?
+
+          (
+            dailyTotals.reduce(
+              (
+                sum,
+                value
+              ) =>
+                sum + value,
+              0
+            )
+
+            /
+
+            dailyTotals.length
+
+          )
+
+          :
+
+          0;
+
+
+      const maximum =
+        dailyTotals.length
+
+          ?
+
+          Math.max(
+              ...dailyTotals
+            )
+
+          :
+
+          0;
+
+
+      const minimum =
+        dailyTotals.length
+
+          ?
+
+          Math.min(
+              ...dailyTotals
+            )
+
+          :
+
+          0;
+
+
+      const latest =
+        trendSeries.length
+
+          ?
+
+          trendSeries[
+            trendSeries.length - 1
+          ]
+
+          :
+
+          null;
+
+
+      const previous =
+        trendSeries.length >= 2
+
+          ?
+
+          trendSeries[
+            trendSeries.length - 2
+          ]
+
+          :
+
+          null;
+
+
+      let change = null;
+
+
+      if (
+        latest &&
+        previous &&
+        Number(
+          previous.total
+        ) !== 0
+      ) {
+
+        change =
+
+          (
+
+            (
+              Number(
+                latest.total
+              )
+
+              -
+
+              Number(
+                previous.total
+              )
+            )
+
+            /
+
+            Number(
+              previous.total
+            )
+
+          )
+
+          *
+
+          100;
+
+      }
+
+
+      let status =
+        "Belum dapat dibandingkan";
+
+
+      if (
+        change !== null
+      ) {
+
+        if (
+          change > 20
+        ) {
+
+          status =
+            "Meningkat";
+
+        }
+
+        else if (
+          change < -20
+        ) {
+
+          status =
+            "Menurun";
+
+        }
+
+        else {
+
+          status =
+            "Stabil";
+
+        }
+
+      }
+
+
+      return {
+
+        total:
+          total,
+
+        high:
+          confidence.high,
+
+        medium:
+          confidence.medium,
+
+        low:
+          confidence.low,
+
+        inside:
+          zones[
+            "Inside HGU"
+          ],
+
+        zone01:
+          zones[
+            "0–1 km"
+          ],
+
+        zone13:
+          zones[
+            "1–3 km"
+          ],
+
+        zone35:
+          zones[
+            "3–5 km"
+          ],
+
+        average:
+          average,
+
+        maximum:
+          maximum,
+
+        minimum:
+          minimum,
+
+        latestDay:
+          latest
+            ?
+            Number(
+              latest.total ||
+              0
+            )
+
+            :
+
+            0,
+
+        change:
+          change,
+
+        status:
+          status
+
+      };
+
+    }
+
+
+    /* =====================================================
        RENDER SUMMARY
        ===================================================== */
 
     function renderSummary(
-      summary
+      summaryData,
+      trendSeries,
+      days
     ) {
 
-      /* PT */
-
-      document.getElementById(
-        "ptName"
-      ).textContent =
-
-        summary.pt_name ||
-
-        "PT SLS";
+      const range =
+        getSelectedRange(
+          days
+        );
 
 
-      /* Period */
+      const periodLabel =
+        PERIOD_LABELS[
+          days
+        ];
+
 
       document.getElementById(
         "period"
       ).textContent =
 
-        (
+        range
 
-          summary.period_start ||
+          ?
 
-          "–"
+          (
+            range.start +
 
-        )
+            " – " +
 
-        +
+            range.end
 
-        " – "
+          )
 
-        +
+          :
 
-        (
-
-          summary.period_end ||
-
-          "–"
-
-        );
-
-
-      /* Update */
-
-      const updated =
-        formatDateTime(
-
-          summary.last_updated_utc
-
-        );
+          "–";
 
 
       document.getElementById(
-        "updatedHeader"
+        "activePeriod"
       ).textContent =
 
-        updated;
+        periodLabel;
 
 
       document.getElementById(
-        "updatedMap"
+        "selectedPeriodLabel"
       ).textContent =
 
-        updated;
+        periodLabel;
 
 
-      /* =================================================
-         KPI
-         ================================================= */
+      document.getElementById(
+        "mapPeriod"
+      ).textContent =
+
+        periodLabel;
+
 
       document.getElementById(
         "total"
       ).textContent =
 
         formatNumber(
-
-          summary.total_within_5km ??
-
-          summary.total ??
-
-          0
-
+          summaryData.total
         );
 
 
@@ -1825,11 +2819,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.inside_hgu ??
-
-          0
-
+          summaryData.inside
         );
 
 
@@ -1838,11 +2828,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.zone_0_1 ??
-
-          0
-
+          summaryData.zone01
         );
 
 
@@ -1851,11 +2837,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.zone_1_3 ??
-
-          0
-
+          summaryData.zone13
         );
 
 
@@ -1864,11 +2846,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.zone_3_5 ??
-
-          0
-
+          summaryData.zone35
         );
 
 
@@ -1877,11 +2855,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.high ??
-
-          0
-
+          summaryData.high
         );
 
 
@@ -1890,11 +2864,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.medium ??
-
-          0
-
+          summaryData.medium
         );
 
 
@@ -1903,25 +2873,15 @@
       ).textContent =
 
         formatNumber(
-
-          summary.low ??
-
-          0
-
+          summaryData.low
         );
 
-
-      /* =================================================
-         SUMMARY
-         ================================================= */
 
       document.getElementById(
         "status"
       ).textContent =
 
-        summary.status ||
-
-        "–";
+        summaryData.status;
 
 
       document.getElementById(
@@ -1929,11 +2889,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.latest_day_total ??
-
-          0
-
+          summaryData.latestDay
         );
 
 
@@ -1941,13 +2897,10 @@
         "avg30"
       ).textContent =
 
-        formatNumber(
-
-          summary.average_30_days ??
-
-          0
-
-        );
+        summaryData.average
+          .toFixed(
+            1
+          );
 
 
       document.getElementById(
@@ -1955,11 +2908,7 @@
       ).textContent =
 
         formatNumber(
-
-          summary.max_30_days ??
-
-          0
-
+          summaryData.maximum
         );
 
 
@@ -1968,29 +2917,15 @@
       ).textContent =
 
         formatNumber(
-
-          summary.min_30_days ??
-
-          0
-
+          summaryData.minimum
         );
-
-
-      const previous =
-        summary.vs_previous_pct;
 
 
       document.getElementById(
         "vsPrevious"
       ).textContent =
 
-        (
-
-          previous === null ||
-
-          previous === undefined
-
-        )
+        summaryData.change === null
 
           ?
 
@@ -2000,7 +2935,7 @@
 
           (
 
-            previous > 0
+            summaryData.change > 0
 
               ?
 
@@ -2014,126 +2949,56 @@
 
           +
 
-          previous
+          summaryData.change.toFixed(
+            1
+          )
 
           +
 
           "%";
 
 
-      /* =================================================
-         INSIGHT
-         ================================================= */
+      const changeText =
 
-      const total =
-        Number(
+        summaryData.change === null
 
-          summary.total_within_5km ??
+          ?
 
-          summary.total ??
+          "Perubahan dibandingkan hari sebelumnya belum dapat dihitung."
 
-          0
+          :
 
-        );
+          summaryData.change > 0
 
+            ?
 
-      const inside =
-        Number(
+            (
+              "Jumlah hotspot meningkat " +
+              summaryData.change.toFixed(
+                1
+              ) +
+              "% dibandingkan hari sebelumnya."
+            )
 
-          summary.inside_hgu ??
+            :
 
-          0
+            summaryData.change < 0
 
-        );
+              ?
 
+              (
+                "Jumlah hotspot menurun " +
+                Math.abs(
+                  summaryData.change
+                ).toFixed(
+                  1
+                ) +
+                "% dibandingkan hari sebelumnya."
+              )
 
-      const zone01 =
-        Number(
+              :
 
-          summary.zone_0_1 ??
-
-          0
-
-        );
-
-
-      const zone13 =
-        Number(
-
-          summary.zone_1_3 ??
-
-          0
-
-        );
-
-
-      const zone35 =
-        Number(
-
-          summary.zone_3_5 ??
-
-          0
-
-        );
-
-
-      let trendText =
-        "";
-
-
-      if (
-
-        previous !== null &&
-
-        previous !== undefined
-
-      ) {
-
-        const change =
-          Number(
-            previous
-          );
-
-
-        if (
-          change > 0
-        ) {
-
-          trendText =
-
-            "Jumlah hotspot meningkat " +
-
-            change +
-
-            "% dibandingkan hari sebelumnya.";
-
-        }
-
-        else if (
-          change < 0
-        ) {
-
-          trendText =
-
-            "Jumlah hotspot menurun " +
-
-            Math.abs(
-              change
-            ) +
-
-            "% dibandingkan hari sebelumnya.";
-
-        }
-
-        else {
-
-          trendText =
-
-            "Jumlah hotspot sama dengan hari sebelumnya.";
-
-        }
-
-      }
+              "Jumlah hotspot sama dengan hari sebelumnya.";
 
 
       document.getElementById(
@@ -2142,48 +3007,62 @@
 
         (
 
-          "Dalam periode " +
+          periodLabel +
 
-          summary.period_start +
+          " (" +
 
-          " sampai " +
+          range.start +
 
-          summary.period_end +
+          " – " +
 
-          ", terdapat " +
+          range.end +
 
-          total +
+          "): terdapat " +
 
-          " hotspot dalam HGU atau radius ≤5 km. " +
+          formatNumber(
+            summaryData.total
+          ) +
 
-          inside +
+          " hotspot yang berada di dalam HGU " +
+
+          "atau sampai 5 km dari boundary HGU. " +
+
+          "Sebanyak " +
+
+          formatNumber(
+            summaryData.inside
+          ) +
 
           " berada di dalam HGU, " +
 
-          zone01 +
+          formatNumber(
+            summaryData.zone01
+          ) +
 
           " pada 0–1 km, " +
 
-          zone13 +
+          formatNumber(
+            summaryData.zone13
+          ) +
 
           " pada 1–3 km, dan " +
 
-          zone35 +
+          formatNumber(
+            summaryData.zone35
+          ) +
 
           " pada 3–5 km. " +
 
-          trendText
+          changeText
 
-        ).trim();
+        );
 
 
-      /* =================================================
-         ZONE BARS
-         ================================================= */
+      /* Bars */
 
       const denominator =
         Math.max(
-          total,
+          summaryData.total,
           1
         );
 
@@ -2191,7 +3070,7 @@
       setBar(
         "barHgu",
         "countHgu",
-        inside,
+        summaryData.inside,
         denominator
       );
 
@@ -2199,7 +3078,7 @@
       setBar(
         "bar01",
         "count01",
-        zone01,
+        summaryData.zone01,
         denominator
       );
 
@@ -2207,7 +3086,7 @@
       setBar(
         "bar13",
         "count13",
-        zone13,
+        summaryData.zone13,
         denominator
       );
 
@@ -2215,7 +3094,7 @@
       setBar(
         "bar35",
         "count35",
-        zone35,
+        summaryData.zone35,
         denominator
       );
 
@@ -2223,32 +3102,33 @@
 
 
     /* =====================================================
-       ZONE BAR
+       BAR
        ===================================================== */
 
     function setBar(
-
       barId,
-
       countId,
-
       value,
-
       denominator
-
     ) {
 
       const percentage =
-
         Math.min(
 
           100,
 
-          Number(value)
+          (
+            Number(
+              value
+            )
 
-          /
+            /
 
-          Number(denominator)
+            Number(
+              denominator
+            )
+
+          )
 
           *
 
@@ -2278,7 +3158,7 @@
 
 
     /* =====================================================
-       HOTSPOT MARKER
+       MARKER
        ===================================================== */
 
     function createMarker(
@@ -2304,7 +3184,6 @@
         COLORS[
           confidence
         ] ||
-
         COLORS.unknown;
 
 
@@ -2332,8 +3211,7 @@
 
 
       const coordinates =
-        feature.geometry
-          .coordinates;
+        feature.geometry.coordinates;
 
 
       const lat =
@@ -2347,10 +3225,6 @@
           coordinates[0]
         );
 
-
-      /* =================================================
-         POPUP
-         ================================================= */
 
       const popup = `
 
@@ -2372,67 +3246,55 @@
             ${confidence.toUpperCase()}
           </div>
 
-
-          <b>Lokasi:</b>
+          <b>Status:</b>
           ${properties.location_status ?? "-"}
 
           <br>
 
-
-          <b>Zona jarak:</b>
+          <b>Zona analitik:</b>
           ${properties.zone ?? "-"}
 
           <br>
 
-
           <b>Jarak dari HGU:</b>
-          ${properties.distance_hgu_km ?? "-"}
-          km
+          ${properties.distance_hgu_km ?? "-"} km
 
           <br>
-
 
           <b>Confidence:</b>
           ${properties.confidence_value ?? "-"}
 
           <br>
 
-
           <b>Tanggal:</b>
           ${properties.date_hotspot ?? "-"}
 
           <br>
-
 
           <b>Tanggal asli:</b>
           ${properties.date_hotspot_ori ?? "-"}
 
           <br>
 
-
           <b>Satelit:</b>
           ${properties.sumber ?? "-"}
 
           <br>
-
 
           <b>Provinsi:</b>
           ${properties.provinsi ?? "-"}
 
           <br>
 
-
           <b>Kab/Kota:</b>
           ${properties.kabkota ?? "-"}
 
           <br>
 
-
           <b>Desa:</b>
           ${properties.desa ?? "-"}
 
           <br>
-
 
           <b>Koordinat:</b>
           ${lat.toFixed(5)},
@@ -2445,7 +3307,6 @@
               margin:8px 0;
             "
           >
-
 
           <div
             style="
@@ -2466,9 +3327,7 @@
 
         [
           lat,
-
           lon
-
         ],
 
         {
@@ -2483,7 +3342,7 @@
             color,
 
           fillOpacity:
-            .85,
+            .86,
 
           weight:
             1
@@ -2502,89 +3361,36 @@
        ===================================================== */
 
     function renderMap(
-
-      hotspots,
-
-      boundary
-
+      filteredHotspots
     ) {
 
-      /* Hapus loading */
-
-      const loading =
-        document.querySelector(
-          "#map .loading"
-        );
-
+      /* Remove old hotspots */
 
       if (
-        loading
+        hotspotLayer
       ) {
 
-        loading.remove();
+        map.removeLayer(
+          hotspotLayer
+        );
 
       }
 
 
-      /* =================================================
-         HGU BOUNDARY ONLY
-         ================================================= */
+      /* Make hotspot layer */
 
-      const hguLayer =
+      hotspotLayer =
         L.geoJSON(
 
-          boundary,
-
-          {
-
-            style: {
-
-              color:
-                "#111111",
-
-              weight:
-                2.5,
-
-              fill:
-                false,
-
-              opacity:
-                1
-
-            }
-
-          }
-
-        ).addTo(
-          map
-        );
-
-
-      /* =================================================
-         HOTSPOTS
-         
-         PENTING:
-         Tidak ada buffer polygon.
-         Tidak ada zona polygon.
-         Semua hotspot sudah difilter oleh Python
-         sehingga hanya <= 5 km yang masuk.
-         ================================================= */
-
-      const hotspotLayer =
-        L.geoJSON(
-
-          hotspots,
+          filteredHotspots,
 
           {
 
             pointToLayer:
 
               function(
-
                 feature,
-
                 latlng
-
               ) {
 
                 const marker =
@@ -2609,49 +3415,26 @@
         );
 
 
-      /* =================================================
-         FIT TO DATA
-         ================================================= */
+      document.getElementById(
+        "mapTotal"
+      ).textContent =
 
-      const combinedBounds =
-        L.featureGroup(
+        formatNumber(
 
-          [
-
-            hguLayer,
-
-            hotspotLayer
-
-          ]
-
-        ).getBounds();
-
-
-      if (
-        combinedBounds.isValid()
-      ) {
-
-        map.fitBounds(
-
-          combinedBounds,
-
-          {
-
-            padding:
-              [25, 25]
-
-          }
+          filteredHotspots
+            .features
+            .length
 
         );
 
-      }
 
-      else if (
+      /* Fit HGU boundary */
 
+      if (
+        hguLayer &&
         hguLayer
           .getBounds()
           .isValid()
-
       ) {
 
         map.fitBounds(
@@ -2669,47 +3452,20 @@
 
       }
 
-
-      /* =================================================
-         TOTAL
-         ================================================= */
-
-      document.getElementById(
-        "mapTotal"
-      ).textContent =
-
-        formatNumber(
-
-          hotspots.features
-
-            ?
-
-            hotspots.features.length
-
-            :
-
-            0
-
-        );
-
     }
 
 
     /* =====================================================
-       TREND
+       RENDER TREND
        ===================================================== */
 
     function renderTrend(
-      trend
+      trendSeries,
+      days
     ) {
 
-      const series =
-        trend.series ||
-        [];
-
-
       const labels =
-        series.map(
+        trendSeries.map(
 
           item =>
             shortDate(
@@ -2720,7 +3476,7 @@
 
 
       const totalData =
-        series.map(
+        trendSeries.map(
 
           item =>
             Number(
@@ -2732,7 +3488,7 @@
 
 
       const hguData =
-        series.map(
+        trendSeries.map(
 
           item =>
             Number(
@@ -2744,7 +3500,7 @@
 
 
       const zone01Data =
-        series.map(
+        trendSeries.map(
 
           item =>
             Number(
@@ -2756,7 +3512,7 @@
 
 
       const zone13Data =
-        series.map(
+        trendSeries.map(
 
           item =>
             Number(
@@ -2768,7 +3524,7 @@
 
 
       const zone35Data =
-        series.map(
+        trendSeries.map(
 
           item =>
             Number(
@@ -2777,6 +3533,17 @@
             )
 
         );
+
+
+      document.getElementById(
+        "trendNote"
+      ).textContent =
+
+        "Trend " +
+
+        PERIOD_LABELS[
+          days
+        ];
 
 
       if (
@@ -2789,7 +3556,6 @@
 
 
       trendChart =
-
         new Chart(
 
           document
@@ -2978,7 +3744,9 @@
                               true,
 
                             maxTicksLimit:
-                              10
+                              days <= 7
+                                ? 7
+                                : 10
 
                           }
 
@@ -3012,6 +3780,213 @@
         );
 
     }
+
+
+    /* =====================================================
+       SELECT PERIOD
+       ===================================================== */
+
+    function selectPeriod(
+      days
+    ) {
+
+      currentDays =
+        days;
+
+
+      /* Active button */
+
+      document
+        .querySelectorAll(
+          ".period-button"
+        )
+        .forEach(
+
+          button => {
+
+            const buttonDays =
+              Number(
+                button.dataset.days
+              );
+
+
+            button.classList.toggle(
+
+              "active",
+
+              buttonDays === days
+
+            );
+
+          }
+
+        );
+
+
+      const filteredHotspots =
+        getFilteredHotspots(
+          days
+        );
+
+
+      const filteredTrend =
+        getFilteredTrend(
+          days
+        );
+
+
+      const statistics =
+        calculateStatistics(
+
+          filteredHotspots
+            .features,
+
+          filteredTrend
+
+        );
+
+
+      renderSummary(
+
+        statistics,
+
+        filteredTrend,
+
+        days
+
+      );
+
+
+      renderMap(
+        filteredHotspots
+      );
+
+
+      renderTrend(
+
+        filteredTrend,
+
+        days
+
+      );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE HGU
+       ===================================================== */
+
+    function initializeBoundary(
+      boundary
+    ) {
+
+      if (
+        hguLayer
+      ) {
+
+        map.removeLayer(
+          hguLayer
+        );
+
+      }
+
+
+      /* =================================================
+         HANYA BOUNDARY HGU
+         Tidak ada buffer.
+         Tidak ada polygon zona.
+         ================================================= */
+
+      hguLayer =
+        L.geoJSON(
+
+          boundary,
+
+          {
+
+            style: {
+
+              color:
+                "#111111",
+
+              weight:
+                2.5,
+
+              fill:
+                false,
+
+              opacity:
+                1
+
+            }
+
+          }
+
+        ).addTo(
+          map
+        );
+
+
+      if (
+
+        hguLayer
+          .getBounds()
+          .isValid()
+
+      ) {
+
+        map.fitBounds(
+
+          hguLayer.getBounds(),
+
+          {
+
+            padding:
+              [25, 25]
+
+          }
+
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       EVENT PERIOD BUTTON
+       ===================================================== */
+
+    document
+      .querySelectorAll(
+        ".period-button"
+      )
+      .forEach(
+
+        button => {
+
+          button.addEventListener(
+
+            "click",
+
+            function() {
+
+              selectPeriod(
+
+                Number(
+                  this.dataset.days
+                )
+
+              );
+
+            }
+
+          );
+
+        }
+
+      );
 
 
     /* =====================================================
@@ -3057,32 +4032,56 @@
         );
 
 
-        /* Render summary */
+        allHotspots =
+          hotspots;
 
-        renderSummary(
-          summary
+
+        allTrend =
+          trend;
+
+
+        boundaryData =
+          boundary;
+
+
+        initializeBoundary(
+          boundaryData
         );
 
 
-        /* Render map */
+        document.getElementById(
+          "ptName"
+        ).textContent =
 
-        renderMap(
+          summary.pt_name ||
 
-          hotspots,
+          "PT SLS";
 
-          boundary
 
+        const updated =
+          formatDateTime(
+
+            summary.last_updated_utc
+
+          );
+
+
+        document.getElementById(
+          "updatedHeader"
+        ).textContent =
+          updated;
+
+
+        document.getElementById(
+          "updatedMap"
+        ).textContent =
+          updated;
+
+
+        selectPeriod(
+          30
         );
 
-
-        /* Render trend */
-
-        renderTrend(
-          trend
-        );
-
-
-        /* Status */
 
         document.getElementById(
           "systemStatus"
