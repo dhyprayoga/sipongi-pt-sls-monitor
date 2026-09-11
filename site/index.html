@@ -4,18 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>PT SLS — SiPongi Hotspot Monitor</title>
+  <title>SiPongi Multi-PT Hotspot Monitoring</title>
 
+  <!-- Leaflet -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     crossorigin=""
   >
 
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
-  <style>
+  <!-- PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -24,25 +29,23 @@
     body {
       margin: 0;
       padding: 0;
-
-      font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Inter, Arial, Helvetica, sans-serif;
       background: #f4f6f8;
       color: #101828;
     }
 
     .header {
-      background: #fff;
+      background: #ffffff;
       border-bottom: 1px solid #e4e7ec;
     }
 
-    .header-inner {
+    .header-inner,
+    .container {
       max-width: 1600px;
       margin: auto;
+    }
+
+    .header-inner {
       padding: 20px 24px;
     }
 
@@ -68,17 +71,15 @@
     }
 
     .meta {
-      margin-top: 8px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px 18px;
+      margin-top: 8px;
       font-size: 11px;
       color: #475467;
     }
 
     .container {
-      max-width: 1600px;
-      margin: auto;
       padding: 16px 24px 30px;
     }
 
@@ -86,23 +87,60 @@
       display: none;
       padding: 12px 14px;
       margin-bottom: 14px;
-
       border: 1px solid #fecdca;
       border-radius: 10px;
-
       background: #fff5f5;
       color: #b42318;
-
       font-size: 11px;
       line-height: 1.6;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e4e7ec;
+      border-radius: 11px;
+    }
+
+    /* COMPANY */
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-label {
+      font-size: 11px;
+      font-weight: 750;
+      color: #344054;
+    }
+
+    .select {
+      min-width: 300px;
+      padding: 9px 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #101828;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     /* PERIOD */
 
     .period-panel {
-      background: #fff;
-      border: 1px solid #e4e7ec;
-      border-radius: 11px;
       padding: 14px 15px;
       margin-bottom: 14px;
     }
@@ -133,34 +171,66 @@
       color: #475467;
     }
 
-    .period-buttons {
+    .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .period-button {
+    button {
+      font: inherit;
+    }
+
+    .button {
+      appearance: none;
       border: 1px solid #d0d5dd;
-      background: #fff;
+      background: #ffffff;
       color: #344054;
-
       border-radius: 8px;
-      padding: 9px 16px;
-
+      padding: 9px 15px;
       font-size: 11px;
       font-weight: 700;
-
       cursor: pointer;
     }
 
-    .period-button:hover {
+    .button:hover {
       background: #f8fafc;
     }
 
-    .period-button.active {
+    .button.active,
+    .button.primary {
       background: #101828;
       border-color: #101828;
-      color: #fff;
+      color: #ffffff;
+    }
+
+    .button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    /* ACTION */
+
+    .action-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .action-title {
+      font-size: 11px;
+      font-weight: 750;
+      color: #344054;
+    }
+
+    .action-note {
+      margin-top: 2px;
+      font-size: 10px;
+      color: #98a2b3;
     }
 
     /* STATUS */
@@ -170,16 +240,9 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-
       gap: 10px;
-
       padding: 10px 13px;
       margin-bottom: 14px;
-
-      background: #fff;
-      border: 1px solid #e4e7ec;
-      border-radius: 10px;
-
       font-size: 11px;
       color: #475467;
     }
@@ -205,11 +268,6 @@
 
     .kpi {
       min-height: 108px;
-
-      background: #fff;
-      border: 1px solid #e4e7ec;
-      border-radius: 11px;
-
       padding: 14px;
     }
 
@@ -235,18 +293,8 @@
 
     .main-grid {
       display: grid;
-      grid-template-columns:
-        minmax(0, 2.2fr)
-        minmax(360px, 1fr);
-
+      grid-template-columns: minmax(0, 2.2fr) minmax(360px, 1fr);
       gap: 14px;
-    }
-
-    .panel {
-      background: #fff;
-      border: 1px solid #e4e7ec;
-      border-radius: 11px;
-      overflow: hidden;
     }
 
     .panel-header {
@@ -277,14 +325,19 @@
       background: #d7d7d7;
     }
 
+    .map-footer {
+      padding: 9px 13px;
+      border-top: 1px solid #eaecf0;
+      font-size: 10px;
+      color: #667085;
+    }
+
     .legend {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-
       padding: 10px 13px;
       border-top: 1px solid #eaecf0;
-
       font-size: 10px;
       color: #475467;
     }
@@ -317,15 +370,8 @@
     .legend-line {
       width: 18px;
       height: 0;
-      border-top: 2px solid #111;
+      border-top: 2px solid #111111;
       display: inline-block;
-    }
-
-    .map-footer {
-      padding: 9px 13px;
-      border-top: 1px solid #eaecf0;
-      font-size: 10px;
-      color: #667085;
     }
 
     /* SUMMARY */
@@ -357,34 +403,25 @@
     .status-badge {
       display: inline-flex;
       align-items: center;
-
       padding: 5px 9px;
-
       border: 1px solid #d0d5dd;
       border-radius: 999px;
-
-      background: #fff;
-
+      background: #ffffff;
       font-size: 10px;
       font-weight: 700;
     }
 
     .insight {
       margin-top: 12px;
-
       padding: 12px;
-
       border-left: 3px solid #344054;
-
       background: #f8fafc;
-
       font-size: 11px;
       line-height: 1.65;
-
       color: #475467;
     }
 
-    /* ZONES */
+    /* ZONE */
 
     .zone-list {
       display: grid;
@@ -429,17 +466,15 @@
       height: 390px;
     }
 
-    /* FOOTER */
-
     .footer {
       margin-top: 14px;
       padding: 12px 3px 4px;
-
       font-size: 10px;
       line-height: 1.65;
-
       color: #667085;
     }
+
+    /* MOBILE */
 
     @media (max-width: 1350px) {
       .kpi-grid {
@@ -480,3038 +515,1239 @@
         height: 470px;
       }
 
-      .period-button {
+      .select {
+        min-width: 100%;
+        width: 100%;
+      }
+
+      .toolbar-left,
+      .toolbar-right {
+        width: 100%;
+      }
+
+      .button {
         flex: 1 1 auto;
       }
     }
-
   </style>
 </head>
 
-
 <body>
 
+<header class="header">
+  <div class="header-inner">
+
+    <div class="eyebrow">
+      MULTI-PT HOTSPOT MONITORING
+    </div>
+
+    <div
+      class="title"
+      id="ptName"
+    >
+      Memuat perusahaan...
+    </div>
+
+    <div class="subtitle">
+      Monitoring hotspot SiPongi di dalam HGU dan sekitar HGU dengan radius maksimum 5 km
+    </div>
+
+    <div class="meta">
+
+      <span>
+        Sumber:
+        <strong>SIPONGI KEMENHUT</strong>
+      </span>
+
+      <span>
+        Provinsi:
+        <strong id="provinceName">–</strong>
+      </span>
+
+      <span>
+        Data tersedia:
+        <strong id="availableDate">–</strong>
+      </span>
+
+      <span>
+        Update:
+        <strong id="updatedHeader">–</strong>
+      </span>
+
+    </div>
+
+  </div>
+</header>
+
+
+<main class="container">
+
+  <!-- ERROR -->
+
+  <div id="errorBox"></div>
+
+
   <!-- =====================================================
-       HEADER
+       COMPANY SELECTOR
        ===================================================== -->
 
-  <header class="header">
+  <section class="card toolbar">
 
-    <div class="header-inner">
+    <div class="toolbar-left">
 
-      <div class="eyebrow">
-        HOTSPOT MONITORING
-      </div>
+      <span class="toolbar-label">
+        PILIH PERUSAHAAN
+      </span>
 
-      <div
-        class="title"
-        id="ptName"
+      <select
+        id="companySelect"
+        class="select"
       >
-        PT SLS
-      </div>
 
-      <div class="subtitle">
-        Monitoring hotspot SiPongi dalam HGU
-        dan sekitar HGU dengan radius maksimum 5 km
-      </div>
+        <option value="">
+          Memuat perusahaan...
+        </option>
 
-      <div class="meta">
-
-        <span>
-          Sumber:
-          <strong>SIPONGI KEMENHUT</strong>
-        </span>
-
-        <span>
-          Data tersedia:
-          <strong id="availableDate">–</strong>
-        </span>
-
-        <span>
-          Update:
-          <strong id="updatedHeader">–</strong>
-        </span>
-
-      </div>
+      </select>
 
     </div>
 
-  </header>
+    <div class="toolbar-right">
+
+      <span class="toolbar-label">
+        Radius analisis: ≤5 km
+      </span>
+
+    </div>
+
+  </section>
 
 
-  <main class="container">
+  <!-- =====================================================
+       PERIOD
+       ===================================================== -->
 
+  <section class="card period-panel">
 
-    <!-- ===================================================
-         ERROR
-         =================================================== -->
+    <div class="period-header">
 
-    <div id="errorBox"></div>
+      <div>
 
-
-    <!-- ===================================================
-         PERIOD
-         =================================================== -->
-
-    <section class="period-panel">
-
-      <div class="period-header">
-
-        <div>
-
-          <div class="period-title">
-            PERIODE MONITORING
-          </div>
-
-          <div class="period-description">
-            Pilih periode untuk mengubah seluruh statistik,
-            grafik, dan titik hotspot pada peta.
-          </div>
-
+        <div class="period-title">
+          PERIODE MONITORING
         </div>
 
-        <div
-          class="selected-period"
-          id="selectedPeriodLabel"
-        >
-          Sebulan
+        <div class="period-description">
+          Pilihan periode akan mengubah statistik,
+          grafik, titik peta, dan isi laporan.
         </div>
 
       </div>
-
-
-      <div class="period-buttons">
-
-        <button
-          class="period-button"
-          data-days="1"
-          type="button"
-        >
-          Hari Ini
-        </button>
-
-        <button
-          class="period-button"
-          data-days="7"
-          type="button"
-        >
-          Seminggu
-        </button>
-
-        <button
-          class="period-button"
-          data-days="14"
-          type="button"
-        >
-          Dua Minggu
-        </button>
-
-        <button
-          class="period-button active"
-          data-days="30"
-          type="button"
-        >
-          Sebulan
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         STATUS
-         =================================================== -->
-
-    <div class="status-bar">
-
-      <div class="status-left">
-
-        <span>
-          Periode aktif:
-          <strong id="activePeriod">
-            Sebulan
-          </strong>
-        </span>
-
-        <span>
-          Tanggal acuan:
-          <strong id="anchorDate">
-            –
-          </strong>
-        </span>
-
-        <span>
-          Radius:
-          <strong>≤ 5 km dari HGU</strong>
-        </span>
-
-        <span>
-          Basemap:
-          <strong>Satellite</strong>
-        </span>
-
-      </div>
-
 
       <div
-        class="status-right"
-        id="systemStatus"
+        class="selected-period"
+        id="selectedPeriodLabel"
       >
-        Memuat data...
+        Sebulan
       </div>
 
     </div>
 
 
-    <!-- ===================================================
-         KPI
-         =================================================== -->
+    <div class="buttons">
 
-    <section class="kpi-grid">
+      <button
+        class="button period-button"
+        data-days="1"
+        type="button"
+      >
+        Hari Ini
+      </button>
 
-      <div class="kpi">
+      <button
+        class="button period-button"
+        data-days="7"
+        type="button"
+      >
+        Seminggu
+      </button>
 
-        <div class="kpi-label">
-          Total Hotspot
+      <button
+        class="button period-button"
+        data-days="14"
+        type="button"
+      >
+        Dua Minggu
+      </button>
+
+      <button
+        class="button period-button active"
+        data-days="30"
+        type="button"
+      >
+        Sebulan
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DOWNLOAD
+       ===================================================== -->
+
+  <section class="card action-panel">
+
+    <div>
+
+      <div class="action-title">
+        DATA & LAPORAN
+      </div>
+
+      <div
+        class="action-note"
+        id="actionNote"
+      >
+        File mengikuti PT dan periode yang sedang aktif.
+      </div>
+
+    </div>
+
+    <div class="buttons">
+
+      <button
+        class="button"
+        id="downloadCsv"
+        type="button"
+      >
+        ⬇ Download CSV
+      </button>
+
+      <button
+        class="button"
+        id="downloadGeojson"
+        type="button"
+      >
+        ⬇ Download GeoJSON
+      </button>
+
+      <button
+        class="button primary"
+        id="downloadPdf"
+        type="button"
+      >
+        📄 Generate Laporan PDF
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       STATUS BAR
+       ===================================================== -->
+
+  <div class="card status-bar">
+
+    <div class="status-left">
+
+      <span>
+        Periode aktif:
+        <strong id="activePeriod">Sebulan</strong>
+      </span>
+
+      <span>
+        Tanggal acuan:
+        <strong id="anchorDate">–</strong>
+      </span>
+
+      <span>
+        Basemap:
+        <strong>Satellite</strong>
+      </span>
+
+      <span>
+        Radius:
+        <strong>≤5 km</strong>
+      </span>
+
+    </div>
+
+    <div
+      class="status-right"
+      id="systemStatus"
+    >
+      Memuat data...
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       KPI
+       ===================================================== -->
+
+  <section class="kpi-grid">
+
+    <div class="card kpi">
+      <div class="kpi-label">Total Hotspot</div>
+      <div class="kpi-value" id="total">–</div>
+      <div class="kpi-sub">periode terpilih</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">Inside HGU</div>
+      <div class="kpi-value" id="insideHgu">–</div>
+      <div class="kpi-sub">dalam HGU</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">0–1 km</div>
+      <div class="kpi-value" id="zone01">–</div>
+      <div class="kpi-sub">dari HGU</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">1–3 km</div>
+      <div class="kpi-value" id="zone13">–</div>
+      <div class="kpi-sub">dari HGU</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">3–5 km</div>
+      <div class="kpi-value" id="zone35">–</div>
+      <div class="kpi-sub">dari HGU</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">High</div>
+      <div class="kpi-value" id="high">–</div>
+      <div class="kpi-sub">confidence</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">Medium</div>
+      <div class="kpi-value" id="medium">–</div>
+      <div class="kpi-sub">confidence</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">Low</div>
+      <div class="kpi-value" id="low">–</div>
+      <div class="kpi-sub">confidence</div>
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <section class="main-grid">
+
+
+    <!-- MAP -->
+
+    <div class="card">
+
+      <div class="panel-header">
+
+        <div class="panel-title">
+          Peta Satelit Hotspot
         </div>
 
-        <div
-          class="kpi-value"
-          id="total"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          periode terpilih
+        <div class="panel-note">
+          Boundary HGU + titik hotspot ≤5 km.
+          Polygon zona tidak ditampilkan.
         </div>
 
       </div>
 
 
-      <div class="kpi">
-
-        <div class="kpi-label">
-          Inside HGU
-        </div>
-
-        <div
-          class="kpi-value"
-          id="insideHgu"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          berada di dalam HGU
-        </div>
-
-      </div>
+      <div id="map"></div>
 
 
-      <div class="kpi">
+      <div class="legend">
 
-        <div class="kpi-label">
-          0–1 km
-        </div>
-
-        <div
-          class="kpi-value"
-          id="zone01"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          dari boundary HGU
-        </div>
-
-      </div>
-
-
-      <div class="kpi">
-
-        <div class="kpi-label">
-          1–3 km
-        </div>
-
-        <div
-          class="kpi-value"
-          id="zone13"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          dari boundary HGU
-        </div>
-
-      </div>
-
-
-      <div class="kpi">
-
-        <div class="kpi-label">
-          3–5 km
-        </div>
-
-        <div
-          class="kpi-value"
-          id="zone35"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          dari boundary HGU
-        </div>
-
-      </div>
-
-
-      <div class="kpi">
-
-        <div class="kpi-label">
+        <div class="legend-item">
+          <span class="legend-dot dot-high"></span>
           High
         </div>
 
-        <div
-          class="kpi-value"
-          id="high"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          confidence
-        </div>
-
-      </div>
-
-
-      <div class="kpi">
-
-        <div class="kpi-label">
+        <div class="legend-item">
+          <span class="legend-dot dot-medium"></span>
           Medium
         </div>
 
-        <div
-          class="kpi-value"
-          id="medium"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          confidence
-        </div>
-
-      </div>
-
-
-      <div class="kpi">
-
-        <div class="kpi-label">
+        <div class="legend-item">
+          <span class="legend-dot dot-low"></span>
           Low
         </div>
 
-        <div
-          class="kpi-value"
-          id="low"
-        >
-          –
-        </div>
-
-        <div class="kpi-sub">
-          confidence
+        <div class="legend-item">
+          <span class="legend-line"></span>
+          Boundary HGU
         </div>
 
       </div>
 
-    </section>
+
+      <div class="map-footer">
+
+        Titik ditampilkan:
+        <strong id="mapTotal">–</strong>
+
+        ·
+
+        Periode:
+        <strong id="mapPeriod">–</strong>
+
+      </div>
+
+    </div>
 
 
-    <!-- ===================================================
-         MAIN
-         =================================================== -->
+    <!-- RIGHT -->
 
-    <section class="main-grid">
+    <div>
 
 
-      <!-- =================================================
-           MAP
-           ================================================= -->
+      <!-- SUMMARY -->
 
-      <div class="panel">
+      <div class="card">
 
         <div class="panel-header">
 
           <div class="panel-title">
-            Peta Satelit Hotspot PT SLS
-          </div>
-
-          <div class="panel-note">
-            Hanya boundary HGU dan titik hotspot
-            ≤5 km yang ditampilkan.
+            Summary Periode
           </div>
 
         </div>
 
 
-        <div id="map"></div>
+        <div class="panel-body">
+
+          <div class="summary-grid">
 
 
-        <div class="legend">
+            <div class="summary-card">
 
-          <div class="legend-item">
-            <span class="legend-dot dot-high"></span>
-            High
+              <div class="summary-label">
+                Status
+              </div>
+
+              <div class="summary-value">
+
+                <span
+                  class="status-badge"
+                  id="status"
+                >
+                  –
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-label">
+                Hotspot Hari Acuan
+              </div>
+
+              <div
+                class="summary-value"
+                id="latestDayTotal"
+              >
+                –
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-label">
+                Rata-rata / Hari
+              </div>
+
+              <div
+                class="summary-value"
+                id="average"
+              >
+                –
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-label">
+                Maksimum / Hari
+              </div>
+
+              <div
+                class="summary-value"
+                id="maximum"
+              >
+                –
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-label">
+                Minimum / Hari
+              </div>
+
+              <div
+                class="summary-value"
+                id="minimum"
+              >
+                –
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-label">
+                Vs Hari Sebelumnya
+              </div>
+
+              <div
+                class="summary-value"
+                id="vsPrevious"
+              >
+                –
+              </div>
+
+            </div>
+
+
           </div>
 
-          <div class="legend-item">
-            <span class="legend-dot dot-medium"></span>
-            Medium
+
+          <div
+            class="insight"
+            id="insight"
+          >
+            –
           </div>
 
-          <div class="legend-item">
-            <span class="legend-dot dot-low"></span>
-            Low
+
+          <div class="zone-list">
+
+            <div class="zone-row">
+
+              <div class="zone-name">
+                Inside HGU
+              </div>
+
+              <div class="zone-bar">
+
+                <div
+                  class="zone-fill"
+                  id="barHgu"
+                  style="width:0%;background:#344054"
+                ></div>
+
+              </div>
+
+              <div
+                class="zone-count"
+                id="countHgu"
+              >
+                0
+              </div>
+
+            </div>
+
+
+            <div class="zone-row">
+
+              <div class="zone-name">
+                0–1 km
+              </div>
+
+              <div class="zone-bar">
+
+                <div
+                  class="zone-fill"
+                  id="bar01"
+                  style="width:0%;background:#7f56d9"
+                ></div>
+
+              </div>
+
+              <div
+                class="zone-count"
+                id="count01"
+              >
+                0
+              </div>
+
+            </div>
+
+
+            <div class="zone-row">
+
+              <div class="zone-name">
+                1–3 km
+              </div>
+
+              <div class="zone-bar">
+
+                <div
+                  class="zone-fill"
+                  id="bar13"
+                  style="width:0%;background:#2e90fa"
+                ></div>
+
+              </div>
+
+              <div
+                class="zone-count"
+                id="count13"
+              >
+                0
+              </div>
+
+            </div>
+
+
+            <div class="zone-row">
+
+              <div class="zone-name">
+                3–5 km
+              </div>
+
+              <div class="zone-bar">
+
+                <div
+                  class="zone-fill"
+                  id="bar35"
+                  style="width:0%;background:#12b76a"
+                ></div>
+
+              </div>
+
+              <div
+                class="zone-count"
+                id="count35"
+              >
+                0
+              </div>
+
+            </div>
+
           </div>
-
-          <div class="legend-item">
-            <span class="legend-line"></span>
-            HGU PT SLS
-          </div>
-
-        </div>
-
-
-        <div class="map-footer">
-
-          Titik ditampilkan:
-          <strong id="mapTotal">–</strong>
-
-          ·
-
-          Periode:
-          <strong id="mapPeriod">–</strong>
 
         </div>
 
       </div>
 
 
-      <!-- =================================================
-           RIGHT
-           ================================================= -->
+      <!-- TREND -->
 
-      <div>
+      <div
+        class="card"
+        style="margin-top:14px;"
+      >
 
+        <div class="panel-header">
 
-        <!-- SUMMARY -->
-
-        <div class="panel">
-
-          <div class="panel-header">
-
-            <div class="panel-title">
-              Summary Periode
-            </div>
-
+          <div class="panel-title">
+            Trend Hotspot
           </div>
 
-
-          <div class="panel-body">
-
-            <div class="summary-grid">
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Status
-                </div>
-
-                <div class="summary-value">
-
-                  <span
-                    class="status-badge"
-                    id="status"
-                  >
-                    –
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Hotspot Hari Acuan
-                </div>
-
-                <div
-                  class="summary-value"
-                  id="latestDayTotal"
-                >
-                  –
-                </div>
-
-              </div>
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Rata-rata / Hari
-                </div>
-
-                <div
-                  class="summary-value"
-                  id="average"
-                >
-                  –
-                </div>
-
-              </div>
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Maksimum / Hari
-                </div>
-
-                <div
-                  class="summary-value"
-                  id="maximum"
-                >
-                  –
-                </div>
-
-              </div>
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Minimum / Hari
-                </div>
-
-                <div
-                  class="summary-value"
-                  id="minimum"
-                >
-                  –
-                </div>
-
-              </div>
-
-
-              <div class="summary-card">
-
-                <div class="summary-label">
-                  Vs Hari Sebelumnya
-                </div>
-
-                <div
-                  class="summary-value"
-                  id="vsPrevious"
-                >
-                  –
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="insight"
-              id="insight"
-            >
-              –
-            </div>
-
-
-            <!-- Analisis zona -->
-            <div class="zone-list">
-
-
-              <div class="zone-row">
-
-                <div class="zone-name">
-                  Inside HGU
-                </div>
-
-                <div class="zone-bar">
-
-                  <div
-                    class="zone-fill"
-                    id="barHgu"
-                    style="
-                      width:0%;
-                      background:#344054;
-                    "
-                  ></div>
-
-                </div>
-
-                <div
-                  class="zone-count"
-                  id="countHgu"
-                >
-                  0
-                </div>
-
-              </div>
-
-
-              <div class="zone-row">
-
-                <div class="zone-name">
-                  0–1 km
-                </div>
-
-                <div class="zone-bar">
-
-                  <div
-                    class="zone-fill"
-                    id="bar01"
-                    style="
-                      width:0%;
-                      background:#7f56d9;
-                    "
-                  ></div>
-
-                </div>
-
-                <div
-                  class="zone-count"
-                  id="count01"
-                >
-                  0
-                </div>
-
-              </div>
-
-
-              <div class="zone-row">
-
-                <div class="zone-name">
-                  1–3 km
-                </div>
-
-                <div class="zone-bar">
-
-                  <div
-                    class="zone-fill"
-                    id="bar13"
-                    style="
-                      width:0%;
-                      background:#2e90fa;
-                    "
-                  ></div>
-
-                </div>
-
-                <div
-                  class="zone-count"
-                  id="count13"
-                >
-                  0
-                </div>
-
-              </div>
-
-
-              <div class="zone-row">
-
-                <div class="zone-name">
-                  3–5 km
-                </div>
-
-                <div class="zone-bar">
-
-                  <div
-                    class="zone-fill"
-                    id="bar35"
-                    style="
-                      width:0%;
-                      background:#12b76a;
-                    "
-                  ></div>
-
-                </div>
-
-                <div
-                  class="zone-count"
-                  id="count35"
-                >
-                  0
-                </div>
-
-              </div>
-
-            </div>
-
+          <div
+            class="panel-note"
+            id="trendNote"
+          >
+            Trend Sebulan
           </div>
 
         </div>
 
+        <div class="panel-body">
 
-        <!-- TREND -->
+          <div class="chart-box">
 
-        <div
-          class="panel"
-          style="margin-top:14px;"
-        >
-
-          <div class="panel-header">
-
-            <div class="panel-title">
-              Trend Hotspot
-            </div>
-
-            <div
-              class="panel-note"
-              id="trendNote"
-            >
-              Trend Sebulan
-            </div>
-
-          </div>
-
-
-          <div class="panel-body">
-
-            <div class="chart-box">
-
-              <canvas
-                id="trendChart"
-              ></canvas>
-
-            </div>
+            <canvas
+              id="trendChart"
+            ></canvas>
 
           </div>
 
         </div>
-
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <footer class="footer">
+  <!-- FOOTER -->
 
-      <strong>Catatan:</strong>
+  <footer class="footer">
 
-      Peta hanya menampilkan boundary HGU PT SLS
-      dan titik hotspot yang berada di dalam HGU
-      atau maksimal 5 km dari boundary HGU.
+    <strong>Catatan:</strong>
 
-      Polygon buffer 5 km dan polygon zona
-      tidak ditampilkan.
+    Peta hanya menampilkan boundary HGU perusahaan
+    dan titik hotspot yang berada di dalam HGU
+    atau maksimal 5 km dari boundary HGU.
 
-      <br><br>
+    Polygon buffer dan polygon zona tidak ditampilkan.
 
-      Statistik periode dihitung dari
-      <strong>trend_30days.json</strong>,
-      sedangkan titik peta berasal dari
-      <strong>current.geojson</strong>.
+    <br><br>
 
-      <br><br>
+    Statistik, grafik, titik peta, CSV, GeoJSON,
+    dan PDF mengikuti perusahaan serta periode
+    yang sedang dipilih.
 
-      <strong>Hari Ini</strong> menggunakan
-      tanggal observasi hotspot terbaru
-      yang benar-benar tersedia pada data.
+    <br><br>
 
-      <br><br>
+    Hotspot merupakan indikasi anomali suhu/titik panas
+    dan tidak otomatis berarti kebakaran aktual.
+    Verifikasi lapangan tetap diperlukan.
 
-      Hotspot merupakan indikasi anomali
-      suhu/titik panas dan tidak otomatis berarti
-      kebakaran aktual.
+  </footer>
 
-      Verifikasi lapangan tetap diperlukan.
-
-    </footer>
-
-  </main>
+</main>
 
 
-  <!-- =====================================================
-       LEAFLET
-       ===================================================== -->
+<!-- =======================================================
+     JS LIBRARIES
+     ======================================================= -->
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    crossorigin=""
-  ></script>
-
-
-  <script>
-
-    /* =====================================================
-       FILES
-       ===================================================== */
-
-    const FILES = {
-
-      current:
-        "data/current.geojson",
-
-      trend:
-        "data/trend_30days.json",
-
-      summary:
-        "data/summary.json",
-
-      boundary:
-        "data/pt_boundary.geojson"
-
-    };
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  crossorigin=""
+></script>
 
 
-    /* =====================================================
-       STATE
-       ===================================================== */
+<script>
 
-    let currentGeoJSON = null;
+  /* =========================================================
+     FILE PATH
+     ========================================================= */
 
-    let trendData = null;
-
-    let summaryData = null;
-
-    let boundaryData = null;
-
-    let boundaryLayer = null;
-
-    let hotspotLayer = null;
-
-    let chart = null;
-
-    let latestAvailableDate = null;
+  const COMPANY_FILE =
+    "data/companies.json";
 
 
-    /* =====================================================
-       MAP
-       ===================================================== */
+  /* =========================================================
+     STATE
+     ========================================================= */
 
-    const map =
-      L.map(
-        "map",
-        {
-          preferCanvas: true,
-          zoomControl: true
-        }
-      ).setView(
-        [-2.75, 115.13],
-        10
-      );
+  let companies = [];
+
+  let selectedCompany = null;
+
+  let currentGeoJSON = null;
+
+  let trendData = null;
+
+  let summaryData = null;
+
+  let boundaryData = null;
+
+  let boundaryLayer = null;
+
+  let hotspotLayer = null;
+
+  let trendChart = null;
+
+  let selectedDays = 30;
+
+  let latestAvailableDate = null;
 
 
-    /* =====================================================
-       SATELLITE
-       ===================================================== */
+  const PERIOD_LABELS = {
 
-    L.tileLayer(
+    1:
+      "Hari Ini",
 
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    7:
+      "Seminggu",
 
+    14:
+      "Dua Minggu",
+
+    30:
+      "Sebulan"
+
+  };
+
+
+  const COLORS = {
+
+    high:
+      "#b00020",
+
+    medium:
+      "#e67e22",
+
+    low:
+      "#2e7d32",
+
+    unknown:
+      "#555555"
+
+  };
+
+
+  /* =========================================================
+     MAP
+     ========================================================= */
+
+  const map =
+    L.map(
+      "map",
       {
-        maxZoom: 19,
-        attribution: "Tiles &copy; Esri"
+        preferCanvas: true,
+        zoomControl: true
       }
-
-    ).addTo(
-      map
+    ).setView(
+      [-2.75, 115.13],
+      9
     );
 
 
-    /* =====================================================
-       COLORS
-       ===================================================== */
+  L.tileLayer(
 
-    const COLORS = {
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
 
-      high: "#b00020",
+    {
+      maxZoom:
+        19,
 
-      medium: "#e67e22",
+      attribution:
+        "Tiles &copy; Esri"
 
-      low: "#2e7d32",
+    }
 
-      unknown: "#555"
-
-    };
-
-
-    /* =====================================================
-       PERIOD LABEL
-       ===================================================== */
-
-    const PERIOD_LABELS = {
-
-      1: "Hari Ini",
-
-      7: "Seminggu",
-
-      14: "Dua Minggu",
-
-      30: "Sebulan"
-
-    };
+  ).addTo(
+    map
+  );
 
 
-    /* =====================================================
-       NUMBER
-       ===================================================== */
+  /* =========================================================
+     UTILITY
+     ========================================================= */
 
-    function formatNumber(
-      value
+  function formatNumber(
+    value
+  ) {
+
+    return Number(
+      value || 0
+    ).toLocaleString(
+      "id-ID"
+    );
+
+  }
+
+
+  function displayDate(
+    value
+  ) {
+
+    if (!value) {
+      return "–";
+    }
+
+
+    const p =
+      String(
+        value
+      ).split(
+        "-"
+      );
+
+
+    if (
+      p.length !== 3
     ) {
+      return value;
+    }
 
-      return Number(
-        value || 0
-      ).toLocaleString(
-        "id-ID"
+
+    return (
+
+      p[2] +
+      "/" +
+      p[1] +
+      "/" +
+      p[0]
+
+    );
+
+  }
+
+
+  function shortDate(
+    value
+  ) {
+
+    if (!value) {
+      return "–";
+    }
+
+
+    const p =
+      String(
+        value
+      ).split(
+        "-"
+      );
+
+
+    if (
+      p.length !== 3
+    ) {
+      return value;
+    }
+
+
+    return (
+
+      p[2] +
+      "/" +
+      p[1]
+
+    );
+
+  }
+
+
+  async function loadJSON(
+    url
+  ) {
+
+    const response =
+      await fetch(
+
+        url +
+        "?v=" +
+        Date.now(),
+
+        {
+          cache:
+            "no-store"
+        }
+
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+
+        `${url} → HTTP ${response.status}`
+
       );
 
     }
 
 
-    /* =====================================================
-       DATE LABEL
-       ===================================================== */
+    return response.json();
 
-    function displayDate(
-      value
-    ) {
-
-      if (!value) {
-        return "–";
-      }
-
-      const parts =
-        String(
-          value
-        ).split("-");
+  }
 
 
-      if (
-        parts.length !== 3
-      ) {
+  function showError(
+    message
+  ) {
 
-        return value;
-
-      }
-
-
-      return (
-
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-
+    const box =
+      document.getElementById(
+        "errorBox"
       );
 
-    }
+
+    box.style.display =
+      "block";
 
 
-    function shortDate(
-      value
-    ) {
+    box.innerHTML =
 
-      if (!value) {
-        return "–";
-      }
+      "<strong>Gagal memuat dashboard.</strong><br>" +
 
-      const parts =
-        String(
-          value
-        ).split("-");
+      message;
+
+  }
 
 
-      if (
-        parts.length !== 3
-      ) {
+  /* =========================================================
+     COMPANY DATA
+     ========================================================= */
 
-        return value;
+  function companyPath(
+    file
+  ) {
 
-      }
+    return (
+      selectedCompany.data_path +
+      file
+    );
 
-
-      return (
-
-        parts[2] +
-        "/" +
-        parts[1]
-
-      );
-
-    }
+  }
 
 
-    /* =====================================================
-       ERROR
-       ===================================================== */
+  async function loadCompany(
+    company
+  ) {
 
-    function showError(
-      message
-    ) {
-
-      const box =
-        document.getElementById(
-          "errorBox"
-        );
+    selectedCompany =
+      company;
 
 
-      box.style.display =
-        "block";
+    document.getElementById(
+      "systemStatus"
+    ).textContent =
+      "Memuat data PT...";
 
 
-      box.innerHTML =
-
-        "<strong>Data belum dapat dimuat.</strong><br>" +
-
-        message;
-
-    }
-
-
-    /* =====================================================
-       LOAD
-       ===================================================== */
-
-    async function loadJSON(
-      url
-    ) {
-
-      const response =
-        await fetch(
-
-          url +
-          "?v=" +
-          Date.now(),
-
-          {
-            cache:
-              "no-store"
-          }
-
-        );
-
-
-      if (
-        !response.ok
-      ) {
-
-        throw new Error(
-
-          url +
-          " → HTTP " +
-          response.status
-
-        );
-
-      }
-
-
-      return response.json();
-
-    }
-
-
-    /* =====================================================
-       FIND LATEST AVAILABLE DATE
-       
-       PRIORITY:
-       1. TREND DATA YANG MEMILIKI TOTAL > 0
-       2. FEATURE DATA
-       ===================================================== */
-
-    function findLatestAvailableDate() {
-
-      const trendDates = [];
-
-
-      if (
-        trendData &&
-        Array.isArray(
-          trendData.series
+    currentGeoJSON =
+      await loadJSON(
+        companyPath(
+          "current.geojson"
         )
-      ) {
+      );
 
-        for (
-          const item
-          of
-          trendData.series
-        ) {
 
-          if (
-            Number(
-              item.total || 0
-            ) > 0
-          ) {
+    trendData =
+      await loadJSON(
+        companyPath(
+          "trend_30days.json"
+        )
+      );
 
-            trendDates.push(
-              item.date
-            );
+
+    summaryData =
+      await loadJSON(
+        companyPath(
+          "summary.json"
+        )
+      );
+
+
+    boundaryData =
+      await loadJSON(
+        companyPath(
+          "pt_boundary.geojson"
+        )
+      );
+
+
+    latestAvailableDate =
+      findLatestAvailableDate();
+
+
+    if (
+      !latestAvailableDate
+    ) {
+
+      throw new Error(
+        `Tanggal hotspot ${company.name} tidak ditemukan.`
+      );
+
+    }
+
+
+    document.getElementById(
+      "ptName"
+    ).textContent =
+      company.name;
+
+
+    document.getElementById(
+      "provinceName"
+    ).textContent =
+      company.province_name ||
+      "–";
+
+
+    document.getElementById(
+      "availableDate"
+    ).textContent =
+      displayDate(
+        latestAvailableDate
+      );
+
+
+    document.getElementById(
+      "updatedHeader"
+    ).textContent =
+
+      summaryData.last_updated_wib ||
+
+      summaryData.last_updated_utc ||
+
+      "–";
+
+
+    if (
+      boundaryLayer
+    ) {
+
+      map.removeLayer(
+        boundaryLayer
+      );
+
+    }
+
+
+    boundaryLayer =
+      L.geoJSON(
+
+        boundaryData,
+
+        {
+
+          style: {
+
+            color:
+              "#111111",
+
+            weight:
+              2.5,
+
+            fill:
+              false,
+
+            opacity:
+              1
 
           }
 
         }
 
-      }
+      ).addTo(
+        map
+      );
 
 
-      if (
-        trendDates.length
-      ) {
+    if (
+      boundaryLayer
+        .getBounds()
+        .isValid()
+    ) {
 
-        trendDates.sort();
+      map.fitBounds(
 
-        return trendDates[
-          trendDates.length - 1
-        ];
+        boundaryLayer.getBounds(),
 
-      }
-
-
-      const featureDates = [];
-
-
-      if (
-        currentGeoJSON &&
-        Array.isArray(
-          currentGeoJSON.features
-        )
-      ) {
-
-        for (
-          const feature
-          of
-          currentGeoJSON.features
-        ) {
-
-          const p =
-            feature.properties ||
-            {};
-
-
-          const date =
-            p.hotspot_date ||
-
-            p.date_hotspot_ori ||
-
-            p.date_hotspot;
-
-
-          if (date) {
-
-            const normalized =
-              normalizeDate(
-                date
-              );
-
-
-            if (
-              normalized
-            ) {
-
-              featureDates.push(
-                normalized
-              );
-
-            }
-
-          }
-
+        {
+          padding:
+            [25,25]
         }
 
-      }
-
-
-      if (
-        featureDates.length
-      ) {
-
-        featureDates.sort();
-
-        return featureDates[
-          featureDates.length - 1
-        ];
-
-      }
-
-
-      return null;
-
-    }
-
-
-    /* =====================================================
-       DATE NORMALIZER
-       ===================================================== */
-
-    function normalizeDate(
-      value
-    ) {
-
-      if (!value) {
-        return null;
-      }
-
-
-      const text =
-        String(
-          value
-        ).trim();
-
-
-      /* YYYY-MM-DD */
-
-      const iso =
-        text.match(
-          /(\d{4})-(\d{2})-(\d{2})/
-        );
-
-
-      if (iso) {
-
-        return iso[0];
-
-      }
-
-
-      /* DD/MM/YYYY */
-
-      const slash =
-        text.match(
-          /(\d{1,2})\/(\d{1,2})\/(\d{4})/
-        );
-
-
-      if (slash) {
-
-        return (
-
-          slash[3] +
-
-          "-" +
-
-          String(
-            slash[2]
-          ).padStart(
-            2,
-            "0"
-          ) +
-
-          "-" +
-
-          String(
-            slash[1]
-          ).padStart(
-            2,
-            "0"
-          )
-
-        );
-
-      }
-
-
-      return null;
-
-    }
-
-
-    /* =====================================================
-       RANGE
-       ===================================================== */
-
-    function getRange(
-      days
-    ) {
-
-      if (
-        !latestAvailableDate
-      ) {
-
-        return null;
-
-      }
-
-
-      const end =
-        new Date(
-
-          latestAvailableDate +
-          "T00:00:00"
-
-        );
-
-
-      const start =
-        new Date(
-          end
-        );
-
-
-      start.setDate(
-
-        start.getDate() -
-        (
-          days - 1
-        )
-
-      );
-
-
-      function toISO(
-        d
-      ) {
-
-        return (
-
-          d.getFullYear() +
-
-          "-" +
-
-          String(
-            d.getMonth() + 1
-          ).padStart(
-            2,
-            "0"
-          ) +
-
-          "-" +
-
-          String(
-            d.getDate()
-          ).padStart(
-            2,
-            "0"
-          )
-
-        );
-
-      }
-
-
-      return {
-
-        start:
-          toISO(
-            start
-          ),
-
-        end:
-          toISO(
-            end
-          )
-
-      };
-
-    }
-
-
-    /* =====================================================
-       FILTER TREND
-       ===================================================== */
-
-    function selectedTrend(
-      days
-    ) {
-
-      const range =
-        getRange(
-          days
-        );
-
-
-      if (
-        !range ||
-        !trendData ||
-        !Array.isArray(
-          trendData.series
-        )
-      ) {
-
-        return [];
-
-      }
-
-
-      return trendData.series.filter(
-
-        item => (
-
-          item.date >=
-          range.start
-
-          &&
-
-          item.date <=
-          range.end
-
-        )
-
       );
 
     }
 
 
-    /* =====================================================
-       FILTER MAP FEATURES
-       ===================================================== */
+    selectPeriod(
+      selectedDays
+    );
 
-    function selectedFeatures(
-      days
-    ) {
 
-      const range =
-        getRange(
-          days
+    document.getElementById(
+      "systemStatus"
+    ).textContent =
+      "Data berhasil dimuat";
+
+  }
+
+
+  function populateCompanies() {
+
+    const select =
+      document.getElementById(
+        "companySelect"
+      );
+
+
+    select.innerHTML =
+      "";
+
+
+    companies.forEach(
+      company => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          company.id;
+
+
+        option.textContent =
+          company.name;
+
+
+        select.appendChild(
+          option
         );
-
-
-      if (
-        !range ||
-        !currentGeoJSON ||
-        !Array.isArray(
-          currentGeoJSON.features
-        )
-      ) {
-
-        return {
-
-          type:
-            "FeatureCollection",
-
-          features:
-            []
-
-        };
 
       }
 
-
-      const features =
-        currentGeoJSON.features.filter(
-
-          feature => {
-
-            const p =
-              feature.properties ||
-              {};
+    );
 
 
-            const raw =
-              p.hotspot_date ||
+    if (
+      companies.length
+    ) {
 
-              p.date_hotspot_ori ||
-
-              p.date_hotspot;
-
-
-            const date =
-              normalizeDate(
-                raw
-              );
-
-
-            if (!date) {
-              return false;
-            }
-
-
-            return (
-
-              date >=
-              range.start
-
-              &&
-
-              date <=
-              range.end
-
-            );
-
-          }
-
-        );
-
-
-      return {
-
-        type:
-          "FeatureCollection",
-
-        features:
-          features
-
-      };
+      select.value =
+        companies[0].id;
 
     }
 
-
-    /* =====================================================
-       STATISTICS
-       
-       IMPORTANT:
-       Semua angka berasal dari TREND,
-       bukan dari jumlah feature peta.
-       ===================================================== */
-
-    function calculateStats(
-      series
-    ) {
-
-      let total = 0;
-
-      let high = 0;
-
-      let medium = 0;
-
-      let low = 0;
-
-      let unknown = 0;
-
-      let inside = 0;
-
-      let zone01 = 0;
-
-      let zone13 = 0;
-
-      let zone35 = 0;
+  }
 
 
-      for (
-        const item
-        of
-        series
-      ) {
+  document.getElementById(
+    "companySelect"
+  ).addEventListener(
 
-        total += Number(
-          item.total || 0
-        );
+    "change",
 
+    async function() {
 
-        high += Number(
-          item.high || 0
-        );
-
-
-        medium += Number(
-          item.medium || 0
-        );
-
-
-        low += Number(
-          item.low || 0
-        );
-
-
-        unknown += Number(
-          item.unknown || 0
-        );
-
-
-        inside += Number(
-          item.inside_hgu || 0
-        );
-
-
-        zone01 += Number(
-          item.zone_0_1 || 0
-        );
-
-
-        zone13 += Number(
-          item.zone_1_3 || 0
-        );
-
-
-        zone35 += Number(
-          item.zone_3_5 || 0
-        );
-
-      }
-
-
-      const daily =
-        series.map(
-
+      const company =
+        companies.find(
           item =>
-            Number(
-              item.total || 0
-            )
-
+            item.id ===
+            this.value
         );
 
 
-      const average =
-
-        daily.length
-
-          ?
-
-          (
-            daily.reduce(
-              (
-                sum,
-                value
-              ) =>
-                sum + value,
-
-              0
-            )
-
-            /
-
-            daily.length
-
-          )
-
-          :
-
-          0;
-
-
-      const maximum =
-
-        daily.length
-
-          ?
-
-          Math.max(
-            ...daily
-          )
-
-          :
-
-          0;
-
-
-      const minimum =
-
-        daily.length
-
-          ?
-
-          Math.min(
-            ...daily
-          )
-
-          :
-
-          0;
-
-
-      const latest =
-        series.length
-
-          ?
-
-          series[
-            series.length - 1
-          ]
-
-          :
-
-          null;
-
-
-      const previous =
-        series.length >= 2
-
-          ?
-
-          series[
-            series.length - 2
-          ]
-
-          :
-
-          null;
-
-
-      let change = null;
-
-
-      if (
-
-        latest &&
-
-        previous &&
-
-        Number(
-          previous.total
-        ) !== 0
-
-      ) {
-
-        change =
-
-          (
-
-            (
-
-              Number(
-                latest.total
-              )
-
-              -
-
-              Number(
-                previous.total
-              )
-
-            )
-
-            /
-
-            Number(
-              previous.total
-            )
-
-          )
-
-          *
-
-          100;
-
-      }
-
-
-      let status =
-        "Belum dapat dibandingkan";
-
-
-      if (
-        change !== null
-      ) {
-
-        if (
-          change > 20
-        ) {
-
-          status =
-            "Meningkat";
-
-        }
-
-        else if (
-          change < -20
-        ) {
-
-          status =
-            "Menurun";
-
-        }
-
-        else {
-
-          status =
-            "Stabil";
-
-        }
-
-      }
-
-
-      return {
-
-        total,
-
-        high,
-
-        medium,
-
-        low,
-
-        unknown,
-
-        inside,
-
-        zone01,
-
-        zone13,
-
-        zone35,
-
-        average,
-
-        maximum,
-
-        minimum,
-
-        latestDay:
-
-          latest
-
-            ?
-
-            Number(
-              latest.total || 0
-            )
-
-            :
-
-            0,
-
-        change,
-
-        status
-
-      };
-
-    }
-
-
-    /* =====================================================
-       RENDER SUMMARY
-       ===================================================== */
-
-    function renderSummary(
-
-      stats,
-
-      series,
-
-      days
-
-    ) {
-
-      const range =
-        getRange(
-          days
-        );
-
-
-      if (!range) {
+      if (!company) {
         return;
       }
 
 
-      const label =
-        PERIOD_LABELS[
-          days
-        ];
-
-
-      document.getElementById(
-        "selectedPeriodLabel"
-      ).textContent =
-        label;
-
-
-      document.getElementById(
-        "activePeriod"
-      ).textContent =
-        label;
-
-
-      document.getElementById(
-        "anchorDate"
-      ).textContent =
-        displayDate(
-          range.end
-        );
-
-
-      document.getElementById(
-        "mapPeriod"
-      ).textContent =
-        label;
-
-
-      document.getElementById(
-        "total"
-      ).textContent =
-        formatNumber(
-          stats.total
-        );
-
-
-      document.getElementById(
-        "insideHgu"
-      ).textContent =
-        formatNumber(
-          stats.inside
-        );
-
-
-      document.getElementById(
-        "zone01"
-      ).textContent =
-        formatNumber(
-          stats.zone01
-        );
-
-
-      document.getElementById(
-        "zone13"
-      ).textContent =
-        formatNumber(
-          stats.zone13
-        );
-
-
-      document.getElementById(
-        "zone35"
-      ).textContent =
-        formatNumber(
-          stats.zone35
-        );
-
-
-      document.getElementById(
-        "high"
-      ).textContent =
-        formatNumber(
-          stats.high
-        );
-
-
-      document.getElementById(
-        "medium"
-      ).textContent =
-        formatNumber(
-          stats.medium
-        );
-
-
-      document.getElementById(
-        "low"
-      ).textContent =
-        formatNumber(
-          stats.low
-        );
-
-
-      document.getElementById(
-        "status"
-      ).textContent =
-        stats.status;
-
-
-      document.getElementById(
-        "latestDayTotal"
-      ).textContent =
-        formatNumber(
-          stats.latestDay
-        );
-
-
-      document.getElementById(
-        "average"
-      ).textContent =
-        Number(
-          stats.average
-        ).toFixed(
-          1
-        );
-
-
-      document.getElementById(
-        "maximum"
-      ).textContent =
-        formatNumber(
-          stats.maximum
-        );
-
-
-      document.getElementById(
-        "minimum"
-      ).textContent =
-        formatNumber(
-          stats.minimum
-        );
-
-
-      document.getElementById(
-        "vsPrevious"
-      ).textContent =
-
-        stats.change === null
-
-          ?
-
-          "–"
-
-          :
-
-          (
-            stats.change > 0
-              ?
-              "+"
-              :
-              ""
-          )
-
-          +
-
-          Number(
-            stats.change
-          ).toFixed(
-            1
-          )
-
-          +
-
-          "%";
-
-
-      const changeText =
-
-        stats.change === null
-
-          ?
-
-          "Perbandingan harian belum tersedia."
-
-          :
-
-          stats.change > 0
-
-            ?
-
-            (
-              "Jumlah hotspot meningkat " +
-              Number(
-                stats.change
-              ).toFixed(1) +
-              "% dibandingkan hari sebelumnya."
-            )
-
-            :
-
-            stats.change < 0
-
-              ?
-
-              (
-                "Jumlah hotspot menurun " +
-                Math.abs(
-                  Number(
-                    stats.change
-                  )
-                ).toFixed(1) +
-                "% dibandingkan hari sebelumnya."
-              )
-
-              :
-
-              "Jumlah hotspot sama dengan hari sebelumnya.";
-
-
-      document.getElementById(
-        "insight"
-      ).textContent =
-
-        label +
-
-        " (" +
-
-        displayDate(
-          range.start
-        ) +
-
-        " – " +
-
-        displayDate(
-          range.end
-        ) +
-
-        "): terdapat " +
-
-        formatNumber(
-          stats.total
-        ) +
-
-        " hotspot dalam HGU atau radius ≤5 km. " +
-
-        formatNumber(
-          stats.inside
-        ) +
-
-        " berada di dalam HGU, " +
-
-        formatNumber(
-          stats.zone01
-        ) +
-
-        " pada 0–1 km, " +
-
-        formatNumber(
-          stats.zone13
-        ) +
-
-        " pada 1–3 km, dan " +
-
-        formatNumber(
-          stats.zone35
-        ) +
-
-        " pada 3–5 km. " +
-
-        changeText;
-
-
-      const denominator =
-        Math.max(
-          stats.total,
-          1
-        );
-
-
-      updateBar(
-        "barHgu",
-        "countHgu",
-        stats.inside,
-        denominator
-      );
-
-
-      updateBar(
-        "bar01",
-        "count01",
-        stats.zone01,
-        denominator
-      );
-
-
-      updateBar(
-        "bar13",
-        "count13",
-        stats.zone13,
-        denominator
-      );
-
-
-      updateBar(
-        "bar35",
-        "count35",
-        stats.zone35,
-        denominator
-      );
-
-    }
-
-
-    /* =====================================================
-       BAR
-       ===================================================== */
-
-    function updateBar(
-
-      barId,
-
-      countId,
-
-      value,
-
-      denominator
-
-    ) {
-
-      const percentage =
-
-        Math.min(
-
-          100,
-
-          (
-            Number(value)
-            /
-            Number(denominator)
-          )
-
-          *
-
-          100
-
-        );
-
-
-      document.getElementById(
-        barId
-      ).style.width =
-
-        percentage +
-
-        "%";
-
-
-      document.getElementById(
-        countId
-      ).textContent =
-
-        formatNumber(
-          value
-        );
-
-    }
-
-
-    /* =====================================================
-       HOTSPOT POPUP
-       ===================================================== */
-
-    function makeMarker(
-      feature
-    ) {
-
-      const p =
-        feature.properties ||
-        {};
-
-
-      const confidence =
-        String(
-          p.confidence ||
-          "unknown"
-        ).toLowerCase();
-
-
-      const color =
-        COLORS[
-          confidence
-        ] ||
-        COLORS.unknown;
-
-
-      const radius =
-
-        confidence === "high"
-
-          ?
-
-          7
-
-          :
-
-          confidence === "medium"
-
-            ?
-
-            5
-
-            :
-
-            4;
-
-
-      const coords =
-        feature.geometry
-          .coordinates;
-
-
-      const lon =
-        Number(
-          coords[0]
-        );
-
-
-      const lat =
-        Number(
-          coords[1]
-        );
-
-
-      const popup = `
-
-        <div
-          style="
-            min-width:250px;
-            line-height:1.6;
-          "
-        >
-
-          <div
-            style="
-              font-size:15px;
-              font-weight:750;
-              margin-bottom:7px;
-            "
-          >
-            HOTSPOT
-            ${confidence.toUpperCase()}
-          </div>
-
-          <b>Status:</b>
-          ${p.location_status ?? "-"}
-
-          <br>
-
-          <b>Zona analitik:</b>
-          ${p.zone ?? "-"}
-
-          <br>
-
-          <b>Jarak dari HGU:</b>
-          ${p.distance_hgu_km ?? "-"} km
-
-          <br>
-
-          <b>Confidence:</b>
-          ${p.confidence_value ?? "-"}
-
-          <br>
-
-          <b>Tanggal:</b>
-          ${p.hotspot_date ?? p.date_hotspot ?? "-"}
-
-          <br>
-
-          <b>Satelit:</b>
-          ${p.sumber ?? "-"}
-
-          <br>
-
-          <b>Provinsi:</b>
-          ${p.provinsi ?? "-"}
-
-          <br>
-
-          <b>Kab/Kota:</b>
-          ${p.kabkota ?? "-"}
-
-          <br>
-
-          <b>Desa:</b>
-          ${p.desa ?? "-"}
-
-          <br>
-
-          <b>Koordinat:</b>
-          ${lat.toFixed(5)},
-          ${lon.toFixed(5)}
-
-        </div>
-
-      `;
-
-
-      return L.circleMarker(
-
-        [
-          lat,
-          lon
-        ],
-
-        {
-
-          radius,
-
-          color,
-
-          fillColor:
-            color,
-
-          fillOpacity:
-            .86,
-
-          weight:
-            1
-
-        }
-
-      ).bindPopup(
-        popup
-      );
-
-    }
-
-
-    /* =====================================================
-       RENDER MAP
-       ===================================================== */
-
-    function renderMap(
-      days
-    ) {
-
-      const data =
-        selectedFeatures(
-          days
-        );
-
-
-      if (
-        hotspotLayer
-      ) {
-
-        map.removeLayer(
-          hotspotLayer
-        );
-
-      }
-
-
-      hotspotLayer =
-        L.geoJSON(
-
-          data,
-
-          {
-
-            pointToLayer:
-
-              function(
-                feature,
-                latlng
-              ) {
-
-                const marker =
-                  makeMarker(
-                    feature
-                  );
-
-
-                marker.setLatLng(
-                  latlng
-                );
-
-
-                return marker;
-
-              }
-
-          }
-
-        ).addTo(
-          map
-        );
-
-
-      document.getElementById(
-        "mapTotal"
-      ).textContent =
-
-        formatNumber(
-
-          data.features.length
-
-        );
-
-    }
-
-
-    /* =====================================================
-       RENDER CHART
-       ===================================================== */
-
-    function renderChart(
-
-      series,
-
-      days
-
-    ) {
-
-      const labels =
-        series.map(
-
-          item =>
-            shortDate(
-              item.date
-            )
-
-        );
-
-
-      const total =
-        series.map(
-
-          item =>
-            Number(
-              item.total || 0
-            )
-
-        );
-
-
-      const hgu =
-        series.map(
-
-          item =>
-            Number(
-              item.inside_hgu || 0
-            )
-
-        );
-
-
-      const zone01 =
-        series.map(
-
-          item =>
-            Number(
-              item.zone_0_1 || 0
-            )
-
-        );
-
-
-      const zone13 =
-        series.map(
-
-          item =>
-            Number(
-              item.zone_1_3 || 0
-            )
-
-        );
-
-
-      const zone35 =
-        series.map(
-
-          item =>
-            Number(
-              item.zone_3_5 || 0
-            )
-
-        );
-
-
-      document.getElementById(
-        "trendNote"
-      ).textContent =
-
-        "Trend " +
-
-        PERIOD_LABELS[
-          days
-        ];
-
-
-      if (
-        chart
-      ) {
-
-        chart.destroy();
-
-      }
-
-
-      chart =
-        new Chart(
-
-          document
-            .getElementById(
-              "trendChart"
-            )
-            .getContext(
-              "2d"
-            ),
-
-          {
-
-            type:
-              "line",
-
-
-            data: {
-
-              labels,
-
-              datasets: [
-
-                {
-
-                  label:
-                    "Total",
-
-                  data:
-                    total,
-
-                  borderWidth:
-                    3,
-
-                  tension:
-                    .25,
-
-                  fill:
-                    false
-
-                },
-
-                {
-
-                  label:
-                    "Inside HGU",
-
-                  data:
-                    hgu,
-
-                  borderWidth:
-                    2,
-
-                  tension:
-                    .25,
-
-                  fill:
-                    false
-
-                },
-
-                {
-
-                  label:
-                    "0–1 km",
-
-                  data:
-                    zone01,
-
-                  borderWidth:
-                    2,
-
-                  tension:
-                    .25,
-
-                  fill:
-                    false
-
-                },
-
-                {
-
-                  label:
-                    "1–3 km",
-
-                  data:
-                    zone13,
-
-                  borderWidth:
-                    2,
-
-                  tension:
-                    .25,
-
-                  fill:
-                    false
-
-                },
-
-                {
-
-                  label:
-                    "3–5 km",
-
-                  data:
-                    zone35,
-
-                  borderWidth:
-                    2,
-
-                  tension:
-                    .25,
-
-                  fill:
-                    false
-
-                }
-
-              ]
-
-            },
-
-
-            options: {
-
-              responsive:
-                true,
-
-              maintainAspectRatio:
-                false,
-
-
-              interaction: {
-
-                mode:
-                  "index",
-
-                intersect:
-                  false
-
-              },
-
-
-              plugins: {
-
-                legend: {
-
-                  position:
-                    "bottom"
-
-                }
-
-              },
-
-
-              scales: {
-
-                x: {
-
-                  ticks: {
-
-                    autoSkip:
-                      true,
-
-                    maxTicksLimit:
-
-                      days === 1
-
-                        ?
-
-                        1
-
-                        :
-
-                        days === 7
-
-                          ?
-
-                          7
-
-                          :
-
-                          10
-
-                  }
-
-                },
-
-
-                y: {
-
-                  beginAtZero:
-                    true,
-
-                  ticks: {
-
-                    precision:
-                      0
-
-                  }
-
-                }
-
-              }
-
-            }
-
-          }
-
-        );
-
-    }
-
-
-    /* =====================================================
-       SELECT PERIOD
-       ===================================================== */
-
-    function selectPeriod(
-      days
-    ) {
-
-      document
-        .querySelectorAll(
-          ".period-button"
-        )
-        .forEach(
-
-          button => {
-
-            button.classList.toggle(
-
-              "active",
-
-              Number(
-                button.dataset.days
-              )
-
-              ===
-
-              days
-
-            );
-
-          }
-
-        );
-
-
-      const series =
-        selectedTrend(
-          days
-        );
-
-
-      const stats =
-        calculateStats(
-          series
-        );
-
-
-      renderSummary(
-
-        stats,
-
-        series,
-
-        days
-
-      );
-
-
-      renderMap(
-        days
-      );
-
-
-      renderChart(
-
-        series,
-
-        days
-
-      );
-
-    }
-
-
-    /* =====================================================
-       BUTTON EVENTS
-       ===================================================== */
-
-    document
-      .querySelectorAll(
-        ".period-button"
-      )
-      .forEach(
-
-        button => {
-
-          button.addEventListener(
-
-            "click",
-
-            () => {
-
-              selectPeriod(
-
-                Number(
-                  button.dataset.days
-                )
-
-              );
-
-            }
-
-          );
-
-        }
-
-      );
-
-
-    /* =====================================================
-       INITIALIZE
-       ===================================================== */
-
-    async function initialize() {
-
       try {
 
-        const [
-
-          current,
-
-          trend,
-
-          summary,
-
-          boundary
-
-        ] = await Promise.all(
-
-          [
-
-            loadJSON(
-              FILES.current
-            ),
-
-            loadJSON(
-              FILES.trend
-            ),
-
-            loadJSON(
-              FILES.summary
-            ),
-
-            loadJSON(
-              FILES.boundary
-            )
-
-          ]
-
+        await loadCompany(
+          company
         );
-
-
-        currentGeoJSON =
-          current;
-
-
-        trendData =
-          trend;
-
-
-        summaryData =
-          summary;
-
-
-        boundaryData =
-          boundary;
-
-
-        /* -------------------------------------------------
-           Latest REAL data date
-           ------------------------------------------------- */
-
-        latestAvailableDate =
-          findLatestAvailableDate();
-
-
-        if (
-          !latestAvailableDate
-        ) {
-
-          throw new Error(
-            "Tanggal data hotspot tidak ditemukan."
-          );
-
-        }
-
-
-        /* -------------------------------------------------
-           Header
-           ------------------------------------------------- */
-
-        document.getElementById(
-          "ptName"
-        ).textContent =
-
-          summaryData.pt_name ||
-
-          "PT SLS";
-
-
-        document.getElementById(
-          "availableDate"
-        ).textContent =
-
-          displayDate(
-            latestAvailableDate
-          );
-
-
-        document.getElementById(
-          "updatedHeader"
-        ).textContent =
-
-          (
-
-            summaryData.last_updated_wib ||
-
-            summaryData.last_updated_utc ||
-
-            "–"
-
-          );
-
-
-        /* -------------------------------------------------
-           Boundary
-           ------------------------------------------------- */
-
-        boundaryLayer =
-          L.geoJSON(
-
-            boundaryData,
-
-            {
-
-              style: {
-
-                color:
-                  "#111111",
-
-                weight:
-                  2.5,
-
-                fill:
-                  false,
-
-                opacity:
-                  1
-
-              }
-
-            }
-
-          ).addTo(
-            map
-          );
-
-
-        if (
-          boundaryLayer
-            .getBounds()
-            .isValid()
-        ) {
-
-          map.fitBounds(
-
-            boundaryLayer.getBounds(),
-
-            {
-
-              padding:
-                [25, 25]
-
-            }
-
-          );
-
-        }
-
-
-        /* -------------------------------------------------
-           Initial period
-           ------------------------------------------------- */
-
-        selectPeriod(
-          30
-        );
-
-
-        document.getElementById(
-          "systemStatus"
-        ).textContent =
-
-          "Data berhasil dimuat";
-
 
       }
 
@@ -3523,26 +1759,2650 @@
           error
         );
 
+        showError(
+          error.message
+        );
 
         document.getElementById(
           "systemStatus"
         ).textContent =
+          "Gagal memuat data PT";
 
-          "Gagal memuat data";
+      }
+
+    }
+
+  );
 
 
-        showError(
-          error.message
-        );
+  /* =========================================================
+     LATEST DATA DATE
+     ========================================================= */
+
+  function findLatestAvailableDate() {
+
+    const dates = [];
+
+
+    if (
+      trendData &&
+      Array.isArray(
+        trendData.series
+      )
+    ) {
+
+      for (
+        const item
+        of
+        trendData.series
+      ) {
+
+        if (
+          Number(
+            item.total || 0
+          ) > 0
+        ) {
+
+          dates.push(
+            item.date
+          );
+
+        }
 
       }
 
     }
 
 
-    initialize();
+    if (
+      dates.length
+    ) {
 
-  </script>
+      dates.sort();
+
+      return dates[
+        dates.length - 1
+      ];
+
+    }
+
+
+    return null;
+
+  }
+
+
+  /* =========================================================
+     RANGE
+     ========================================================= */
+
+  function getRange(
+    days
+  ) {
+
+    if (
+      !latestAvailableDate
+    ) {
+
+      return null;
+
+    }
+
+
+    const end =
+      new Date(
+        latestAvailableDate +
+        "T00:00:00"
+      );
+
+
+    const start =
+      new Date(
+        end
+      );
+
+
+    start.setDate(
+
+      start.getDate() -
+      (days - 1)
+
+    );
+
+
+    function iso(
+      d
+    ) {
+
+      return (
+
+        d.getFullYear() +
+
+        "-" +
+
+        String(
+          d.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        ) +
+
+        "-" +
+
+        String(
+          d.getDate()
+        ).padStart(
+          2,
+          "0"
+        )
+
+      );
+
+    }
+
+
+    return {
+
+      start:
+        iso(start),
+
+      end:
+        iso(end)
+
+    };
+
+  }
+
+
+  /* =========================================================
+     TREND
+     ========================================================= */
+
+  function getSelectedTrend(
+    days
+  ) {
+
+    const range =
+      getRange(
+        days
+      );
+
+
+    if (
+      !range ||
+      !trendData ||
+      !Array.isArray(
+        trendData.series
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    return trendData.series.filter(
+
+      item =>
+
+        item.date >=
+        range.start &&
+
+        item.date <=
+        range.end
+
+    );
+
+  }
+
+
+  /* =========================================================
+     MAP FEATURES
+     ========================================================= */
+
+  function getSelectedFeatures(
+    days
+  ) {
+
+    const range =
+      getRange(
+        days
+      );
+
+
+    if (
+      !range ||
+      !currentGeoJSON ||
+      !Array.isArray(
+        currentGeoJSON.features
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    return currentGeoJSON.features.filter(
+
+      feature => {
+
+        const p =
+          feature.properties ||
+          {};
+
+
+        const date =
+          normalizeDate(
+
+            p.hotspot_date ||
+
+            p.date_hotspot_ori ||
+
+            p.date_hotspot
+
+          );
+
+
+        return (
+
+          date &&
+
+          date >=
+          range.start &&
+
+          date <=
+          range.end
+
+        );
+
+      }
+
+    );
+
+  }
+
+
+  /* =========================================================
+     DATE NORMALIZER
+     ========================================================= */
+
+  function normalizeDate(
+    value
+  ) {
+
+    if (!value) {
+      return null;
+    }
+
+
+    const text =
+      String(
+        value
+      ).trim();
+
+
+    const iso =
+      text.match(
+        /(\d{4})-(\d{2})-(\d{2})/
+      );
+
+
+    if (iso) {
+      return iso[0];
+    }
+
+
+    const slash =
+      text.match(
+        /(\d{1,2})\/(\d{1,2})\/(\d{4})/
+      );
+
+
+    if (slash) {
+
+      return (
+
+        slash[3] +
+
+        "-" +
+
+        String(
+          slash[2]
+        ).padStart(
+          2,
+          "0"
+        ) +
+
+        "-" +
+
+        String(
+          slash[1]
+        ).padStart(
+          2,
+          "0"
+        )
+
+      );
+
+    }
+
+
+    return null;
+
+  }
+
+
+  /* =========================================================
+     STATISTICS
+     ========================================================= */
+
+  function calculateStats(
+    series
+  ) {
+
+    let total = 0;
+
+    let high = 0;
+
+    let medium = 0;
+
+    let low = 0;
+
+    let unknown = 0;
+
+    let inside = 0;
+
+    let zone01 = 0;
+
+    let zone13 = 0;
+
+    let zone35 = 0;
+
+
+    for (
+      const item
+      of
+      series
+    ) {
+
+      total += Number(
+        item.total || 0
+      );
+
+      high += Number(
+        item.high || 0
+      );
+
+      medium += Number(
+        item.medium || 0
+      );
+
+      low += Number(
+        item.low || 0
+      );
+
+      unknown += Number(
+        item.unknown || 0
+      );
+
+      inside += Number(
+        item.inside_hgu || 0
+      );
+
+      zone01 += Number(
+        item.zone_0_1 || 0
+      );
+
+      zone13 += Number(
+        item.zone_1_3 || 0
+      );
+
+      zone35 += Number(
+        item.zone_3_5 || 0
+      );
+
+    }
+
+
+    const daily =
+      series.map(
+        item =>
+          Number(
+            item.total || 0
+          )
+      );
+
+
+    const average =
+
+      daily.length
+
+        ?
+
+        daily.reduce(
+          (
+            a,
+            b
+          ) =>
+            a + b,
+          0
+        ) /
+        daily.length
+
+        :
+
+        0;
+
+
+    const maximum =
+
+      daily.length
+
+        ?
+
+        Math.max(
+          ...daily
+        )
+
+        :
+
+        0;
+
+
+    const minimum =
+
+      daily.length
+
+        ?
+
+        Math.min(
+          ...daily
+        )
+
+        :
+
+        0;
+
+
+    const latest =
+      series.length
+        ?
+        series[
+          series.length - 1
+        ]
+        :
+        null;
+
+
+    const previous =
+      series.length >= 2
+        ?
+        series[
+          series.length - 2
+        ]
+        :
+        null;
+
+
+    let change =
+      null;
+
+
+    if (
+
+      latest &&
+
+      previous &&
+
+      Number(
+        previous.total || 0
+      ) !== 0
+
+    ) {
+
+      change =
+
+        (
+
+          (
+            Number(
+              latest.total || 0
+            )
+
+            -
+
+            Number(
+              previous.total || 0
+            )
+
+          )
+
+          /
+
+          Number(
+            previous.total || 0
+          )
+
+        ) *
+
+        100;
+
+    }
+
+
+    let status =
+      "Belum dapat dibandingkan";
+
+
+    if (
+      change !== null
+    ) {
+
+      if (
+        change > 20
+      ) {
+
+        status =
+          "Meningkat";
+
+      }
+
+      else if (
+        change < -20
+      ) {
+
+        status =
+          "Menurun";
+
+      }
+
+      else {
+
+        status =
+          "Stabil";
+
+      }
+
+    }
+
+
+    return {
+
+      total,
+
+      high,
+
+      medium,
+
+      low,
+
+      unknown,
+
+      inside,
+
+      zone01,
+
+      zone13,
+
+      zone35,
+
+      average,
+
+      maximum,
+
+      minimum,
+
+      latestDay:
+        latest
+          ?
+          Number(
+            latest.total || 0
+          )
+          :
+          0,
+
+      change,
+
+      status
+
+    };
+
+  }
+
+
+  /* =========================================================
+     RENDER SUMMARY
+     ========================================================= */
+
+  function updateBar(
+    barId,
+    countId,
+    value,
+    denominator
+  ) {
+
+    const percent =
+
+      Math.min(
+
+        100,
+
+        (
+          Number(value)
+          /
+          Math.max(
+            Number(denominator),
+            1
+          )
+        )
+        *
+        100
+
+      );
+
+
+    document.getElementById(
+      barId
+    ).style.width =
+      `${percent}%`;
+
+
+    document.getElementById(
+      countId
+    ).textContent =
+      formatNumber(
+        value
+      );
+
+  }
+
+
+  function renderSummary(
+    stats,
+    series,
+    days
+  ) {
+
+    const range =
+      getRange(
+        days
+      );
+
+
+    if (!range) {
+      return;
+    }
+
+
+    const label =
+      PERIOD_LABELS[
+        days
+      ];
+
+
+    document.getElementById(
+      "selectedPeriodLabel"
+    ).textContent =
+      label;
+
+
+    document.getElementById(
+      "activePeriod"
+    ).textContent =
+      label;
+
+
+    document.getElementById(
+      "anchorDate"
+    ).textContent =
+      displayDate(
+        range.end
+      );
+
+
+    document.getElementById(
+      "mapPeriod"
+    ).textContent =
+      label;
+
+
+    document.getElementById(
+      "actionNote"
+    ).textContent =
+
+      `${selectedCompany.name} · ${label} · ${displayDate(range.start)} – ${displayDate(range.end)}`;
+
+
+    document.getElementById(
+      "total"
+    ).textContent =
+      formatNumber(
+        stats.total
+      );
+
+
+    document.getElementById(
+      "insideHgu"
+    ).textContent =
+      formatNumber(
+        stats.inside
+      );
+
+
+    document.getElementById(
+      "zone01"
+    ).textContent =
+      formatNumber(
+        stats.zone01
+      );
+
+
+    document.getElementById(
+      "zone13"
+    ).textContent =
+      formatNumber(
+        stats.zone13
+      );
+
+
+    document.getElementById(
+      "zone35"
+    ).textContent =
+      formatNumber(
+        stats.zone35
+      );
+
+
+    document.getElementById(
+      "high"
+    ).textContent =
+      formatNumber(
+        stats.high
+      );
+
+
+    document.getElementById(
+      "medium"
+    ).textContent =
+      formatNumber(
+        stats.medium
+      );
+
+
+    document.getElementById(
+      "low"
+    ).textContent =
+      formatNumber(
+        stats.low
+      );
+
+
+    document.getElementById(
+      "status"
+    ).textContent =
+      stats.status;
+
+
+    document.getElementById(
+      "latestDayTotal"
+    ).textContent =
+      formatNumber(
+        stats.latestDay
+      );
+
+
+    document.getElementById(
+      "average"
+    ).textContent =
+      Number(
+        stats.average
+      ).toFixed(
+        1
+      );
+
+
+    document.getElementById(
+      "maximum"
+    ).textContent =
+      formatNumber(
+        stats.maximum
+      );
+
+
+    document.getElementById(
+      "minimum"
+    ).textContent =
+      formatNumber(
+        stats.minimum
+      );
+
+
+    document.getElementById(
+      "vsPrevious"
+    ).textContent =
+
+      stats.change === null
+
+        ?
+
+        "–"
+
+        :
+
+        (
+          stats.change > 0
+            ?
+            "+"
+            :
+            ""
+        )
+
+        +
+
+        Number(
+          stats.change
+        ).toFixed(
+          1
+        )
+
+        +
+
+        "%";
+
+
+    const comparison =
+
+      stats.change === null
+
+        ?
+
+        "Perbandingan harian belum tersedia."
+
+        :
+
+        stats.change > 0
+
+          ?
+
+          `Jumlah hotspot meningkat ${Number(stats.change).toFixed(1)}% dibandingkan hari sebelumnya.`
+
+          :
+
+          stats.change < 0
+
+            ?
+
+            `Jumlah hotspot menurun ${Math.abs(Number(stats.change)).toFixed(1)}% dibandingkan hari sebelumnya.`
+
+            :
+
+            "Jumlah hotspot sama dengan hari sebelumnya.";
+
+
+    document.getElementById(
+      "insight"
+    ).textContent =
+
+      `${selectedCompany.name} · ${label} (${displayDate(range.start)} – ${displayDate(range.end)}): terdapat ` +
+
+      `${formatNumber(stats.total)} hotspot dalam HGU atau radius ≤5 km. ` +
+
+      `${formatNumber(stats.inside)} berada di dalam HGU, ` +
+
+      `${formatNumber(stats.zone01)} pada 0–1 km, ` +
+
+      `${formatNumber(stats.zone13)} pada 1–3 km, dan ` +
+
+      `${formatNumber(stats.zone35)} pada 3–5 km. ` +
+
+      comparison;
+
+
+    const denominator =
+      Math.max(
+        stats.total,
+        1
+      );
+
+
+    updateBar(
+      "barHgu",
+      "countHgu",
+      stats.inside,
+      denominator
+    );
+
+
+    updateBar(
+      "bar01",
+      "count01",
+      stats.zone01,
+      denominator
+    );
+
+
+    updateBar(
+      "bar13",
+      "count13",
+      stats.zone13,
+      denominator
+    );
+
+
+    updateBar(
+      "bar35",
+      "count35",
+      stats.zone35,
+      denominator
+    );
+
+  }
+
+
+  /* =========================================================
+     MAP MARKER
+     ========================================================= */
+
+  function createMarker(
+    feature
+  ) {
+
+    const p =
+      feature.properties ||
+      {};
+
+
+    const confidence =
+      String(
+        p.confidence ||
+        "unknown"
+      ).toLowerCase();
+
+
+    const color =
+      COLORS[
+        confidence
+      ] ||
+      COLORS.unknown;
+
+
+    const radius =
+
+      confidence === "high"
+
+        ?
+
+        7
+
+        :
+
+        confidence === "medium"
+
+          ?
+
+          5
+
+          :
+
+          4;
+
+
+    const coordinates =
+      feature.geometry
+        .coordinates;
+
+
+    const lon =
+      Number(
+        coordinates[0]
+      );
+
+
+    const lat =
+      Number(
+        coordinates[1]
+      );
+
+
+    const popup = `
+
+      <div
+        style="
+          min-width:250px;
+          line-height:1.6;
+        "
+      >
+
+        <div
+          style="
+            font-size:15px;
+            font-weight:750;
+            margin-bottom:7px;
+          "
+        >
+          HOTSPOT
+          ${confidence.toUpperCase()}
+        </div>
+
+        <b>Perusahaan:</b>
+        ${selectedCompany.name}
+
+        <br>
+
+        <b>Status:</b>
+        ${p.location_status ?? "-"}
+
+        <br>
+
+        <b>Zona:</b>
+        ${p.zone ?? "-"}
+
+        <br>
+
+        <b>Jarak HGU:</b>
+        ${p.distance_hgu_km ?? "-"} km
+
+        <br>
+
+        <b>Confidence:</b>
+        ${p.confidence_value ?? "-"}
+
+        <br>
+
+        <b>Tanggal:</b>
+        ${p.hotspot_date ?? p.date_hotspot ?? "-"}
+
+        <br>
+
+        <b>Satelit:</b>
+        ${p.sumber ?? "-"}
+
+        <br>
+
+        <b>Provinsi:</b>
+        ${p.provinsi ?? "-"}
+
+        <br>
+
+        <b>Kab/Kota:</b>
+        ${p.kabkota ?? "-"}
+
+        <br>
+
+        <b>Desa:</b>
+        ${p.desa ?? "-"}
+
+        <br>
+
+        <b>Koordinat:</b>
+        ${lat.toFixed(5)},
+        ${lon.toFixed(5)}
+
+      </div>
+
+    `;
+
+
+    return L.circleMarker(
+
+      [
+        lat,
+        lon
+      ],
+
+      {
+
+        radius,
+
+        color,
+
+        fillColor:
+          color,
+
+        fillOpacity:
+          .86,
+
+        weight:
+          1
+
+      }
+
+    ).bindPopup(
+      popup
+    );
+
+  }
+
+
+  /* =========================================================
+     MAP
+     ========================================================= */
+
+  function renderMap(
+    days
+  ) {
+
+    const features =
+      getSelectedFeatures(
+        days
+      );
+
+
+    if (
+      hotspotLayer
+    ) {
+
+      map.removeLayer(
+        hotspotLayer
+      );
+
+    }
+
+
+    hotspotLayer =
+      L.geoJSON(
+
+        {
+
+          type:
+            "FeatureCollection",
+
+          features
+
+        },
+
+        {
+
+          pointToLayer:
+
+            function(
+              feature,
+              latlng
+            ) {
+
+              const marker =
+                createMarker(
+                  feature
+                );
+
+
+              marker.setLatLng(
+                latlng
+              );
+
+
+              return marker;
+
+            }
+
+        }
+
+      ).addTo(
+        map
+      );
+
+
+    document.getElementById(
+      "mapTotal"
+    ).textContent =
+      formatNumber(
+        features.length
+      );
+
+  }
+
+
+  /* =========================================================
+     CHART
+     ========================================================= */
+
+  function renderChart(
+    series,
+    days
+  ) {
+
+    const labels =
+      series.map(
+        item =>
+          shortDate(
+            item.date
+          )
+      );
+
+
+    const total =
+      series.map(
+        item =>
+          Number(
+            item.total || 0
+          )
+      );
+
+
+    const hgu =
+      series.map(
+        item =>
+          Number(
+            item.inside_hgu || 0
+          )
+      );
+
+
+    const zone01 =
+      series.map(
+        item =>
+          Number(
+            item.zone_0_1 || 0
+          )
+      );
+
+
+    const zone13 =
+      series.map(
+        item =>
+          Number(
+            item.zone_1_3 || 0
+          )
+      );
+
+
+    const zone35 =
+      series.map(
+        item =>
+          Number(
+            item.zone_3_5 || 0
+          )
+      );
+
+
+    document.getElementById(
+      "trendNote"
+    ).textContent =
+
+      `Trend ${PERIOD_LABELS[days]}`;
+
+
+    if (
+      trendChart
+    ) {
+
+      trendChart.destroy();
+
+    }
+
+
+    trendChart =
+      new Chart(
+
+        document
+          .getElementById(
+            "trendChart"
+          )
+          .getContext(
+            "2d"
+          ),
+
+        {
+
+          type:
+            "line",
+
+          data: {
+
+            labels,
+
+            datasets: [
+
+              {
+
+                label:
+                  "Total",
+
+                data:
+                  total,
+
+                borderWidth:
+                  3,
+
+                tension:
+                  .25,
+
+                fill:
+                  false
+
+              },
+
+              {
+
+                label:
+                  "Inside HGU",
+
+                data:
+                  hgu,
+
+                borderWidth:
+                  2,
+
+                tension:
+                  .25,
+
+                fill:
+                  false
+
+              },
+
+              {
+
+                label:
+                  "0–1 km",
+
+                data:
+                  zone01,
+
+                borderWidth:
+                  2,
+
+                tension:
+                  .25,
+
+                fill:
+                  false
+
+              },
+
+              {
+
+                label:
+                  "1–3 km",
+
+                data:
+                  zone13,
+
+                borderWidth:
+                  2,
+
+                tension:
+                  .25,
+
+                fill:
+                  false
+
+              },
+
+              {
+
+                label:
+                  "3–5 km",
+
+                data:
+                  zone35,
+
+                borderWidth:
+                  2,
+
+                tension:
+                  .25,
+
+                fill:
+                  false
+
+              }
+
+            ]
+
+          },
+
+          options: {
+
+            responsive:
+              true,
+
+            maintainAspectRatio:
+              false,
+
+            interaction: {
+
+              mode:
+                "index",
+
+              intersect:
+                false
+
+            },
+
+            plugins: {
+
+              legend: {
+
+                position:
+                  "bottom"
+
+              }
+
+            },
+
+            scales: {
+
+              x: {
+
+                ticks: {
+
+                  autoSkip:
+                    true,
+
+                  maxTicksLimit:
+
+                    days === 1
+                      ?
+                      1
+                      :
+                      days === 7
+                        ?
+                        7
+                        :
+                        10
+
+                }
+
+              },
+
+              y: {
+
+                beginAtZero:
+                  true,
+
+                ticks: {
+
+                  precision:
+                    0
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      );
+
+  }
+
+
+  /* =========================================================
+     SELECT PERIOD
+     ========================================================= */
+
+  function selectPeriod(
+    days
+  ) {
+
+    selectedDays =
+      days;
+
+
+    document
+      .querySelectorAll(
+        ".period-button"
+      )
+      .forEach(
+
+        button => {
+
+          button.classList.toggle(
+
+            "active",
+
+            Number(
+              button.dataset.days
+            ) ===
+            days
+
+          );
+
+        }
+
+      );
+
+
+    const series =
+      getSelectedTrend(
+        days
+      );
+
+
+    const stats =
+      calculateStats(
+        series
+      );
+
+
+    renderSummary(
+      stats,
+      series,
+      days
+    );
+
+
+    renderMap(
+      days
+    );
+
+
+    renderChart(
+      series,
+      days
+    );
+
+  }
+
+
+  /* =========================================================
+     PERIOD BUTTONS
+     ========================================================= */
+
+  document
+    .querySelectorAll(
+      ".period-button"
+    )
+    .forEach(
+
+      button => {
+
+        button.addEventListener(
+
+          "click",
+
+          function() {
+
+            selectPeriod(
+
+              Number(
+                this.dataset.days
+              )
+
+            );
+
+          }
+
+        );
+
+      }
+
+    );
+
+
+  /* =========================================================
+     CSV
+     ========================================================= */
+
+  function csvCell(
+    value
+  ) {
+
+    const text =
+
+      value === null ||
+      value === undefined
+
+        ?
+
+        ""
+
+        :
+
+        String(
+          value
+        );
+
+
+    return (
+
+      '"' +
+
+      text.replace(
+        /"/g,
+        '""'
+      ) +
+
+      '"'
+
+    );
+
+  }
+
+
+  function downloadCSV() {
+
+    const features =
+      getSelectedFeatures(
+        selectedDays
+      );
+
+
+    const range =
+      getRange(
+        selectedDays
+      );
+
+
+    if (
+      !features.length
+    ) {
+
+      alert(
+        "Tidak ada hotspot pada periode terpilih."
+      );
+
+      return;
+
+    }
+
+
+    const rows = [
+
+      [
+
+        "pt_id",
+
+        "pt_name",
+
+        "tanggal",
+
+        "latitude",
+
+        "longitude",
+
+        "confidence",
+
+        "confidence_value",
+
+        "satelit",
+
+        "provinsi",
+
+        "kabkota",
+
+        "desa",
+
+        "status",
+
+        "zona",
+
+        "jarak_hgu_km"
+
+      ]
+
+    ];
+
+
+    for (
+      const feature
+      of
+      features
+    ) {
+
+      const p =
+        feature.properties ||
+        {};
+
+
+      const c =
+        feature.geometry
+          .coordinates;
+
+
+      rows.push([
+
+        selectedCompany.id,
+
+        selectedCompany.name,
+
+        p.hotspot_date ||
+          p.date_hotspot ||
+          "",
+
+        c[1],
+
+        c[0],
+
+        p.confidence ||
+          "",
+
+        p.confidence_value ??
+          "",
+
+        p.sumber ||
+          "",
+
+        p.provinsi ||
+          "",
+
+        p.kabkota ||
+          "",
+
+        p.desa ||
+          "",
+
+        p.location_status ||
+          "",
+
+        p.zone ||
+          "",
+
+        p.distance_hgu_km ??
+          ""
+
+      ]);
+
+    }
+
+
+    const csv =
+      rows
+        .map(
+          row =>
+            row
+              .map(
+                csvCell
+              )
+              .join(",")
+        )
+        .join("\r\n");
+
+
+    const blob =
+      new Blob(
+
+        [
+          "\uFEFF" +
+          csv
+        ],
+
+        {
+          type:
+            "text/csv;charset=utf-8"
+        }
+
+      );
+
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const a =
+      document.createElement(
+        "a"
+      );
+
+
+    a.href =
+      url;
+
+
+    a.download =
+
+      `${selectedCompany.id}_SiPongi_${range.start}_${range.end}.csv`;
+
+
+    document.body.appendChild(
+      a
+    );
+
+
+    a.click();
+
+
+    a.remove();
+
+
+    URL.revokeObjectURL(
+      url
+    );
+
+  }
+
+
+  document.getElementById(
+    "downloadCsv"
+  ).addEventListener(
+
+    "click",
+
+    downloadCSV
+
+  );
+
+
+  /* =========================================================
+     GEOJSON
+     ========================================================= */
+
+  function downloadGeoJSON() {
+
+    const features =
+      getSelectedFeatures(
+        selectedDays
+      );
+
+
+    const range =
+      getRange(
+        selectedDays
+      );
+
+
+    if (
+      !features.length
+    ) {
+
+      alert(
+        "Tidak ada hotspot pada periode terpilih."
+      );
+
+      return;
+
+    }
+
+
+    const geojson = {
+
+      type:
+        "FeatureCollection",
+
+      name:
+        `${selectedCompany.id}_SiPongi`,
+
+      properties: {
+
+        pt_id:
+          selectedCompany.id,
+
+        pt_name:
+          selectedCompany.name,
+
+        province:
+          selectedCompany.province_name,
+
+        period_start:
+          range.start,
+
+        period_end:
+          range.end,
+
+        radius_km:
+          5,
+
+        source:
+          "SIPONGI KEMENHUT"
+
+      },
+
+      features
+
+    };
+
+
+    const blob =
+      new Blob(
+
+        [
+          JSON.stringify(
+            geojson,
+            null,
+            2
+          )
+        ],
+
+        {
+          type:
+            "application/geo+json"
+        }
+
+      );
+
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const a =
+      document.createElement(
+        "a"
+      );
+
+
+    a.href =
+      url;
+
+
+    a.download =
+
+      `${selectedCompany.id}_SiPongi_${range.start}_${range.end}.geojson`;
+
+
+    document.body.appendChild(
+      a
+    );
+
+
+    a.click();
+
+
+    a.remove();
+
+
+    URL.revokeObjectURL(
+      url
+    );
+
+  }
+
+
+  document.getElementById(
+    "downloadGeojson"
+  ).addEventListener(
+
+    "click",
+
+    downloadGeoJSON
+
+  );
+
+
+  /* =========================================================
+     PDF
+     ========================================================= */
+
+  async function generatePDF() {
+
+    const button =
+      document.getElementById(
+        "downloadPdf"
+      );
+
+
+    button.disabled =
+      true;
+
+
+    button.textContent =
+      "⏳ Membuat PDF...";
+
+
+    try {
+
+      if (
+        !window.jspdf ||
+        !window.html2canvas
+      ) {
+
+        throw new Error(
+          "Library PDF belum termuat."
+        );
+
+      }
+
+
+      const {
+        jsPDF
+      } =
+        window.jspdf;
+
+
+      const series =
+        getSelectedTrend(
+          selectedDays
+        );
+
+
+      const features =
+        getSelectedFeatures(
+          selectedDays
+        );
+
+
+      const stats =
+        calculateStats(
+          series
+        );
+
+
+      const range =
+        getRange(
+          selectedDays
+        );
+
+
+      const pdf =
+        new jsPDF({
+
+          orientation:
+            "landscape",
+
+          unit:
+            "mm",
+
+          format:
+            "a4"
+
+        });
+
+
+      const margin =
+        12;
+
+
+      const pageWidth =
+        297;
+
+
+      const contentWidth =
+        pageWidth -
+        margin *
+        2;
+
+
+      /* PAGE 1 */
+
+      pdf.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      pdf.setFontSize(
+        18
+      );
+
+
+      pdf.text(
+
+        `${selectedCompany.name} — SiPongi Hotspot Monitoring`,
+
+        margin,
+
+        15
+
+      );
+
+
+      pdf.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      pdf.setFontSize(
+        8.5
+      );
+
+
+      pdf.text(
+
+        `Periode: ${displayDate(range.start)} – ${displayDate(range.end)} | ${PERIOD_LABELS[selectedDays]} | Radius ≤5 km`,
+
+        margin,
+
+        21
+
+      );
+
+
+      pdf.text(
+
+        `Sumber: SIPONGI KEMENHUT | Provinsi: ${selectedCompany.province_name || "-"} | Update: ${summaryData?.last_updated_wib || "-"}`,
+
+        margin,
+
+        26
+
+      );
+
+
+      const kpis = [
+
+        ["TOTAL", stats.total],
+
+        ["INSIDE HGU", stats.inside],
+
+        ["0–1 KM", stats.zone01],
+
+        ["1–3 KM", stats.zone13],
+
+        ["3–5 KM", stats.zone35],
+
+        ["HIGH", stats.high],
+
+        ["MEDIUM", stats.medium],
+
+        ["LOW", stats.low]
+
+      ];
+
+
+      const gap =
+        3;
+
+
+      const boxWidth =
+        (
+          contentWidth -
+          gap * 7
+        ) /
+        8;
+
+
+      const boxY =
+        32;
+
+
+      kpis.forEach(
+
+        (
+          item,
+          index
+        ) => {
+
+          const x =
+            margin +
+            index *
+            (
+              boxWidth +
+              gap
+            );
+
+
+          pdf.setDrawColor(
+            210,
+            215,
+            220
+          );
+
+
+          pdf.roundedRect(
+
+            x,
+            boxY,
+            boxWidth,
+            20,
+            2,
+            2,
+            "S"
+
+          );
+
+
+          pdf.setFont(
+            "helvetica",
+            "bold"
+          );
+
+
+          pdf.setFontSize(
+            6.5
+          );
+
+
+          pdf.text(
+
+            item[0],
+
+            x + 2,
+
+            boxY + 6
+
+          );
+
+
+          pdf.setFontSize(
+            14
+          );
+
+
+          pdf.text(
+
+            formatNumber(
+              item[1]
+            ),
+
+            x +
+              boxWidth / 2,
+
+            boxY + 15,
+
+            {
+              align:
+                "center"
+            }
+
+          );
+
+        }
+
+      );
+
+
+      pdf.setFontSize(
+        10
+      );
+
+
+      pdf.text(
+        "Analisis Ringkas",
+        margin,
+        64
+      );
+
+
+      pdf.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      pdf.setFontSize(
+        8.5
+      );
+
+
+      const analysis =
+
+        `${selectedCompany.name} pada ${PERIOD_LABELS[selectedDays].toLowerCase()} ` +
+
+        `(${displayDate(range.start)} – ${displayDate(range.end)}) mencatat ` +
+
+        `${formatNumber(stats.total)} hotspot dalam HGU atau radius ≤5 km. ` +
+
+        `${formatNumber(stats.inside)} berada di dalam HGU, ` +
+
+        `${formatNumber(stats.zone01)} pada 0–1 km, ` +
+
+        `${formatNumber(stats.zone13)} pada 1–3 km, ` +
+
+        `dan ${formatNumber(stats.zone35)} pada 3–5 km. ` +
+
+        `Status: ${stats.status}.`;
+
+
+      pdf.text(
+
+        pdf.splitTextToSize(
+          analysis,
+          125
+        ),
+
+        margin,
+
+        72
+
+      );
+
+
+      const chartCanvas =
+        document.getElementById(
+          "trendChart"
+        );
+
+
+      if (
+        chartCanvas
+      ) {
+
+        pdf.addImage(
+
+          chartCanvas.toDataURL(
+            "image/png",
+            1
+          ),
+
+          "PNG",
+
+          145,
+
+          62,
+
+          140,
+
+          75
+
+        );
+
+      }
+
+
+      pdf.setFontSize(
+        7.5
+      );
+
+
+      pdf.text(
+
+        pdf.splitTextToSize(
+
+          "Hotspot adalah indikasi anomali suhu/titik panas dan tidak otomatis berarti kebakaran aktual. Verifikasi lapangan tetap diperlukan.",
+
+          contentWidth
+
+        ),
+
+        margin,
+
+        152
+
+      );
+
+
+      pdf.text(
+
+        "Laporan dibuat otomatis dari dashboard Multi-PT SiPongi.",
+
+        margin,
+
+        195
+
+      );
+
+
+      /* PAGE 2 */
+
+      pdf.addPage();
+
+
+      pdf.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      pdf.setFontSize(
+        18
+      );
+
+
+      pdf.text(
+
+        `Peta Hotspot — ${selectedCompany.name}`,
+
+        margin,
+
+        15
+
+      );
+
+
+      pdf.setFont(
+        "helvetica",
+        "normal"
+      );
+
+
+      pdf.setFontSize(
+        8.5
+      );
+
+
+      pdf.text(
+
+        `${PERIOD_LABELS[selectedDays]} | ${displayDate(range.start)} – ${displayDate(range.end)} | ${formatNumber(features.length)} titik`,
+
+        margin,
+
+        21
+
+      );
+
+
+      const mapElement =
+        document.getElementById(
+          "map"
+        );
+
+
+      const oldHeight =
+        mapElement.style.height;
+
+
+      mapElement.style.height =
+        "620px";
+
+
+      map.invalidateSize();
+
+
+      await new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            800
+          )
+      );
+
+
+      const mapCanvas =
+        await html2canvas(
+
+          mapElement,
+
+          {
+
+            useCORS:
+              true,
+
+            allowTaint:
+              false,
+
+            backgroundColor:
+              "#e5e7eb",
+
+            scale:
+              1.5,
+
+            logging:
+              false
+
+          }
+
+        );
+
+
+      mapElement.style.height =
+        oldHeight;
+
+
+      map.invalidateSize();
+
+
+      pdf.addImage(
+
+        mapCanvas.toDataURL(
+          "image/jpeg",
+          .88
+        ),
+
+        "JPEG",
+
+        margin,
+
+        28,
+
+        contentWidth,
+
+        165
+
+      );
+
+
+      pdf.setFontSize(
+        7.5
+      );
+
+
+      pdf.text(
+
+        "Boundary HGU ditampilkan sebagai garis. Polygon zona 5 km tidak ditampilkan.",
+
+        margin,
+
+        197
+
+      );
+
+
+      pdf.text(
+
+        "Basemap: Esri World Imagery | Data: SIPONGI KEMENHUT",
+
+        285,
+
+        197,
+
+        {
+          align:
+            "right"
+        }
+
+      );
+
+
+      const safeId =
+
+        selectedCompany.id.replace(
+          /[^a-zA-Z0-9_-]/g,
+          "_"
+        );
+
+
+      pdf.save(
+
+        `${safeId}_SiPongi_Report_${range.start}_${range.end}.pdf`
+
+      );
+
+    }
+
+    catch (
+      error
+    ) {
+
+      console.error(
+        error
+      );
+
+
+      alert(
+
+        "PDF gagal dibuat: " +
+        error.message
+
+      );
+
+    }
+
+    finally {
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "📄 Generate Laporan PDF";
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "downloadPdf"
+  ).addEventListener(
+
+    "click",
+
+    generatePDF
+
+  );
+
+
+  /* =========================================================
+     INITIALIZE
+     ========================================================= */
+
+  async function initialize() {
+
+    try {
+
+      companies =
+        await loadJSON(
+          COMPANY_FILE
+        );
+
+
+      companies =
+        companies.filter(
+
+          company =>
+            company.enabled !== false
+
+        );
+
+
+      if (
+        !companies.length
+      ) {
+
+        throw new Error(
+          "Tidak ada perusahaan aktif di data/companies.json."
+        );
+
+      }
+
+
+      populateCompanies();
+
+
+      await loadCompany(
+        companies[0]
+      );
+
+
+    }
+
+    catch (
+      error
+    ) {
+
+      console.error(
+        error
+      );
+
+
+      document.getElementById(
+        "systemStatus"
+      ).textContent =
+        "Gagal memuat dashboard";
+
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  initialize();
+
+</script>
 
 </body>
 </html>
