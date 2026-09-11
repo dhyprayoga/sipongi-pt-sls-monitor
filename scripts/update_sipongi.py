@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import requests
 from pyproj import Transformer
@@ -14,48 +15,37 @@ from shapely.ops import transform, unary_union
 
 
 # ============================================================
-# PATH
+# CONFIGURATION
 # ============================================================
+
+WIB = ZoneInfo("Asia/Jakarta")
 
 ROOT = Path(__file__).resolve().parents[1]
 
 CONFIG_PATH = ROOT / "config" / "config.json"
 BOUNDARY_PATH = ROOT / "data" / "pt_boundary.geojson"
 
+DATA_DIR = ROOT / "data"
+HISTORY_DIR = DATA_DIR / "history"
+
 SITE_DATA = ROOT / "site" / "data"
 
-STATE_PATH = ROOT / "data" / "rolling_30days.json"
+STATE_PATH = DATA_DIR / "rolling_30days.json"
 
 
 # ============================================================
-# JSON HELPERS
+# JSON
 # ============================================================
 
 def read_json(path: Path) -> Any:
-
-    with path.open(
-        "r",
-        encoding="utf-8"
-    ) as f:
-
+    with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def write_json(
-    path: Path,
-    data: Any
-) -> None:
+def write_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
 
-    path.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    with path.open(
-        "w",
-        encoding="utf-8"
-    ) as f:
-
+    with path.open("w", encoding="utf-8") as f:
         json.dump(
             data,
             f,
@@ -65,7 +55,7 @@ def write_json(
 
 
 # ============================================================
-# VALUE HELPERS
+# HELPERS
 # ============================================================
 
 def first_value(
@@ -74,79 +64,225 @@ def first_value(
 ) -> Any:
 
     for key in keys:
-
         if (
             key in data
             and data[key] is not None
             and data[key] != ""
         ):
-
             return data[key]
 
     return None
 
 
-def to_float(
-    value: Any
-) -> float | None:
+def to_float(value: Any) -> float | None:
 
     try:
 
         if value is None:
             return None
 
-        if isinstance(
-            value,
-            str
-        ):
-
+        if isinstance(value, str):
             value = value.strip()
 
         return float(value)
 
-    except (
-        TypeError,
-        ValueError
-    ):
-
+    except (TypeError, ValueError):
         return None
 
 
 # ============================================================
-# LOAD HGU BOUNDARY
+# DATE / TIME
+# ============================================================
+
+def monitoring_dates(days_back: int) -> tuple[date, date]:
+
+    """
+    Semua tanggal monitoring menggunakan WIB,
+    bukan UTC.
+
+    Contoh:
+    11 Sep 2026 WIB
+    -> start = 13 Aug 2026
+    -> end   = 11 Sep 2026
+    """
+
+    now_wib = datetime.now(WIB)
+
+    end_date = now_wib.date()
+
+    start_date = (
+        end_date
+        -
+        timedelta(days=days_back - 1)
+    )
+
+    return start_date, end_date
+
+
+def parse_hotspot_date(value: Any) -> str | None:
+
+    if not value:
+        return None
+
+    text = str(value).strip()
+
+    # --------------------------------------------------------
+    # ISO datetime
+    # --------------------------------------------------------
+
+    try:
+
+        parsed = datetime.fromisoformat(
+            text.replace("Z", "+00:00")
+        )
+
+        if parsed.tzinfo is not None:
+            parsed = parsed.astimezone(WIB)
+
+        return parsed.strftime("%Y-%m-%d")
+
+    except ValueError:
+        pass
+
+    # --------------------------------------------------------
+    # YYYY-MM-DD
+    # --------------------------------------------------------
+
+    match = re.search(
+        r"(\d{4})-(\d{2})-(\d{2})",
+        text
+    )
+
+    if match:
+        return match.group(0)
+
+    # --------------------------------------------------------
+    # DD/MM/YYYY
+    # --------------------------------------------------------
+
+    match = re.search(
+        r"(\d{1,2})/(\d{1,2})/(\d{4})",
+        text
+    )
+
+    if match:
+
+        try:
+
+            return date(
+                int(match.group(3)),
+                int(match.group(2)),
+                int(match.group(1))
+            ).strftime("%Y-%m-%d")
+
+        except ValueError:
+            pass
+
+    # --------------------------------------------------------
+    # DD-MM-YYYY
+    # --------------------------------------------------------
+
+    match = re.search(
+        r"(\d{1,2})-(\d{1,2})-(\d{4})",
+        text
+    )
+
+    if match:
+
+        try:
+
+            return date(
+                int(match.group(3)),
+                int(match.group(2)),
+                int(match.group(1))
+            ).strftime("%Y-%m-%d")
+
+        except ValueError:
+            pass
+
+    # --------------------------------------------------------
+    # Indonesian date
+    #
+    # Kamis, 10 September 2026 01:15:00
+    # --------------------------------------------------------
+
+    months = {
+        "januari": 1,
+        "februari": 2,
+        "maret": 3,
+        "april": 4,
+        "mei": 5,
+        "juni": 6,
+        "juli": 7,
+        "agustus": 8,
+        "september": 9,
+        "oktober": 10,
+        "november": 11,
+        "desember": 12
+    }
+
+    parts = text.replace(",", " ").split()
+
+    for i, part in enumerate(parts):
+
+        month_number = months.get(
+            part.lower()
+        )
+
+        if month_number is None:
+            continue
+
+        if i < 1 or i + 1 >= len(parts):
+            continue
+
+        day_text = parts[i - 1]
+        year_text = parts[i + 1]
+
+        if not (
+            day_text.isdigit()
+            and year_text.isdigit()
+        ):
+            continue
+
+        try:
+
+            return date(
+                int(year_text),
+                month_number,
+                int(day_text)
+            ).strftime("%Y-%m-%d")
+
+        except ValueError:
+            continue
+
+    return None
+
+
+# ============================================================
+# BOUNDARY
 # ============================================================
 
 def load_boundary():
 
     if not BOUNDARY_PATH.exists():
-
         raise RuntimeError(
             f"Boundary tidak ditemukan: {BOUNDARY_PATH}"
         )
-
 
     obj = read_json(
         BOUNDARY_PATH
     )
 
-
-    features = (
-        obj.get(
-            "features"
-        )
-        or []
-    )
-
+    features = obj.get(
+        "features"
+    ) or []
 
     if not features:
-
         raise RuntimeError(
             "pt_boundary.geojson tidak memiliki features."
         )
 
-
     geometries = []
-
 
     for feature in features:
 
@@ -154,61 +290,37 @@ def load_boundary():
             "geometry"
         )
 
-
         if geometry:
-
             geometries.append(
                 shape(geometry)
             )
 
-
     if not geometries:
-
         raise RuntimeError(
-            "Geometry boundary PT tidak ditemukan."
+            "Geometry boundary tidak ditemukan."
         )
-
 
     boundary = unary_union(
         geometries
     )
 
-
     if boundary.is_empty:
-
         raise RuntimeError(
-            "Boundary PT kosong."
+            "Boundary kosong."
         )
-
 
     if not boundary.is_valid:
-
         print(
-            "WARNING: Boundary HGU invalid."
+            "WARNING: Boundary invalid, memperbaiki..."
         )
 
-        print(
-            "Mencoba memperbaiki geometry..."
-        )
-
-
-        boundary = boundary.buffer(
-            0
-        )
-
-
-    if boundary.is_empty:
-
-        raise RuntimeError(
-            "Boundary tetap kosong setelah repair."
-        )
-
+        boundary = boundary.buffer(0)
 
     return boundary
 
 
 # ============================================================
-# PREPARE METRIC CRS
+# METRIC CRS
 # ============================================================
 
 def prepare_metric_boundary(
@@ -216,199 +328,97 @@ def prepare_metric_boundary(
 ):
 
     """
-    PT SLS berada sekitar 115 BT dan 2-3 LS.
-
-    UTM Zone 50S:
-    EPSG:32750
-
-    Digunakan agar jarak dihitung dalam meter/km.
+    PT SLS sekitar 115 BT.
+    UTM Zone 50S = EPSG:32750.
     """
 
-
     to_metric = Transformer.from_crs(
-
         "EPSG:4326",
-
         "EPSG:32750",
-
         always_xy=True
-
     ).transform
 
-
     boundary_metric = transform(
-
         to_metric,
-
         boundary
-
     )
 
-
-    return (
-        boundary_metric,
-        to_metric
-    )
+    return boundary_metric, to_metric
 
 
 # ============================================================
-# EXTRACT API RESPONSE
+# SIPONGI RESPONSE EXTRACTION
 # ============================================================
 
 def extract_items(
     payload: Any
 ) -> list[dict[str, Any]]:
 
-    # --------------------------------------------------------
-    # Direct list
-    # --------------------------------------------------------
-
-    if isinstance(
-        payload,
-        list
-    ):
+    if isinstance(payload, list):
 
         return [
-
             item
-
             for item in payload
-
-            if isinstance(
-                item,
-                dict
-            )
-
+            if isinstance(item, dict)
         ]
 
+    if isinstance(payload, dict):
 
-    # --------------------------------------------------------
-    # Dictionary
-    # --------------------------------------------------------
-
-    if isinstance(
-        payload,
-        dict
-    ):
-
-        # ----------------------------------------------------
-        # GeoJSON
-        # ----------------------------------------------------
-
-        if payload.get(
-            "type"
-        ) == "FeatureCollection":
-
-            features = (
-
-                payload.get(
-                    "features"
-                )
-
-                or []
-
-            )
-
+        if payload.get("type") == "FeatureCollection":
 
             result = []
 
+            for feature in (
+                payload.get("features") or []
+            ):
 
-            for feature in features:
-
-                if not isinstance(
-                    feature,
-                    dict
-                ):
-
+                if not isinstance(feature, dict):
                     continue
 
-
                 properties = (
-
-                    feature.get(
-                        "properties"
-                    )
-
+                    feature.get("properties")
                     or {}
-
                 )
-
 
                 result.append({
 
                     **properties,
 
                     "_geometry":
-                        feature.get(
-                            "geometry"
-                        )
+                        feature.get("geometry")
 
                 })
 
-
             return result
 
-
-        # ----------------------------------------------------
-        # Common API wrappers
-        # ----------------------------------------------------
-
         for key in (
-
             "data",
-
             "results",
-
             "items",
-
             "hotspots"
-
         ):
 
-            value = payload.get(
-                key
-            )
+            value = payload.get(key)
 
-
-            if isinstance(
-                value,
-                list
-            ):
+            if isinstance(value, list):
 
                 return [
-
                     item
-
                     for item in value
-
-                    if isinstance(
-                        item,
-                        dict
-                    )
-
+                    if isinstance(item, dict)
                 ]
 
-
-            if isinstance(
-                value,
-                dict
-            ):
+            if isinstance(value, dict):
 
                 nested = extract_items(
                     value
                 )
 
-
                 if nested:
-
                     return nested
 
-
     raise RuntimeError(
-
-        "Struktur response SiPongi "
-        "tidak dikenali."
-
+        "Struktur response SiPongi tidak dikenali."
     )
 
 
@@ -423,320 +433,183 @@ def normalize_item(
     lat = None
     lon = None
 
-
     # --------------------------------------------------------
-    # GeoJSON Point
+    # GeoJSON
     # --------------------------------------------------------
 
     geometry = item.get(
         "_geometry"
     )
 
-
-    if isinstance(
-        geometry,
-        dict
-    ):
+    if isinstance(geometry, dict):
 
         coordinates = geometry.get(
             "coordinates"
         )
 
-
         if (
-
-            geometry.get(
-                "type"
-            ) == "Point"
-
-            and
-
-            isinstance(
-                coordinates,
-                list
-            )
-
-            and
-
-            len(coordinates) >= 2
-
+            geometry.get("type") == "Point"
+            and isinstance(coordinates, list)
+            and len(coordinates) >= 2
         ):
 
             lon = to_float(
                 coordinates[0]
             )
 
-
             lat = to_float(
                 coordinates[1]
             )
 
-
     # --------------------------------------------------------
-    # Standard coordinate fields
+    # Coordinates
     # --------------------------------------------------------
 
     if lat is None:
 
         lat = to_float(
-
             first_value(
-
                 item,
-
                 "lat",
-
                 "latitude",
-
                 "LAT",
-
                 "y"
-
             )
-
         )
-
 
     if lon is None:
 
         lon = to_float(
-
             first_value(
-
                 item,
-
                 "long",
-
                 "lon",
-
                 "longitude",
-
                 "LONG",
-
                 "x"
-
             )
-
         )
 
-
-    # --------------------------------------------------------
-    # Invalid coordinate
-    # --------------------------------------------------------
-
-    if (
-
-        lat is None
-
-        or
-
-        lon is None
-
-    ):
-
+    if lat is None or lon is None:
         return None
-
 
     if not (
-
         -90 <= lat <= 90
-
         and
-
         -180 <= lon <= 180
-
     ):
-
         return None
 
-
     # --------------------------------------------------------
-    # CONFIDENCE
+    # Confidence
     # --------------------------------------------------------
 
     confidence_raw = first_value(
-
         item,
-
         "confidence_level",
-
         "confidenceLevel",
-
         "confidence"
-
     )
-
 
     confidence_value = to_float(
-
         first_value(
-
             item,
-
             "confidence_value"
-
         )
-
     )
 
-
-    # Coba confidence numerik dari field confidence
     confidence_numeric = to_float(
-
         first_value(
-
             item,
-
             "confidence"
-
         )
-
     )
-
 
     if confidence_value is None:
-
         confidence_value = confidence_numeric
 
-
     confidence = str(
-
-        confidence_raw
-
-        or ""
-
+        confidence_raw or ""
     ).strip().lower()
 
-
     if confidence not in {
-
         "low",
-
         "medium",
-
         "high"
-
     }:
 
         if confidence_value is not None:
 
             if confidence_value < 30:
-
                 confidence = "low"
 
             elif confidence_value < 80:
-
                 confidence = "medium"
 
             else:
-
                 confidence = "high"
 
         else:
-
             confidence = "unknown"
 
-
     # --------------------------------------------------------
-    # DATES
+    # Date
     # --------------------------------------------------------
 
     date_hotspot = first_value(
-
         item,
-
         "date_hotspot",
-
         "date",
-
         "tanggal",
-
         "acq_date"
-
     )
-
 
     date_hotspot_ori = first_value(
-
         item,
-
         "date_hotspot_ori",
-
         "acq_datetime",
-
         "datetime"
-
     )
 
-
     # --------------------------------------------------------
-    # OTHER ATTRIBUTES
+    # Other
     # --------------------------------------------------------
 
     source = first_value(
-
         item,
-
         "sumber",
-
         "source",
-
         "satellite"
-
     )
-
 
     province = first_value(
-
         item,
-
         "provinsi",
-
         "province"
-
     )
-
 
     district = first_value(
-
         item,
-
         "kabkota",
-
         "kabupaten",
-
         "kota"
-
     )
-
 
     village = first_value(
-
         item,
-
         "desa",
-
         "village"
-
     )
-
 
     kawasan = first_value(
-
         item,
-
         "kawasan"
-
     )
-
 
     result = {
 
-        "lat":
-            lat,
-
-        "lon":
-            lon,
+        "lat": lat,
+        "lon": lon,
 
         "confidence":
             confidence,
@@ -767,51 +640,39 @@ def normalize_item(
 
     }
 
-
     # --------------------------------------------------------
-    # Preserve other scalar fields
+    # Preserve scalar fields
     # --------------------------------------------------------
 
     for key, value in item.items():
 
-        if key.startswith(
-            "_"
-        ):
-
+        if key.startswith("_"):
             continue
-
 
         if key in result:
-
             continue
 
-
-        if isinstance(
-
-            value,
-
-            (
-
-                str,
-
-                int,
-
-                float,
-
-                bool
-
+        if (
+            isinstance(
+                value,
+                (
+                    str,
+                    int,
+                    float,
+                    bool
+                )
             )
-
-        ) or value is None:
+            or
+            value is None
+        ):
 
             result[key] = value
-
 
     return result
 
 
 # ============================================================
-# GEOJSON FEATURE
+# GEOJSON
 # ============================================================
 
 def as_feature(
@@ -822,16 +683,13 @@ def as_feature(
         item
     )
 
-
     lat = properties.pop(
         "lat"
     )
 
-
     lon = properties.pop(
         "lon"
     )
-
 
     return {
 
@@ -858,282 +716,32 @@ def as_feature(
 
 
 # ============================================================
-# DATE PARSER
-# ============================================================
-
-INDONESIAN_MONTHS = {
-
-    "januari": 1,
-
-    "februari": 2,
-
-    "maret": 3,
-
-    "april": 4,
-
-    "mei": 5,
-
-    "juni": 6,
-
-    "juli": 7,
-
-    "agustus": 8,
-
-    "september": 9,
-
-    "oktober": 10,
-
-    "november": 11,
-
-    "desember": 12
-
-}
-
-
-def parse_hotspot_date(
-    value: Any
-) -> str | None:
-
-    if not value:
-
-        return None
-
-
-    text = str(
-        value
-    ).strip()
-
-
-    # --------------------------------------------------------
-    # ISO datetime
-    # --------------------------------------------------------
-
-    try:
-
-        parsed = datetime.fromisoformat(
-
-            text.replace(
-                "Z",
-                "+00:00"
-            )
-
-        )
-
-
-        return parsed.strftime(
-            "%Y-%m-%d"
-        )
-
-
-    except ValueError:
-
-        pass
-
-
-    # --------------------------------------------------------
-    # YYYY-MM-DD
-    # --------------------------------------------------------
-
-    match = re.search(
-
-        r"(\d{4})-(\d{2})-(\d{2})",
-
-        text
-
-    )
-
-
-    if match:
-
-        return match.group(
-            0
-        )
-
-
-    # --------------------------------------------------------
-    # Indonesian date
-    #
-    # Kamis, 10 September 2026 01:15:00
-    # --------------------------------------------------------
-
-    parts = text.replace(
-        ",",
-        " "
-    ).split()
-
-
-    for index, part in enumerate(
-        parts
-    ):
-
-        month_number = (
-
-            INDONESIAN_MONTHS.get(
-
-                part.lower()
-
-            )
-
-        )
-
-
-        if month_number is None:
-
-            continue
-
-
-        if index < 1:
-
-            continue
-
-
-        if index + 1 >= len(parts):
-
-            continue
-
-
-        day_text = parts[
-            index - 1
-        ]
-
-
-        year_text = parts[
-            index + 1
-        ]
-
-
-        if not (
-
-            day_text.isdigit()
-
-            and
-
-            year_text.isdigit()
-
-        ):
-
-            continue
-
-
-        try:
-
-            parsed = date(
-
-                int(
-                    year_text
-                ),
-
-                month_number,
-
-                int(
-                    day_text
-                )
-
-            )
-
-
-            return parsed.strftime(
-                "%Y-%m-%d"
-            )
-
-
-        except ValueError:
-
-            continue
-
-
-    return None
-
-
-# ============================================================
 # FETCH SIPONGI
 # ============================================================
 
 def fetch_sipongi(
-    config: dict[str, Any]
+    config: dict[str, Any],
+    start_date: date,
+    end_date: date
 ) -> list[dict[str, Any]]:
 
     endpoint = config[
         "sipongi_endpoint"
     ]
 
-
-    days_back = int(
-
+    province = str(
         config.get(
-
-            "days_back",
-
-            30
-
+            "provinsi",
+            "12"
         )
-
     )
-
-
-    today = datetime.now(
-        timezone.utc
-    ).date()
-
-
-    from_date = (
-
-        today
-
-        -
-
-        timedelta(
-
-            days=
-                days_back - 1
-
-        )
-
-    )
-
-
-    to_date = today
-
-
-    # ========================================================
-    # DEFAULTS
-    #
-    # Berdasarkan request asli SiPongi yang kita tangkap:
-    #
-    # filterperiode=true
-    # late=custom
-    # provinsi=12
-    # ========================================================
 
     late_mode = str(
-
         config.get(
-
             "late_mode",
-
             "custom"
-
         )
-
     )
-
-
-    province = str(
-
-        config.get(
-
-            "provinsi",
-
-            "12"
-
-        )
-
-    )
-
-
-    # ========================================================
-    # REQUEST PARAMETERS
-    # ========================================================
 
     params: list[tuple[str, Any]] = [
 
@@ -1149,14 +757,14 @@ def fetch_sipongi(
 
         (
             "from",
-            from_date.strftime(
+            start_date.strftime(
                 "%Y-%m-%d"
             )
         ),
 
         (
             "to",
-            to_date.strftime(
+            end_date.strftime(
                 "%Y-%m-%d"
             )
         ),
@@ -1168,87 +776,64 @@ def fetch_sipongi(
 
     ]
 
-
     # --------------------------------------------------------
-    # Satellite
+    # Satellites
     # --------------------------------------------------------
 
     for satellite in config.get(
-
         "satelit",
-
         []
-
     ):
 
         params.append(
-
             (
                 "satelit[]",
                 satellite
             )
-
         )
-
 
     # --------------------------------------------------------
     # Confidence
     # --------------------------------------------------------
 
     for confidence in config.get(
-
         "confidence",
-
         []
-
     ):
 
         params.append(
-
             (
                 "confidence[]",
                 confidence
             )
-
         )
-
 
     # --------------------------------------------------------
     # Province
     # --------------------------------------------------------
 
     params.append(
-
         (
             "provinsi",
             province
         )
-
     )
-
 
     # --------------------------------------------------------
     # District
     # --------------------------------------------------------
 
     params.append(
-
         (
             "kabkota",
             ""
         )
-
     )
-
-
-    # ========================================================
-    # HEADERS
-    # ========================================================
 
     headers = {
 
         "User-Agent":
-            "SiPongi-PT-SLS-Hotspot-Monitor/5.0",
+            "SiPongi-PT-SLS-Hotspot-Monitor/6.0",
 
         "Accept":
             "application/json,text/plain,*/*",
@@ -1258,10 +843,12 @@ def fetch_sipongi(
 
     }
 
-
-    # ========================================================
-    # PRINT REQUEST
-    # ========================================================
+    prepared = requests.Request(
+        "GET",
+        endpoint,
+        params=params,
+        headers=headers
+    ).prepare()
 
     print("")
     print(
@@ -1269,106 +856,32 @@ def fetch_sipongi(
     )
 
     print(
-        "              SIPONGI REQUEST"
+        "             SIPONGI REQUEST"
     )
 
     print(
         "=============================================="
     )
 
-
     print(
-        "Endpoint:",
-        endpoint
+        "From WIB:",
+        start_date
     )
 
-
     print(
-        "Mode:",
-        config.get(
-            "mode",
-            "date_range"
-        )
+        "To WIB:",
+        end_date
     )
-
-
-    print(
-        "From:",
-        from_date
-    )
-
-
-    print(
-        "To:",
-        to_date
-    )
-
-
-    print(
-        "Days:",
-        days_back
-    )
-
 
     print(
         "Late:",
         late_mode
     )
 
-
     print(
         "Provinsi:",
         province
     )
-
-
-    print(
-        "Satelit:",
-        config.get(
-            "satelit",
-            []
-        )
-    )
-
-
-    print(
-        "Confidence:",
-        config.get(
-            "confidence",
-            []
-        )
-    )
-
-
-    print("")
-    print(
-        "Request parameters:"
-    )
-
-
-    for key, value in params:
-
-        print(
-            f"  {key} = {value}"
-        )
-
-
-    # --------------------------------------------------------
-    # Prepare exact URL for diagnostic
-    # --------------------------------------------------------
-
-    prepared_request = requests.Request(
-
-        "GET",
-
-        endpoint,
-
-        params=params,
-
-        headers=headers
-
-    ).prepare()
-
 
     print("")
     print(
@@ -1376,427 +889,225 @@ def fetch_sipongi(
     )
 
     print(
-        prepared_request.url
+        prepared.url
     )
-
 
     print(
         "=============================================="
     )
 
-    print("")
-
-
-    # ========================================================
-    # REQUEST
-    # ========================================================
-
     response = requests.get(
-
         endpoint,
-
         params=params,
-
         headers=headers,
-
         timeout=120
-
     )
 
-
     response.raise_for_status()
-
 
     print(
         "HTTP:",
         response.status_code
     )
 
-
-    # ========================================================
-    # RESPONSE
-    # ========================================================
-
-    text = response.text.strip()
-
-
-    content_type = (
-
-        response.headers.get(
-            "content-type"
-        )
-        or ""
-
-    ).lower()
-
-
-    if (
-
-        "json"
-        not in content_type
-
-        and
-
-        not text.startswith(
-            (
-                "{",
-                "["
-            )
-        )
-
-    ):
-
-        raise RuntimeError(
-
-            "Response SiPongi bukan JSON.\n"
-
-            f"Content-Type: {content_type}\n"
-
-            f"Response awal: {text[:500]}"
-
-        )
-
-
-    try:
-
-        payload = response.json()
-
-
-    except ValueError as exc:
-
-        raise RuntimeError(
-
-            "Response SiPongi bukan JSON valid.\n"
-
-            f"Response awal: {text[:500]}"
-
-        ) from exc
-
-
-    # ========================================================
-    # EXTRACT
-    # ========================================================
+    payload = response.json()
 
     raw_items = extract_items(
         payload
     )
 
-
-    normalized = []
-
+    items = []
 
     for raw_item in raw_items:
 
-        item = normalize_item(
+        clean = normalize_item(
             raw_item
         )
 
-
-        if item:
-
-            normalized.append(
-                item
+        if clean:
+            items.append(
+                clean
             )
-
 
     print(
         "Raw records:",
         len(raw_items)
     )
 
-
     print(
         "Normalized records:",
-        len(normalized)
+        len(items)
     )
 
-
-    return normalized
+    return items
 
 
 # ============================================================
-# SPATIAL PROCESSING
+# SPATIAL FILTER
 # ============================================================
+
+def classify_zone(
+    distance_km: float,
+    inside_hgu: bool
+) -> str:
+
+    if inside_hgu:
+        return "Inside HGU"
+
+    if distance_km <= 1:
+        return "0–1 km"
+
+    if distance_km <= 3:
+        return "1–3 km"
+
+    if distance_km <= 5:
+        return "3–5 km"
+
+    return ">5 km"
+
 
 def process_spatial(
-
     items: list[dict[str, Any]],
-
     boundary,
-
-    config: dict[str, Any]
-
+    max_distance_km: float
 ) -> list[dict[str, Any]]:
 
     (
-
         boundary_metric,
-
         to_metric
-
     ) = prepare_metric_boundary(
         boundary
     )
-
-
-    max_distance_km = float(
-
-        config.get(
-
-            "distance_max_km",
-
-            5
-
-        )
-
-    )
-
-
-    zones = config.get(
-
-        "zones_km",
-
-        []
-
-    )
-
 
     minx, miny, maxx, maxy = (
         boundary.bounds
     )
 
-
     bbox_count = 0
-
     inside_count = 0
 
     result = []
 
-
-    # ========================================================
-    # PROCESS
-    # ========================================================
-
     for item in items:
 
-        lat = item[
-            "lat"
-        ]
-
-        lon = item[
-            "lon"
-        ]
-
+        lat = item["lat"]
+        lon = item["lon"]
 
         point_wgs84 = Point(
-
             lon,
-
             lat
-
         )
-
 
         # ----------------------------------------------------
         # BBOX
         # ----------------------------------------------------
 
-        in_bbox = (
-
+        if (
             minx <= lon <= maxx
-
             and
-
             miny <= lat <= maxy
-
-        )
-
-
-        if in_bbox:
+        ):
 
             bbox_count += 1
 
-
         # ----------------------------------------------------
-        # INSIDE HGU
+        # Inside HGU
         # ----------------------------------------------------
 
         inside_hgu = boundary.covers(
-
             point_wgs84
-
         )
 
-
         if inside_hgu:
-
             inside_count += 1
 
-
         # ----------------------------------------------------
-        # METRIC POINT
+        # Metric
         # ----------------------------------------------------
 
         point_metric = transform(
-
             to_metric,
-
             point_wgs84
-
         )
-
-
-        # ----------------------------------------------------
-        # DISTANCE TO HGU
-        # ----------------------------------------------------
 
         distance_m = boundary_metric.distance(
-
             point_metric
-
         )
-
 
         distance_km = (
-
-            distance_m
-            /
-            1000.0
-
+            distance_m / 1000.0
         )
 
-
         # ----------------------------------------------------
-        # FILTER 5 KM
+        # Filter
         # ----------------------------------------------------
 
         if (
-
             not inside_hgu
-
             and
-
             distance_km > max_distance_km
-
         ):
-
             continue
 
-
-        # ----------------------------------------------------
-        # ZONE
-        # ----------------------------------------------------
-
-        zone = ">5 km"
-
-
-        if inside_hgu:
-
-            zone = "Inside HGU"
-
-        else:
-
-            for zone_config in zones:
-
-                zone_name = zone_config.get(
-                    "name"
-                )
-
-
-                zone_min = float(
-
-                    zone_config.get(
-
-                        "min_km",
-
-                        0
-
-                    )
-
-                )
-
-
-                zone_max = float(
-
-                    zone_config.get(
-
-                        "max_km",
-
-                        0
-
-                    )
-
-                )
-
-
-                if (
-
-                    distance_km > zone_min
-
-                    and
-
-                    distance_km <= zone_max
-
-                ):
-
-                    zone = zone_name
-
-                    break
-
-
-        # ----------------------------------------------------
-        # CREATE FEATURE
-        # ----------------------------------------------------
+        zone = classify_zone(
+            distance_km,
+            inside_hgu
+        )
 
         feature = as_feature(
             item
         )
 
-
         properties = feature[
             "properties"
         ]
 
-
         properties[
             "distance_hgu_km"
         ] = round(
-
             distance_km,
-
             3
-
         )
-
 
         properties[
             "zone"
         ] = zone
 
-
         properties[
             "location_status"
         ] = (
-
             "INSIDE HGU"
-
             if inside_hgu
-
             else
-
             "OUTSIDE HGU"
-
         )
 
+        # Date hasil parsing
+        hotspot_date = (
+            parse_hotspot_date(
+                properties.get(
+                    "date_hotspot_ori"
+                )
+            )
+            or
+            parse_hotspot_date(
+                properties.get(
+                    "date_hotspot"
+                )
+            )
+        )
+
+        properties[
+            "hotspot_date"
+        ] = hotspot_date
 
         result.append(
             feature
         )
 
-
-    # ========================================================
-    # DIAGNOSTIC
-    # ========================================================
+    # --------------------------------------------------------
+    # Diagnostics
+    # --------------------------------------------------------
 
     print("")
     print(
@@ -1811,119 +1122,84 @@ def process_spatial(
         "=============================================="
     )
 
-
     print(
         "Boundary BBOX:"
     )
-
 
     print(
         "  MIN LON:",
         minx
     )
 
-
     print(
         "  MIN LAT:",
         miny
     )
-
 
     print(
         "  MAX LON:",
         maxx
     )
 
-
     print(
         "  MAX LAT:",
         maxy
     )
 
-
     print("")
-
 
     print(
         "Total hotspot SiPongi:",
         len(items)
     )
 
-
     print(
-        "Hotspot dalam BBOX:",
+        "Dalam BBOX:",
         bbox_count
     )
 
-
     print(
-        "Hotspot inside HGU:",
+        "Inside HGU:",
         inside_count
     )
 
-
     print(
-        "Hotspot <= 5 km:",
+        "Dalam radius <= 5 km:",
         len(result)
     )
-
 
     zone_counter = Counter(
 
         feature[
             "properties"
         ].get(
-
             "zone",
-
             "unknown"
-
         )
 
         for feature in result
 
     )
 
-
     print("")
     print(
         "DISTRIBUSI ZONA:"
     )
 
-
     for zone_name in (
-
         "Inside HGU",
-
         "0–1 km",
-
         "1–3 km",
-
         "3–5 km"
-
     ):
 
         print(
-
             f"  {zone_name}:",
-
             zone_counter.get(
-
                 zone_name,
-
                 0
-
             )
-
         )
-
-
-    print("")
-    print(
-        "=============================================="
-    )
-    print("")
-
 
     return result
 
@@ -1942,72 +1218,49 @@ def feature_key(
         "coordinates"
     ]
 
-
     properties = feature.get(
-
         "properties",
-
         {}
-
     )
-
 
     return (
 
         round(
-            float(
-                coordinates[1]
-            ),
+            float(coordinates[1]),
             5
         ),
 
         round(
-            float(
-                coordinates[0]
-            ),
+            float(coordinates[0]),
             5
         ),
 
         str(
-
             properties.get(
-                "date_hotspot_ori"
+                "hotspot_date",
+                ""
             )
-
-            or
-
-            properties.get(
-                "date_hotspot"
-            )
-
-            or
-
-            ""
-
         ),
 
         str(
-
             properties.get(
-                "sumber"
+                "date_hotspot_ori",
+                ""
             )
-
-            or
-
-            ""
-
         ),
 
         str(
-
             properties.get(
-                "confidence"
+                "sumber",
+                ""
             )
+        ),
 
-            or
-
-            ""
-
+        str(
+            properties.get(
+                "confidence",
+                ""
+            )
         )
 
     )
@@ -2019,7 +1272,6 @@ def deduplicate(
 
     unique = {}
 
-
     for feature in features:
 
         unique[
@@ -2028,17 +1280,227 @@ def deduplicate(
             )
         ] = feature
 
-
     return list(
         unique.values()
     )
 
 
 # ============================================================
-# DAILY TREND
+# DAILY HISTORY
 # ============================================================
 
-def build_daily_trend(
+def build_empty_day(
+    date_key: str,
+    generated_wib: str,
+    query_start: str,
+    query_end: str
+) -> dict[str, Any]:
+
+    return {
+
+        "date":
+            date_key,
+
+        "query_period":
+            {
+                "from":
+                    query_start,
+
+                "to":
+                    query_end
+            },
+
+        "generated_wib":
+            generated_wib,
+
+        "hotspot_count":
+            0,
+
+        "features":
+            []
+
+    }
+
+
+def write_daily_history(
+
+    features: list[dict[str, Any]],
+
+    start_date: date,
+
+    end_date: date
+
+) -> dict[str, Any]:
+
+    HISTORY_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    generated_wib = datetime.now(
+        WIB
+    ).isoformat(
+        timespec="seconds"
+    )
+
+    # --------------------------------------------------------
+    # Group current features by observation date
+    # --------------------------------------------------------
+
+    grouped: dict[str, list[dict[str, Any]]] = (
+        defaultdict(list)
+    )
+
+    for feature in features:
+
+        properties = feature.get(
+            "properties",
+            {}
+        )
+
+        hotspot_date = (
+            properties.get(
+                "hotspot_date"
+            )
+        )
+
+        if not hotspot_date:
+            continue
+
+        if not (
+            start_date.strftime("%Y-%m-%d")
+            <=
+            hotspot_date
+            <=
+            end_date.strftime("%Y-%m-%d")
+        ):
+            continue
+
+        grouped[
+            hotspot_date
+        ].append(
+            feature
+        )
+
+    # --------------------------------------------------------
+    # Write every date in current 30-day window
+    # --------------------------------------------------------
+
+    current = start_date
+
+    while current <= end_date:
+
+        date_key = current.strftime(
+            "%Y-%m-%d"
+        )
+
+        day_features = grouped.get(
+            date_key,
+            []
+        )
+
+        obj = build_empty_day(
+
+            date_key,
+
+            generated_wib,
+
+            start_date.strftime(
+                "%Y-%m-%d"
+            ),
+
+            end_date.strftime(
+                "%Y-%m-%d"
+            )
+
+        )
+
+        obj[
+            "hotspot_count"
+        ] = len(
+            day_features
+        )
+
+        obj[
+            "features"
+        ] = day_features
+
+        write_json(
+
+            HISTORY_DIR /
+            f"{date_key}.json",
+
+            obj
+
+        )
+
+        current += timedelta(
+            days=1
+        )
+
+    print("")
+    print(
+        "=============================================="
+    )
+
+    print(
+        "           DAILY HISTORY RESULT"
+    )
+
+    print(
+        "=============================================="
+    )
+
+    active_days = 0
+    total_history = 0
+
+    current = start_date
+
+    while current <= end_date:
+
+        date_key = current.strftime(
+            "%Y-%m-%d"
+        )
+
+        count = len(
+            grouped.get(
+                date_key,
+                []
+            )
+        )
+
+        print(
+            f"  {date_key}: {count}"
+        )
+
+        if count > 0:
+            active_days += 1
+
+        total_history += count
+
+        current += timedelta(
+            days=1
+        )
+
+    print("")
+    print(
+        "Hari dengan hotspot:",
+        active_days
+    )
+
+    print(
+        "Total hotspot history:",
+        total_history
+    )
+
+    return grouped
+
+
+# ============================================================
+# BUILD TREND
+# ============================================================
+
+def build_trend_from_features(
 
     features: list[dict[str, Any]],
 
@@ -2074,47 +1536,20 @@ def build_daily_trend(
 
     )
 
-
     records_without_date = 0
-
-
-    # --------------------------------------------------------
-    # Aggregate
-    # --------------------------------------------------------
 
     for feature in features:
 
         properties = feature.get(
-
             "properties",
-
             {}
-
         )
-
 
         hotspot_date = (
-
-            parse_hotspot_date(
-
-                properties.get(
-                    "date_hotspot_ori"
-                )
-
+            properties.get(
+                "hotspot_date"
             )
-
-            or
-
-            parse_hotspot_date(
-
-                properties.get(
-                    "date_hotspot"
-                )
-
-            )
-
         )
-
 
         if not hotspot_date:
 
@@ -2122,24 +1557,18 @@ def build_daily_trend(
 
             continue
 
-
-        confidence = str(
-
-            properties.get(
-
-                "confidence",
-
-                "unknown"
-
-            )
-
-        ).lower()
-
-
         zone = properties.get(
             "zone"
         )
 
+        confidence = str(
+
+            properties.get(
+                "confidence",
+                "unknown"
+            )
+
+        ).lower()
 
         daily[
             hotspot_date
@@ -2147,15 +1576,10 @@ def build_daily_trend(
             "total"
         ] += 1
 
-
         if confidence in {
-
             "high",
-
             "medium",
-
             "low"
-
         }:
 
             daily[
@@ -2172,7 +1596,6 @@ def build_daily_trend(
                 "unknown"
             ] += 1
 
-
         if zone == "Inside HGU":
 
             daily[
@@ -2180,7 +1603,6 @@ def build_daily_trend(
             ][
                 "inside_hgu"
             ] += 1
-
 
         elif zone == "0–1 km":
 
@@ -2190,7 +1612,6 @@ def build_daily_trend(
                 "zone_0_1"
             ] += 1
 
-
         elif zone == "1–3 km":
 
             daily[
@@ -2198,7 +1619,6 @@ def build_daily_trend(
             ][
                 "zone_1_3"
             ] += 1
-
 
         elif zone == "3–5 km":
 
@@ -2208,25 +1628,15 @@ def build_daily_trend(
                 "zone_3_5"
             ] += 1
 
-
-    # --------------------------------------------------------
-    # Complete calendar
-    # --------------------------------------------------------
-
     series = []
 
+    current = start_date
 
-    current_date = start_date
+    while current <= end_date:
 
-
-    while current_date <= end_date:
-
-        date_key = current_date.strftime(
-
+        date_key = current.strftime(
             "%Y-%m-%d"
-
         )
-
 
         values = daily.get(
 
@@ -2256,7 +1666,6 @@ def build_daily_trend(
 
         )
 
-
         series.append({
 
             "date":
@@ -2266,135 +1675,9 @@ def build_daily_trend(
 
         })
 
-
-        current_date += timedelta(
+        current += timedelta(
             days=1
         )
-
-
-    # --------------------------------------------------------
-    # LOG
-    # --------------------------------------------------------
-
-    print("")
-    print(
-        "=============================================="
-    )
-
-    print(
-        "             DAILY TREND RESULT"
-    )
-
-    print(
-        "=============================================="
-    )
-
-
-    active_days = [
-
-        item
-
-        for item in series
-
-        if item[
-            "total"
-        ] > 0
-
-    ]
-
-
-    print(
-        "Tanggal dengan hotspot:",
-        len(active_days)
-    )
-
-
-    print(
-        "Total hotspot seluruh hari:",
-        sum(
-
-            item[
-                "total"
-            ]
-
-            for item in series
-
-        )
-    )
-
-
-    print(
-        "Record tanpa tanggal:",
-        records_without_date
-    )
-
-
-    print("")
-
-
-    if active_days:
-
-        print(
-            "Tanggal yang memiliki hotspot:"
-        )
-
-
-        for item in active_days:
-
-            print(
-
-                " ",
-
-                item[
-                    "date"
-                ],
-
-                "Total=",
-
-                item[
-                    "total"
-                ],
-
-                "Inside=",
-
-                item[
-                    "inside_hgu"
-                ],
-
-                "0–1=",
-
-                item[
-                    "zone_0_1"
-                ],
-
-                "1–3=",
-
-                item[
-                    "zone_1_3"
-                ],
-
-                "3–5=",
-
-                item[
-                    "zone_3_5"
-                ]
-
-            )
-
-    else:
-
-        print(
-            "Tidak ada hotspot yang memiliki tanggal "
-            "dan lolos filter <=5 km."
-        )
-
-
-    print("")
-    print(
-        "=============================================="
-    )
-    print("")
-
 
     return {
 
@@ -2409,19 +1692,23 @@ def build_daily_trend(
             ),
 
         "dates":
-
             [
-
-                item[
-                    "date"
-                ]
-
+                item["date"]
                 for item in series
-
             ],
 
         "series":
             series,
+
+        "records_without_date":
+            records_without_date,
+
+        "last_updated_wib":
+            datetime.now(
+                WIB
+            ).isoformat(
+                timespec="seconds"
+            ),
 
         "last_updated_utc":
             datetime.now(
@@ -2443,98 +1730,67 @@ def build_summary(
 
     trend: dict[str, Any],
 
-    pt_name: str
+    pt_name: str,
+
+    query_start: date,
+
+    query_end: date
 
 ) -> dict[str, Any]:
 
     series = trend.get(
-
         "series",
-
         []
-
     )
-
-
-    # --------------------------------------------------------
-    # Confidence
-    # --------------------------------------------------------
 
     confidence_counter = Counter(
 
         feature[
             "properties"
         ].get(
-
             "confidence",
-
             "unknown"
-
         )
 
         for feature in features
 
     )
-
-
-    # --------------------------------------------------------
-    # Zone
-    # --------------------------------------------------------
 
     zone_counter = Counter(
 
         feature[
             "properties"
         ].get(
-
             "zone",
-
             "unknown"
-
         )
 
         for feature in features
 
     )
 
-
-    # --------------------------------------------------------
-    # Daily total
-    # --------------------------------------------------------
-
     daily_totals = [
 
         int(
-
             item.get(
-
                 "total",
-
                 0
-
             )
-
         )
 
         for item in series
 
     ]
 
-
-    total_30 = sum(
+    total = sum(
         daily_totals
     )
 
+    average = (
 
-    average_30 = (
-
-        total_30
-
+        total
         /
-
-        len(
-            daily_totals
-        )
+        len(daily_totals)
 
         if daily_totals
 
@@ -2542,12 +1798,9 @@ def build_summary(
 
     )
 
+    maximum = (
 
-    max_30 = (
-
-        max(
-            daily_totals
-        )
+        max(daily_totals)
 
         if daily_totals
 
@@ -2555,86 +1808,55 @@ def build_summary(
 
     )
 
+    minimum = (
 
-    min_30 = (
-
-        min(
-            daily_totals
-        )
+        min(daily_totals)
 
         if daily_totals
 
         else 0
 
     )
-
-
-    # --------------------------------------------------------
-    # Latest / previous
-    # --------------------------------------------------------
 
     latest = (
-
         series[-1]
-
         if series
-
         else None
-
     )
-
 
     previous = (
-
         series[-2]
-
         if len(series) >= 2
-
         else None
-
     )
 
-
-    vs_previous_pct = None
-
+    vs_previous = None
 
     if (
 
         latest is not None
-
         and
-
         previous is not None
-
         and
-
-        previous[
-            "total"
-        ] != 0
+        previous["total"] != 0
 
     ):
 
-        vs_previous_pct = round(
+        vs_previous = round(
 
             (
 
-                latest[
-                    "total"
-                ]
+                latest["total"]
 
                 -
 
-                previous[
-                    "total"
-                ]
+                previous["total"]
 
             )
 
             /
 
-            previous[
-                "total"
-            ]
+            previous["total"]
 
             *
 
@@ -2644,33 +1866,48 @@ def build_summary(
 
         )
 
+    if vs_previous is None:
+        status = "Belum dapat dibandingkan"
 
-    # --------------------------------------------------------
-    # Status
-    # --------------------------------------------------------
-
-    if vs_previous_pct is None:
-
-        status = (
-            "Belum dapat dibandingkan"
-        )
-
-    elif vs_previous_pct > 20:
-
+    elif vs_previous > 20:
         status = "Meningkat"
 
-    elif vs_previous_pct < -20:
-
+    elif vs_previous < -20:
         status = "Menurun"
 
     else:
-
         status = "Stabil"
 
+    # --------------------------------------------------------
+    # Latest date with data
+    # --------------------------------------------------------
 
-    # --------------------------------------------------------
-    # Return
-    # --------------------------------------------------------
+    active_days = [
+
+        item
+        for item in series
+        if item["total"] > 0
+    ]
+
+    latest_data_date = (
+
+        active_days[-1]["date"]
+
+        if active_days
+
+        else None
+
+    )
+
+    latest_data_count = (
+
+        active_days[-1]["total"]
+
+        if active_days
+
+        else 0
+
+    )
 
     return {
 
@@ -2678,52 +1915,34 @@ def build_summary(
             pt_name,
 
         "period_start":
-            trend.get(
-                "period_start"
+            query_start.strftime(
+                "%Y-%m-%d"
             ),
 
         "period_end":
-            trend.get(
-                "period_end"
+            query_end.strftime(
+                "%Y-%m-%d"
             ),
 
         "snapshot_date":
-            trend.get(
-                "period_end"
+            query_end.strftime(
+                "%Y-%m-%d"
             ),
+
+        "latest_data_date":
+            latest_data_date,
+
+        "latest_data_count":
+            latest_data_count,
 
         "total":
-            total_30,
+            total,
 
         "total_30_days":
-            total_30,
+            total,
 
         "total_within_5km":
-            total_30,
-
-        "high":
-            confidence_counter.get(
-                "high",
-                0
-            ),
-
-        "medium":
-            confidence_counter.get(
-                "medium",
-                0
-            ),
-
-        "low":
-            confidence_counter.get(
-                "low",
-                0
-            ),
-
-        "unknown":
-            confidence_counter.get(
-                "unknown",
-                0
-            ),
+            total,
 
         "inside_hgu":
             zone_counter.get(
@@ -2749,32 +1968,51 @@ def build_summary(
                 0
             ),
 
+        "high":
+            confidence_counter.get(
+                "high",
+                0
+            ),
+
+        "medium":
+            confidence_counter.get(
+                "medium",
+                0
+            ),
+
+        "low":
+            confidence_counter.get(
+                "low",
+                0
+            ),
+
+        "unknown":
+            confidence_counter.get(
+                "unknown",
+                0
+            ),
+
         "average_30_days":
             round(
-                average_30,
+                average,
                 1
             ),
 
-        "min_30_days":
-            min_30,
-
         "max_30_days":
-            max_30,
+            maximum,
+
+        "min_30_days":
+            minimum,
 
         "latest_day_total":
             (
-                latest[
-                    "total"
-                ]
-
+                latest["total"]
                 if latest
-
                 else 0
-
             ),
 
         "vs_previous_pct":
-            vs_previous_pct,
+            vs_previous,
 
         "status":
             status,
@@ -2785,8 +2023,17 @@ def build_summary(
         "source":
             "SIPONGI KEMENHUT",
 
-        "last_updated_utc":
+        "timezone":
+            "Asia/Jakarta",
 
+        "last_updated_wib":
+            datetime.now(
+                WIB
+            ).isoformat(
+                timespec="seconds"
+            ),
+
+        "last_updated_utc":
             datetime.now(
                 timezone.utc
             ).strftime(
@@ -2795,13 +2042,64 @@ def build_summary(
 
         "note":
             (
-                "Hotspot merupakan "
-                "indikasi anomali suhu/"
-                "titik panas dan "
+                "Hotspot merupakan indikasi "
+                "anomali suhu/titik panas dan "
                 "tidak otomatis berarti "
                 "kebakaran aktual. "
-                "Verifikasi lapangan "
-                "tetap diperlukan."
+                "Verifikasi lapangan tetap "
+                "diperlukan."
+            )
+
+    }
+
+
+# ============================================================
+# BUILD 7-DAY TREND
+# ============================================================
+
+def build_7day_trend(
+    trend_30: dict[str, Any]
+) -> dict[str, Any]:
+
+    series = trend_30.get(
+        "series",
+        []
+    )
+
+    series_7 = series[
+        -7:
+    ]
+
+    return {
+
+        "period_start":
+            (
+                series_7[0]["date"]
+                if series_7
+                else None
+            ),
+
+        "period_end":
+            (
+                series_7[-1]["date"]
+                if series_7
+                else None
+            ),
+
+        "dates":
+            [
+                item["date"]
+                for item in series_7
+            ],
+
+        "series":
+            series_7,
+
+        "last_updated_wib":
+            datetime.now(
+                WIB
+            ).isoformat(
+                timespec="seconds"
             )
 
     }
@@ -2823,85 +2121,109 @@ def main():
     )
 
     print(
-        "       30 HARI + RADIUS 5 KM"
+        "       DAILY HISTORY + 30 DAY WINDOW"
+    )
+
+    print(
+        "       HGU + RADIUS 5 KM"
     )
 
     print(
         "=============================================="
     )
+
     print("")
 
-
     # --------------------------------------------------------
-    # Configuration
+    # CONFIG
     # --------------------------------------------------------
 
     config = read_json(
         CONFIG_PATH
     )
 
-
     pt_name = config.get(
         "pt_name",
         "PT SLS"
     )
 
-
     days_back = int(
-
         config.get(
-
             "days_back",
-
             30
-
         )
-
     )
 
-
-    today = datetime.now(
-        timezone.utc
-    ).date()
-
-
-    start_date = (
-
-        today
-
-        -
-
-        timedelta(
-
-            days=
-                days_back - 1
-
+    distance_max_km = float(
+        config.get(
+            "distance_max_km",
+            5
         )
-
     )
 
-
-    end_date = today
-
+    start_date, end_date = monitoring_dates(
+        days_back
+    )
 
     # --------------------------------------------------------
-    # Boundary
+    # CURRENT WIB
+    # --------------------------------------------------------
+
+    now_wib = datetime.now(
+        WIB
+    )
+
+    print(
+        "Current WIB:",
+        now_wib.isoformat(
+            timespec="seconds"
+        )
+    )
+
+    print(
+        "Monitoring from:",
+        start_date
+    )
+
+    print(
+        "Monitoring to:",
+        end_date
+    )
+
+    print(
+        "Window:",
+        days_back,
+        "hari"
+    )
+
+    print(
+        "Radius:",
+        distance_max_km,
+        "km"
+    )
+
+    # --------------------------------------------------------
+    # BOUNDARY
     # --------------------------------------------------------
 
     boundary = load_boundary()
 
-
     # --------------------------------------------------------
-    # Fetch
+    # FETCH
     # --------------------------------------------------------
 
     items = fetch_sipongi(
-        config
+
+        config,
+
+        start_date,
+
+        end_date
+
     )
 
-
     # --------------------------------------------------------
-    # Spatial
+    # SPATIAL
     # --------------------------------------------------------
 
     features = process_spatial(
@@ -2910,25 +2232,23 @@ def main():
 
         boundary,
 
-        config
+        distance_max_km
 
     )
 
-
     # --------------------------------------------------------
-    # Deduplicate
+    # DEDUP
     # --------------------------------------------------------
 
     features = deduplicate(
         features
     )
 
-
     # --------------------------------------------------------
-    # Daily trend
+    # SAVE DAILY HISTORY
     # --------------------------------------------------------
 
-    trend = build_daily_trend(
+    write_daily_history(
 
         features,
 
@@ -2938,24 +2258,44 @@ def main():
 
     )
 
+    # --------------------------------------------------------
+    # TREND
+    # --------------------------------------------------------
+
+    trend_30 = build_trend_from_features(
+
+        features,
+
+        start_date,
+
+        end_date
+
+    )
+
+    trend_7 = build_7day_trend(
+        trend_30
+    )
 
     # --------------------------------------------------------
-    # Summary
+    # SUMMARY
     # --------------------------------------------------------
 
     summary = build_summary(
 
         features,
 
-        trend,
+        trend_30,
 
-        pt_name
+        pt_name,
+
+        start_date,
+
+        end_date
 
     )
 
-
     # --------------------------------------------------------
-    # Current GeoJSON
+    # CURRENT GEOJSON
     # --------------------------------------------------------
 
     current_geojson = {
@@ -2971,9 +2311,8 @@ def main():
 
     }
 
-
     # --------------------------------------------------------
-    # Save current GeoJSON
+    # SITE DATA
     # --------------------------------------------------------
 
     write_json(
@@ -2985,38 +2324,23 @@ def main():
 
     )
 
-
-    # --------------------------------------------------------
-    # Save trend
-    # --------------------------------------------------------
-
     write_json(
 
         SITE_DATA /
         "trend_30days.json",
 
-        trend
+        trend_30
 
     )
-
-
-    # --------------------------------------------------------
-    # Compatibility with old HTML
-    # --------------------------------------------------------
 
     write_json(
 
         SITE_DATA /
         "trend_7days.json",
 
-        trend
+        trend_7
 
     )
-
-
-    # --------------------------------------------------------
-    # Save summary
-    # --------------------------------------------------------
 
     write_json(
 
@@ -3026,11 +2350,6 @@ def main():
         summary
 
     )
-
-
-    # --------------------------------------------------------
-    # Copy HGU
-    # --------------------------------------------------------
 
     write_json(
 
@@ -3043,12 +2362,69 @@ def main():
 
     )
 
+    # --------------------------------------------------------
+    # AVAILABILITY
+    # --------------------------------------------------------
+
+    availability = {
+
+        "pt_name":
+            pt_name,
+
+        "timezone":
+            "Asia/Jakarta",
+
+        "current_wib":
+            now_wib.isoformat(
+                timespec="seconds"
+            ),
+
+        "query_start":
+            start_date.strftime(
+                "%Y-%m-%d"
+            ),
+
+        "query_end":
+            end_date.strftime(
+                "%Y-%m-%d"
+            ),
+
+        "latest_data_date":
+            summary[
+                "latest_data_date"
+            ],
+
+        "latest_data_count":
+            summary[
+                "latest_data_count"
+            ],
+
+        "total_features_30days":
+            len(features),
+
+        "last_updated_wib":
+            datetime.now(
+                WIB
+            ).isoformat(
+                timespec="seconds"
+            ),
+
+        "source":
+            "SIPONGI KEMENHUT"
+
+    }
+
+    write_json(
+
+        SITE_DATA /
+        "availability.json",
+
+        availability
+
+    )
 
     # --------------------------------------------------------
-    # Rolling state
-    #
-    # State selalu ditimpa dengan window 30 hari terbaru.
-    # Tidak menumpuk tanpa batas.
+    # STATE
     # --------------------------------------------------------
 
     state = {
@@ -3063,24 +2439,23 @@ def main():
                 "%Y-%m-%d"
             ),
 
-        "updated_utc":
+        "updated_wib":
             datetime.now(
-                timezone.utc
-            ).strftime(
-                "%Y-%m-%dT%H:%M:%SZ"
+                WIB
+            ).isoformat(
+                timespec="seconds"
             ),
 
         "features":
             features,
 
         "trend":
-            trend,
+            trend_30,
 
         "summary":
             summary
 
     }
-
 
     write_json(
 
@@ -3090,10 +2465,9 @@ def main():
 
     )
 
-
-    # ========================================================
-    # FINAL RESULT
-    # ========================================================
+    # --------------------------------------------------------
+    # FINAL
+    # --------------------------------------------------------
 
     print("")
     print(
@@ -3108,12 +2482,10 @@ def main():
         "=============================================="
     )
 
-
     print(
         "PT:",
         pt_name
     )
-
 
     print(
         "Periode:",
@@ -3122,18 +2494,20 @@ def main():
         end_date
     )
 
+    print(
+        "Timezone:",
+        "WIB"
+    )
 
     print(
         "Total response SiPongi:",
         len(items)
     )
 
-
     print(
         "Total hotspot <= 5 km:",
         len(features)
     )
-
 
     print(
         "Inside HGU:",
@@ -3142,14 +2516,12 @@ def main():
         ]
     )
 
-
     print(
         "0–1 km:",
         summary[
             "zone_0_1"
         ]
     )
-
 
     print(
         "1–3 km:",
@@ -3158,14 +2530,12 @@ def main():
         ]
     )
 
-
     print(
         "3–5 km:",
         summary[
             "zone_3_5"
         ]
     )
-
 
     print(
         "High:",
@@ -3174,14 +2544,12 @@ def main():
         ]
     )
 
-
     print(
         "Medium:",
         summary[
             "medium"
         ]
     )
-
 
     print(
         "Low:",
@@ -3190,14 +2558,12 @@ def main():
         ]
     )
 
-
     print(
         "Average per day:",
         summary[
             "average_30_days"
         ]
     )
-
 
     print(
         "Maximum per day:",
@@ -3206,7 +2572,6 @@ def main():
         ]
     )
 
-
     print(
         "Minimum per day:",
         summary[
@@ -3214,6 +2579,19 @@ def main():
         ]
     )
 
+    print(
+        "Latest date with data:",
+        summary[
+            "latest_data_date"
+        ]
+    )
+
+    print(
+        "Latest date hotspot:",
+        summary[
+            "latest_data_count"
+        ]
+    )
 
     print(
         "Status:",
@@ -3222,17 +2600,12 @@ def main():
         ]
     )
 
-
     print(
         "=============================================="
     )
+
     print("")
 
 
-# ============================================================
-# ENTRY POINT
-# ============================================================
-
 if __name__ == "__main__":
-
     main()
