@@ -1252,6 +1252,7 @@ def process_company_spatial(
             "3–5 km",
             0
         )
+    )
 
     return features
 
