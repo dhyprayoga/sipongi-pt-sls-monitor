@@ -1,6 +1,13 @@
 {
   "type": "FeatureCollection",
   "name": "pt_sls_sipongi_hotspot_30days",
+  "properties": {
+    "pt_id": "pt_sls",
+    "pt_name": "PT SLS",
+    "period_start": "2026-08-13",
+    "period_end": "2026-09-11",
+    "radius_km": 5
+  },
   "features": [
     {
       "type": "Feature",
