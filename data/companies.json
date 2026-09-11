@@ -1,0 +1,42 @@
+[
+  {
+    "id": "pt_sls",
+    "name": "PT SLS",
+    "province_code": "12",
+    "province_name": "Kalimantan Selatan",
+    "boundary": "data/pt_boundary.geojson",
+    "output_dir": "site/data/pt_sls",
+    "history_dir": "data/history/pt_sls",
+    "enabled": true
+  },
+  {
+    "id": "pt_bsl",
+    "name": "PT Bintang Sawit Lestari",
+    "province_code": "12",
+    "province_name": "Kalimantan Selatan",
+    "boundary": "data/pt_bsl/pt_boundary.geojson",
+    "output_dir": "site/data/pt_bsl",
+    "history_dir": "data/history/pt_bsl",
+    "enabled": true
+  },
+  {
+    "id": "pt_btl",
+    "name": "PT Bumi Tata Lestari",
+    "province_code": "12",
+    "province_name": "Kalimantan Selatan",
+    "boundary": "data/pt_btl/pt_boundary.geojson",
+    "output_dir": "site/data/pt_btl",
+    "history_dir": "data/history/pt_btl",
+    "enabled": true
+  },
+  {
+    "id": "pt_pas",
+    "name": "PT Plantindo Agro Subur",
+    "province_code": "12",
+    "province_name": "Kalimantan Selatan",
+    "boundary": "data/pt_pas/pt_boundary.geojson",
+    "output_dir": "site/data/pt_pas",
+    "history_dir": "data/history/pt_pas",
+    "enabled": true
+  }
+]
