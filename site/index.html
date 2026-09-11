@@ -2649,48 +2649,337 @@
        STATISTICS
        ===================================================== */
 
-    function calculateStatistics(
+  function calculateStatistics(
+  features,
+  trendSeries
+) {
 
-      features,
+  /*
+   * Statistik dashboard menggunakan TREND harian
+   * sebagai sumber utama.
+   *
+   * Ini penting karena backend Python sudah menghasilkan
+   * statistik harian yang tervalidasi.
+   */
 
-      trendSeries
+  let total = 0;
 
+  let high = 0;
+
+  let medium = 0;
+
+  let low = 0;
+
+  let unknown = 0;
+
+  let inside = 0;
+
+  let zone01 = 0;
+
+  let zone13 = 0;
+
+  let zone35 = 0;
+
+
+  /*
+   * Agregasi semua tanggal pada periode yang dipilih.
+   */
+
+  for (
+    const item of trendSeries
+  ) {
+
+    total += Number(
+      item.total || 0
+    );
+
+    high += Number(
+      item.high || 0
+    );
+
+    medium += Number(
+      item.medium || 0
+    );
+
+    low += Number(
+      item.low || 0
+    );
+
+    unknown += Number(
+      item.unknown || 0
+    );
+
+    inside += Number(
+      item.inside_hgu || 0
+    );
+
+    zone01 += Number(
+      item.zone_0_1 || 0
+    );
+
+    zone13 += Number(
+      item.zone_1_3 || 0
+    );
+
+    zone35 += Number(
+      item.zone_3_5 || 0
+    );
+
+  }
+
+
+  /*
+   * Statistik harian.
+   */
+
+  const dailyTotals =
+    trendSeries.map(
+
+      item =>
+        Number(
+          item.total || 0
+        )
+
+    );
+
+
+  const average =
+
+    dailyTotals.length
+
+      ?
+
+      (
+        dailyTotals.reduce(
+
+          (
+            sum,
+            value
+          ) => sum + value,
+
+          0
+
+        )
+
+        /
+
+        dailyTotals.length
+
+      )
+
+      :
+
+      0;
+
+
+  const maximum =
+
+    dailyTotals.length
+
+      ?
+
+      Math.max(
+        ...dailyTotals
+      )
+
+      :
+
+      0;
+
+
+  const minimum =
+
+    dailyTotals.length
+
+      ?
+
+      Math.min(
+        ...dailyTotals
+      )
+
+      :
+
+      0;
+
+
+  /*
+   * Hari terakhir pada periode terpilih.
+   */
+
+  const latest =
+    trendSeries.length
+
+      ?
+
+      trendSeries[
+        trendSeries.length - 1
+      ]
+
+      :
+
+      null;
+
+
+  const previous =
+
+    trendSeries.length >= 2
+
+      ?
+
+      trendSeries[
+        trendSeries.length - 2
+      ]
+
+      :
+
+      null;
+
+
+  let change =
+    null;
+
+
+  if (
+
+    latest &&
+
+    previous &&
+
+    Number(
+      previous.total
+    ) !== 0
+
+  ) {
+
+    change =
+
+      (
+
+        (
+          Number(
+            latest.total
+          )
+
+          -
+
+          Number(
+            previous.total
+          )
+
+        )
+
+        /
+
+        Number(
+          previous.total
+        )
+
+      )
+
+      *
+
+      100;
+
+  }
+
+
+  let status =
+    "Belum dapat dibandingkan";
+
+
+  if (
+    change !== null
+  ) {
+
+    if (
+      change > 20
     ) {
 
-      const confidence = {
+      status =
+        "Meningkat";
 
-        high:
-          0,
+    }
 
-        medium:
-          0,
+    else if (
+      change < -20
+    ) {
 
-        low:
-          0,
+      status =
+        "Menurun";
 
-        unknown:
-          0
+    }
 
-      };
+    else {
 
+      status =
+        "Stabil";
 
-      const zones = {
+    }
 
-        "Inside HGU":
-          0,
-
-        "0–1 km":
-          0,
-
-        "1–3 km":
-          0,
-
-        "3–5 km":
-          0
-
-      };
+  }
 
 
+  return {
+
+    total:
+      total,
+
+    high:
+      high,
+
+    medium:
+      medium,
+
+    low:
+      low,
+
+    unknown:
+      unknown,
+
+    inside:
+      inside,
+
+    zone01:
+      zone01,
+
+    zone13:
+      zone13,
+
+    zone35:
+      zone35,
+
+    average:
+      average,
+
+    maximum:
+      maximum,
+
+    minimum:
+      minimum,
+
+    latestDay:
+
+      latest
+
+        ?
+
+        Number(
+          latest.total || 0
+        )
+
+        :
+
+        0,
+
+    change:
+      change,
+
+    status:
+      status
+
+  };
+
+}
       /* ---------------------------------------------------
          Feature statistics
          --------------------------------------------------- */
