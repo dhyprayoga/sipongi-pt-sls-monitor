@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>PT SLS — SiPongi Hotspot Monitor</title>
 
   <!-- =====================================================
@@ -92,34 +93,71 @@
 
 
     /* =====================================================
-       CONTAINER
+       MAIN CONTAINER
        ===================================================== */
 
     .container {
       width: 100%;
       max-width: 1600px;
       margin: 0 auto;
-      padding: 16px 24px 28px;
+      padding: 16px 24px 30px;
     }
 
 
     /* =====================================================
-       PERIOD MENU
+       ERROR BOX
+       ===================================================== */
+
+    #errorBox {
+      display: none;
+
+      margin-bottom: 14px;
+
+      padding: 12px 14px;
+
+      background: #fff5f5;
+
+      border:
+        1px solid #fecdca;
+
+      border-radius: 10px;
+
+      color: #b42318;
+
+      font-size: 11px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       PERIOD PANEL
        ===================================================== */
 
     .period-panel {
       background: #ffffff;
-      border: 1px solid #e4e7ec;
+
+      border:
+        1px solid #e4e7ec;
+
       border-radius: 11px;
-      padding: 13px 15px;
+
+      padding: 14px 15px;
+
       margin-bottom: 14px;
     }
 
     .period-header {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 10px;
+
+      flex-wrap: wrap;
+
       margin-bottom: 10px;
     }
 
@@ -132,6 +170,13 @@
     .period-description {
       font-size: 10px;
       color: #98a2b3;
+      margin-top: 2px;
+    }
+
+    .selected-period {
+      font-size: 10px;
+      font-weight: 700;
+      color: #475467;
     }
 
     .period-buttons {
@@ -142,15 +187,20 @@
 
     .period-button {
       appearance: none;
-      border: 1px solid #d0d5dd;
+
+      border:
+        1px solid #d0d5dd;
+
       background: #ffffff;
+
       color: #344054;
 
       border-radius: 8px;
 
-      padding: 8px 15px;
+      padding: 9px 16px;
 
       font-size: 11px;
+
       font-weight: 700;
 
       cursor: pointer;
@@ -158,12 +208,17 @@
       transition:
         background .15s ease,
         border-color .15s ease,
-        color .15s ease;
+        color .15s ease,
+        transform .1s ease;
     }
 
     .period-button:hover {
-      border-color: #98a2b3;
       background: #f8fafc;
+      border-color: #98a2b3;
+    }
+
+    .period-button:active {
+      transform: translateY(1px);
     }
 
     .period-button.active {
@@ -179,13 +234,17 @@
 
     .status-bar {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
       gap: 10px;
+
       flex-wrap: wrap;
 
       padding: 10px 13px;
+
       margin-bottom: 14px;
 
       background: #ffffff;
@@ -196,13 +255,16 @@
       border-radius: 10px;
 
       font-size: 11px;
+
       color: #475467;
     }
 
     .status-left {
       display: flex;
+
       flex-wrap: wrap;
-      gap: 12px 18px;
+
+      gap: 8px 18px;
     }
 
     .status-right {
@@ -211,7 +273,7 @@
 
 
     /* =====================================================
-       KPI
+       KPI GRID
        ===================================================== */
 
     .kpi-grid {
@@ -226,7 +288,7 @@
     }
 
     .kpi {
-      min-height: 105px;
+      min-height: 108px;
 
       background: #ffffff;
 
@@ -246,7 +308,7 @@
     .kpi-value {
       margin-top: 7px;
 
-      font-size: 27px;
+      font-size: 28px;
 
       line-height: 1;
 
@@ -278,7 +340,7 @@
 
 
     /* =====================================================
-       PANEL
+       PANELS
        ===================================================== */
 
     .panel {
@@ -296,6 +358,7 @@
       display: flex;
 
       justify-content: space-between;
+
       align-items: center;
 
       gap: 10px;
@@ -308,12 +371,15 @@
 
     .panel-title {
       font-size: 14px;
+
       font-weight: 750;
     }
 
     .panel-note {
       margin-top: 3px;
+
       font-size: 10px;
+
       color: #98a2b3;
     }
 
@@ -328,7 +394,9 @@
 
     #map {
       width: 100%;
+
       height: 650px;
+
       background: #d7d7d7;
     }
 
@@ -345,7 +413,7 @@
 
 
     /* =====================================================
-       LEGEND
+       MAP LEGEND
        ===================================================== */
 
     .legend {
@@ -395,7 +463,7 @@
     }
 
     .legend-line {
-      width: 17px;
+      width: 18px;
       height: 0;
 
       display: inline-block;
@@ -431,6 +499,7 @@
 
     .summary-label {
       font-size: 10px;
+
       color: #667085;
     }
 
@@ -485,7 +554,7 @@
 
 
     /* =====================================================
-       ZONE ANALYSIS
+       ZONE ANALYTIC SUMMARY
        ===================================================== */
 
     .zone-list {
@@ -500,7 +569,7 @@
       display: grid;
 
       grid-template-columns:
-        80px 1fr 40px;
+        80px 1fr 45px;
 
       gap: 8px;
 
@@ -539,7 +608,7 @@
 
 
     /* =====================================================
-       CHART
+       TREND CHART
        ===================================================== */
 
     .chart-box {
@@ -547,33 +616,7 @@
 
       width: 100%;
 
-      height: 380px;
-    }
-
-
-    /* =====================================================
-       ERROR
-       ===================================================== */
-
-    #errorBox {
-      display: none;
-
-      margin-bottom: 14px;
-
-      padding: 12px;
-
-      border:
-        1px solid #fecdca;
-
-      border-radius: 9px;
-
-      background: #fff5f5;
-
-      color: #b42318;
-
-      font-size: 11px;
-
-      line-height: 1.6;
+      height: 390px;
     }
 
 
@@ -584,7 +627,8 @@
     .footer {
       margin-top: 14px;
 
-      padding: 12px 3px 4px;
+      padding:
+        12px 3px 4px;
 
       font-size: 10px;
 
@@ -595,10 +639,10 @@
 
 
     /* =====================================================
-       MOBILE
+       RESPONSIVE
        ===================================================== */
 
-    @media (max-width: 1300px) {
+    @media (max-width: 1350px) {
 
       .kpi-grid {
         grid-template-columns:
@@ -607,10 +651,12 @@
 
     }
 
+
     @media (max-width: 1000px) {
 
       .main-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       #map {
@@ -618,6 +664,7 @@
       }
 
     }
+
 
     @media (max-width: 650px) {
 
@@ -637,11 +684,16 @@
       }
 
       .summary-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       #map {
         height: 470px;
+      }
+
+      .period-button {
+        flex: 1 1 auto;
       }
 
     }
@@ -687,8 +739,8 @@
         </span>
 
         <span>
-          Periode data:
-          <strong id="period">
+          Data tersedia:
+          <strong id="availableDate">
             –
           </strong>
         </span>
@@ -706,6 +758,10 @@
 
   </header>
 
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
   <main class="container">
 
@@ -732,14 +788,14 @@
           </div>
 
           <div class="period-description">
-            Klik periode untuk mengubah seluruh statistik,
-            peta, dan trend
+            Klik periode untuk mengubah statistik,
+            peta, dan grafik.
           </div>
 
         </div>
 
         <div
-          class="period-description"
+          class="selected-period"
           id="selectedPeriodLabel"
         >
           Sebulan
@@ -753,6 +809,7 @@
         <button
           class="period-button"
           data-days="1"
+          type="button"
         >
           Hari Ini
         </button>
@@ -761,6 +818,7 @@
         <button
           class="period-button"
           data-days="7"
+          type="button"
         >
           Seminggu
         </button>
@@ -769,6 +827,7 @@
         <button
           class="period-button"
           data-days="14"
+          type="button"
         >
           Dua Minggu
         </button>
@@ -777,6 +836,7 @@
         <button
           class="period-button active"
           data-days="30"
+          type="button"
         >
           Sebulan
         </button>
@@ -797,7 +857,14 @@
         <span>
           Periode aktif:
           <strong id="activePeriod">
-            30 hari
+            Sebulan
+          </strong>
+        </span>
+
+        <span>
+          Tanggal acuan:
+          <strong id="anchorDate">
+            –
           </strong>
         </span>
 
@@ -812,13 +879,6 @@
           Basemap:
           <strong>
             Satellite
-          </strong>
-        </span>
-
-        <span>
-          Satelit:
-          <strong>
-            MODIS · SNPP · NOAA20
           </strong>
         </span>
 
@@ -896,7 +956,7 @@
         </div>
 
         <div class="kpi-sub">
-          dari boundary HGU
+          jarak dari boundary
         </div>
 
       </div>
@@ -916,7 +976,7 @@
         </div>
 
         <div class="kpi-sub">
-          dari boundary HGU
+          jarak dari boundary
         </div>
 
       </div>
@@ -936,7 +996,7 @@
         </div>
 
         <div class="kpi-sub">
-          dari boundary HGU
+          jarak dari boundary
         </div>
 
       </div>
@@ -1005,7 +1065,7 @@
 
 
     <!-- ===================================================
-         MAIN
+         MAIN GRID
          =================================================== -->
 
     <section class="main-grid">
@@ -1026,8 +1086,8 @@
             </div>
 
             <div class="panel-note">
-              Hanya boundary HGU dan titik hotspot
-              yang lolos radius ≤5 km
+              Boundary HGU dan titik hotspot
+              dalam radius ≤5 km
             </div>
 
           </div>
@@ -1037,18 +1097,28 @@
 
         <div id="map">
 
-          <div class="loading">
-            Memuat citra satelit...
+          <div
+            style="
+              padding:20px;
+              font-size:12px;
+              color:#667085;
+            "
+          >
+            Memuat peta...
           </div>
 
         </div>
 
 
+        <!-- LEGEND -->
+
         <div class="legend">
 
           <div class="legend-item">
 
-            <span class="legend-dot dot-high"></span>
+            <span
+              class="legend-dot dot-high"
+            ></span>
 
             High
 
@@ -1057,7 +1127,9 @@
 
           <div class="legend-item">
 
-            <span class="legend-dot dot-medium"></span>
+            <span
+              class="legend-dot dot-medium"
+            ></span>
 
             Medium
 
@@ -1066,7 +1138,9 @@
 
           <div class="legend-item">
 
-            <span class="legend-dot dot-low"></span>
+            <span
+              class="legend-dot dot-low"
+            ></span>
 
             Low
 
@@ -1075,7 +1149,9 @@
 
           <div class="legend-item">
 
-            <span class="legend-line"></span>
+            <span
+              class="legend-line"
+            ></span>
 
             HGU PT SLS
 
@@ -1086,7 +1162,7 @@
 
         <div class="map-footer">
 
-          Titik hotspot ditampilkan:
+          Titik ditampilkan:
           <strong id="mapTotal">
             –
           </strong>
@@ -1100,8 +1176,8 @@
 
           ·
 
-          Update:
-          <strong id="updatedMap">
+          Tanggal acuan:
+          <strong id="mapAnchor">
             –
           </strong>
 
@@ -1126,7 +1202,7 @@
           <div class="panel-header">
 
             <div class="panel-title">
-              Summary
+              Summary Periode
             </div>
 
           </div>
@@ -1161,7 +1237,7 @@
               <div class="summary-card">
 
                 <div class="summary-label">
-                  Hotspot Hari Terakhir
+                  Hotspot Hari Acuan
                 </div>
 
                 <div
@@ -1182,7 +1258,7 @@
 
                 <div
                   class="summary-value"
-                  id="avg30"
+                  id="average"
                 >
                   –
                 </div>
@@ -1198,7 +1274,7 @@
 
                 <div
                   class="summary-value"
-                  id="max30"
+                  id="maximum"
                 >
                   –
                 </div>
@@ -1214,7 +1290,7 @@
 
                 <div
                   class="summary-value"
-                  id="min30"
+                  id="minimum"
                 >
                   –
                 </div>
@@ -1240,6 +1316,8 @@
             </div>
 
 
+            <!-- INSIGHT -->
+
             <div
               class="insight"
               id="insight"
@@ -1249,8 +1327,8 @@
 
 
             <!-- =================================================
-                 ANALYTIC ZONE SUMMARY
-                 Tidak membuat polygon pada peta.
+                 ANALYTIC ZONE
+                 HANYA STATISTIK — TIDAK MEMBUAT POLYGON
                  ================================================= -->
 
             <div class="zone-list">
@@ -1400,7 +1478,7 @@
                 class="panel-note"
                 id="trendNote"
               >
-                Trend 30 hari
+                Trend Sebulan
               </div>
 
             </div>
@@ -1436,18 +1514,33 @@
 
       <strong>Catatan:</strong>
 
-      Titik pada peta hanya menampilkan hotspot
-      yang berada di dalam HGU PT SLS atau
-      maksimal 5 km dari boundary HGU.
+      Peta hanya menampilkan boundary HGU PT SLS
+      dan titik hotspot yang telah lolos filter
+      spasial maksimum 5 km dari boundary HGU.
 
-      Polygon zona 0–1 km, 1–3 km, dan 3–5 km
-      tidak ditampilkan pada peta.
+      Polygon buffer 5 km dan polygon zona
+      tidak ditampilkan.
 
       <br><br>
 
-      Hotspot merupakan indikasi anomali suhu/titik panas
-      dan tidak otomatis berarti kebakaran aktual.
-      Informasi tetap membutuhkan verifikasi lapangan.
+      Tombol periode menggunakan data 30 hari
+      yang telah diambil oleh sistem backend.
+      Pergantian periode dilakukan langsung
+      pada browser tanpa meminta ulang data
+      ke SiPongi.
+
+      <br><br>
+
+      <strong>Hari Ini</strong> mengacu pada
+      tanggal observasi hotspot terbaru yang
+      benar-benar tersedia pada data.
+
+      <br><br>
+
+      Hotspot merupakan indikasi anomali
+      suhu/titik panas dan tidak otomatis berarti
+      kebakaran aktual. Verifikasi lapangan
+      tetap diperlukan.
 
       <br><br>
 
@@ -1465,7 +1558,7 @@
 
 
   <!-- =====================================================
-       LEAFLET
+       LEAFLET JS
        ===================================================== -->
 
   <script
@@ -1477,7 +1570,7 @@
   <script>
 
     /* =====================================================
-       DATA FILES
+       FILES
        ===================================================== */
 
     const DATA_PATH = "data/";
@@ -1509,33 +1602,20 @@
 
     const map =
       L.map(
-
         "map",
-
         {
-
-          preferCanvas:
-            true,
-
-          zoomControl:
-            true,
-
-          attributionControl:
-            true
-
+          preferCanvas: true,
+          zoomControl: true,
+          attributionControl: true
         }
-
       ).setView(
-
-        [-2.5, 118],
-
-        5
-
+        [-2.5, 115.1],
+        10
       );
 
 
     /* =====================================================
-       SATELLITE BASEMAP
+       SATELLITE
        ===================================================== */
 
     L.tileLayer(
@@ -1543,13 +1623,8 @@
       "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
 
       {
-
-        maxZoom:
-          19,
-
-        attribution:
-          "Tiles &copy; Esri"
-
+        maxZoom: 19,
+        attribution: "Tiles &copy; Esri"
       }
 
     ).addTo(
@@ -1586,7 +1661,7 @@
 
     let allTrend = null;
 
-    let boundaryData = null;
+    let allSummary = null;
 
     let hguLayer = null;
 
@@ -1596,9 +1671,11 @@
 
     let currentDays = 30;
 
+    let latestAvailableDate = null;
+
 
     /* =====================================================
-       PERIOD LABELS
+       PERIOD LABEL
        ===================================================== */
 
     const PERIOD_LABELS = {
@@ -1619,7 +1696,7 @@
 
 
     /* =====================================================
-       NUMBER
+       NUMBER FORMAT
        ===================================================== */
 
     function formatNumber(
@@ -1627,13 +1704,9 @@
     ) {
 
       if (
-
         value === null ||
-
         value === undefined ||
-
         value === ""
-
       ) {
 
         return "–";
@@ -1651,7 +1724,7 @@
 
 
     /* =====================================================
-       DATE FORMAT
+       DATETIME FORMAT
        ===================================================== */
 
     function formatDateTime(
@@ -1667,30 +1740,38 @@
 
       try {
 
-        const date =
+        const d =
           new Date(
             value
           );
 
 
-        return date.toLocaleString(
+        return (
 
-          "id-ID",
+          d.toLocaleString(
 
-          {
+            "id-ID",
 
-            timeZone:
-              "Asia/Jakarta",
+            {
 
-            dateStyle:
-              "medium",
+              timeZone:
+                "Asia/Jakarta",
 
-            timeStyle:
-              "short"
+              dateStyle:
+                "medium",
 
-          }
+              timeStyle:
+                "short"
 
-        ) + " WIB";
+            }
+
+          )
+
+          +
+
+          " WIB"
+
+        );
 
       }
 
@@ -1704,6 +1785,59 @@
 
     }
 
+
+    /* =====================================================
+       DATE LABEL
+       ===================================================== */
+
+    function formatDisplayDate(
+      value
+    ) {
+
+      if (!value) {
+
+        return "–";
+
+      }
+
+
+      const parts =
+        String(
+          value
+        ).split(
+          "-"
+        );
+
+
+      if (
+        parts.length !== 3
+      ) {
+
+        return value;
+
+      }
+
+
+      return (
+
+        parts[2] +
+
+        "/" +
+
+        parts[1] +
+
+        "/" +
+
+        parts[0]
+
+      );
+
+    }
+
+
+    /* =====================================================
+       SHORT DATE
+       ===================================================== */
 
     function shortDate(
       value
@@ -1747,52 +1881,83 @@
 
 
     /* =====================================================
-       DATE UTILITY
+       ERROR
        ===================================================== */
 
-    const MONTHS_ID = {
+    function showError(
+      message
+    ) {
 
-      januari:
-        1,
+      const box =
+        document.getElementById(
+          "errorBox"
+        );
 
-      februari:
-        2,
 
-      maret:
-        3,
+      box.style.display =
+        "block";
 
-      april:
-        4,
 
-      mei:
-        5,
+      box.innerHTML =
 
-      juni:
-        6,
+        "<strong>Data belum dapat dimuat.</strong><br>" +
 
-      juli:
-        7,
+        message;
 
-      agustus:
-        8,
-
-      september:
-        9,
-
-      oktober:
-        10,
-
-      november:
-        11,
-
-      desember:
-        12
-
-    };
+    }
 
 
     /* =====================================================
-       NORMALIZE DATE TO YYYY-MM-DD
+       LOAD JSON
+       ===================================================== */
+
+    async function loadJSON(
+      url
+    ) {
+
+      const response =
+        await fetch(
+
+          url +
+
+          "?v=" +
+
+          Date.now(),
+
+          {
+            cache:
+              "no-store"
+          }
+
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+
+          "Gagal memuat " +
+
+          url +
+
+          " (HTTP " +
+
+          response.status +
+
+          ")"
+
+        );
+
+      }
+
+
+      return response.json();
+
+    }
+
+
+    /* =====================================================
+       NORMALIZE DATE
        ===================================================== */
 
     function normalizeHotspotDate(
@@ -1812,51 +1977,141 @@
         ).trim();
 
 
-      /* -----------------------------------------------
-         YYYY-MM-DD
-         ----------------------------------------------- */
+      /* ---------------------------------------------------
+         Already YYYY-MM-DD
+         --------------------------------------------------- */
 
-      const isoMatch =
+      const iso =
         text.match(
-          /(\d{4})-(\d{2})-(\d{2})/
+          /^(\d{4})-(\d{2})-(\d{2})/
         );
 
 
-      if (
-        isoMatch
-      ) {
+      if (iso) {
 
         return (
 
-          isoMatch[1] +
+          iso[1] +
 
           "-" +
 
-          isoMatch[2] +
+          iso[2] +
 
           "-" +
 
-          isoMatch[3]
+          iso[3]
 
         );
 
       }
 
 
-      /* -----------------------------------------------
-         Indonesian date:
-         Kamis, 10 September 2026 01:15:00
-         ----------------------------------------------- */
+      /* ---------------------------------------------------
+         YYYY-MM-DD anywhere
+         --------------------------------------------------- */
 
-      const cleaned =
-        text.replace(
-          /,/g,
-          " "
+      const isoAny =
+        text.match(
+          /(\d{4})-(\d{2})-(\d{2})/
         );
 
 
+      if (isoAny) {
+
+        return isoAny[0];
+
+      }
+
+
+      /* ---------------------------------------------------
+         DD/MM/YYYY
+         --------------------------------------------------- */
+
+      const slash =
+        text.match(
+          /(\d{1,2})\/(\d{1,2})\/(\d{4})/
+        );
+
+
+      if (slash) {
+
+        return (
+
+          slash[3] +
+
+          "-" +
+
+          String(
+            slash[2]
+          ).padStart(
+            2,
+            "0"
+          ) +
+
+          "-" +
+
+          String(
+            slash[1]
+          ).padStart(
+            2,
+            "0"
+          )
+
+        );
+
+      }
+
+
+      /* ---------------------------------------------------
+         Indonesian date
+         --------------------------------------------------- */
+
+      const months = {
+
+        januari:
+          1,
+
+        februari:
+          2,
+
+        maret:
+          3,
+
+        april:
+          4,
+
+        mei:
+          5,
+
+        juni:
+          6,
+
+        juli:
+          7,
+
+        agustus:
+          8,
+
+        september:
+          9,
+
+        oktober:
+          10,
+
+        november:
+          11,
+
+        desember:
+          12
+
+      };
+
+
       const parts =
-        cleaned.split(
+        text.replace(
+          /,/g,
+          ""
+        ).split(
           /\s+/
         );
 
@@ -1868,7 +2123,7 @@
       ) {
 
         const month =
-          MONTHS_ID[
+          months[
             String(
               parts[i]
             ).toLowerCase()
@@ -1906,30 +2161,36 @@
 
         if (
 
-          Number.isInteger(day) &&
+          Number.isInteger(
+            day
+          )
 
-          Number.isInteger(year) &&
+          &&
 
-          day >= 1 &&
-
-          day <= 31
+          Number.isInteger(
+            year
+          )
 
         ) {
 
           return (
 
-            String(year) +
+            year +
 
             "-" +
 
-            String(month).padStart(
+            String(
+              month
+            ).padStart(
               2,
               "0"
             ) +
 
             "-" +
 
-            String(day).padStart(
+            String(
+              day
+            ).padStart(
               2,
               "0"
             )
@@ -1941,9 +2202,9 @@
       }
 
 
-      /* -----------------------------------------------
-         Try Javascript Date as final fallback
-         ----------------------------------------------- */
+      /* ---------------------------------------------------
+         Browser fallback
+         --------------------------------------------------- */
 
       const parsed =
         new Date(
@@ -1957,39 +2218,27 @@
         )
       ) {
 
-        const y =
-          parsed.getFullYear();
+        return (
 
+          parsed.getFullYear() +
 
-        const m =
+          "-" +
+
           String(
             parsed.getMonth() + 1
           ).padStart(
             2,
             "0"
-          );
+          ) +
 
+          "-" +
 
-        const d =
           String(
             parsed.getDate()
           ).padStart(
             2,
             "0"
-          );
-
-
-        return (
-
-          y +
-
-          "-" +
-
-          m +
-
-          "-" +
-
-          d
+          )
 
         );
 
@@ -2002,84 +2251,6 @@
 
 
     /* =====================================================
-       SAFE JSON LOAD
-       ===================================================== */
-
-    async function loadJSON(
-      url
-    ) {
-
-      const response =
-        await fetch(
-
-          url +
-
-          "?v=" +
-
-          Date.now(),
-
-          {
-
-            cache:
-              "no-store"
-
-          }
-
-        );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-
-          "Gagal memuat " +
-
-          url +
-
-          " (HTTP " +
-
-          response.status +
-
-          ")"
-
-        );
-
-      }
-
-
-      return response.json();
-
-    }
-
-
-    /* =====================================================
-       ERROR
-       ===================================================== */
-
-    function showError(
-      message
-    ) {
-
-      const box =
-        document.getElementById(
-          "errorBox"
-        );
-
-
-      box.style.display =
-        "block";
-
-
-      box.innerHTML =
-
-        "<strong>Data belum dapat dimuat.</strong><br>" +
-
-        message;
-
-    }
-
-
-    /* =====================================================
        GET FEATURE DATE
        ===================================================== */
 
@@ -2087,25 +2258,38 @@
       feature
     ) {
 
-      const properties =
+      const p =
         feature.properties ||
         {};
 
 
+      /*
+       * PRIORITY:
+       *
+       * 1. hotspot_date
+       * 2. date_hotspot_ori
+       * 3. date_hotspot
+       *
+       * Python backend sekarang menyediakan
+       * hotspot_date sebagai tanggal utama.
+       */
+
       return (
 
         normalizeHotspotDate(
-
-          properties.date_hotspot_ori
-
+          p.hotspot_date
         )
 
         ||
 
         normalizeHotspotDate(
+          p.date_hotspot_ori
+        )
 
-          properties.date_hotspot
+        ||
 
+        normalizeHotspotDate(
+          p.date_hotspot
         )
 
       );
@@ -2114,44 +2298,118 @@
 
 
     /* =====================================================
-       GET LATEST DATE FROM TREND
+       GET LATEST AVAILABLE DATE
        ===================================================== */
 
-    function getLatestTrendDate() {
+    function determineLatestAvailableDate() {
+
+      const dates = [];
+
+
+      /* ---------------------------------------------------
+         First priority:
+         actual feature dates
+         --------------------------------------------------- */
 
       if (
-
-        !allTrend ||
-
-        !Array.isArray(
-          allTrend.series
+        allHotspots &&
+        Array.isArray(
+          allHotspots.features
         )
-
       ) {
 
-        return null;
+        for (
+          const feature
+          of
+          allHotspots.features
+        ) {
+
+          const date =
+            getFeatureDate(
+              feature
+            );
+
+
+          if (date) {
+
+            dates.push(
+              date
+            );
+
+          }
+
+        }
 
       }
 
 
-      const dates =
-        allTrend.series
+      /* ---------------------------------------------------
+         Second priority:
+         trend dates with actual totals > 0
+         --------------------------------------------------- */
 
-          .map(
-            item => item.date
-          )
+      if (
+        allTrend &&
+        Array.isArray(
+          allTrend.series
+        )
+      ) {
 
-          .filter(
-            Boolean
-          );
+        for (
+          const item
+          of
+          allTrend.series
+        ) {
+
+          if (
+            Number(
+              item.total ||
+              0
+            ) > 0
+          ) {
+
+            dates.push(
+              item.date
+            );
+
+          }
+
+        }
+
+      }
 
 
       if (!dates.length) {
 
+        /*
+         * Fallback to latest date in trend.
+         */
+
+        if (
+
+          allTrend &&
+
+          Array.isArray(
+            allTrend.series
+          ) &&
+
+          allTrend.series.length
+
+        ) {
+
+          return allTrend.series[
+            allTrend.series.length - 1
+          ].date;
+
+        }
+
+
         return null;
 
       }
 
+
+      dates.sort();
 
       return dates[
         dates.length - 1
@@ -2161,18 +2419,16 @@
 
 
     /* =====================================================
-       DATE RANGE
+       GET SELECTED RANGE
        ===================================================== */
 
     function getSelectedRange(
       days
     ) {
 
-      const latest =
-        getLatestTrendDate();
-
-
-      if (!latest) {
+      if (
+        !latestAvailableDate
+      ) {
 
         return null;
 
@@ -2181,8 +2437,11 @@
 
       const end =
         new Date(
-          latest +
+
+          latestAvailableDate +
+
           "T00:00:00"
+
         );
 
 
@@ -2205,43 +2464,31 @@
       );
 
 
-      function toISO(
-        value
+      function isoDate(
+        d
       ) {
-
-        const y =
-          value.getFullYear();
-
-
-        const m =
-          String(
-            value.getMonth() + 1
-          ).padStart(
-            2,
-            "0"
-          );
-
-
-        const d =
-          String(
-            value.getDate()
-          ).padStart(
-            2,
-            "0"
-          );
-
 
         return (
 
-          y +
+          d.getFullYear() +
 
           "-" +
 
-          m +
+          String(
+            d.getMonth() + 1
+          ).padStart(
+            2,
+            "0"
+          ) +
 
           "-" +
 
-          d
+          String(
+            d.getDate()
+          ).padStart(
+            2,
+            "0"
+          )
 
         );
 
@@ -2251,12 +2498,12 @@
       return {
 
         start:
-          toISO(
+          isoDate(
             start
           ),
 
         end:
-          toISO(
+          isoDate(
             end
           )
 
@@ -2297,43 +2544,43 @@
       }
 
 
-      const features =
-        (
-          allHotspots.features
-          ||
-          []
-        ).filter(
+      const features = (
 
-          feature => {
+        allHotspots.features ||
+        []
 
-            const featureDate =
-              getFeatureDate(
-                feature
-              );
+      ).filter(
 
+        feature => {
 
-            if (!featureDate) {
-
-              return false;
-
-            }
-
-
-            return (
-
-              featureDate >=
-              range.start
-
-              &&
-
-              featureDate <=
-              range.end
-
+          const date =
+            getFeatureDate(
+              feature
             );
+
+
+          if (!date) {
+
+            return false;
 
           }
 
-        );
+
+          return (
+
+            date >=
+            range.start
+
+            &&
+
+            date <=
+            range.end
+
+          );
+
+        }
+
+      );
 
 
       return {
@@ -2399,12 +2646,15 @@
 
 
     /* =====================================================
-       CALCULATE STATISTICS
+       STATISTICS
        ===================================================== */
 
     function calculateStatistics(
+
       features,
+
       trendSeries
+
     ) {
 
       const confidence = {
@@ -2441,21 +2691,23 @@
       };
 
 
+      /* ---------------------------------------------------
+         Feature statistics
+         --------------------------------------------------- */
+
       for (
         const feature of features
       ) {
 
-        const properties =
+        const p =
           feature.properties ||
           {};
 
 
-        const c =
+        const confidenceValue =
           String(
 
-            properties.confidence
-
-            ||
+            p.confidence ||
 
             "unknown"
 
@@ -2465,11 +2717,13 @@
         if (
           Object.prototype.hasOwnProperty.call(
             confidence,
-            c
+            confidenceValue
           )
         ) {
 
-          confidence[c]++;
+          confidence[
+            confidenceValue
+          ]++;
 
         }
 
@@ -2481,7 +2735,7 @@
 
 
         const zone =
-          properties.zone;
+          p.zone;
 
 
         if (
@@ -2491,12 +2745,18 @@
           )
         ) {
 
-          zones[zone]++;
+          zones[
+            zone
+          ]++;
 
         }
 
       }
 
+
+      /* ---------------------------------------------------
+         Daily statistics
+         --------------------------------------------------- */
 
       const dailyTotals =
         trendSeries.map(
@@ -2514,25 +2774,30 @@
         features.length;
 
 
+      const sum =
+        dailyTotals.reduce(
+
+          (
+            accumulator,
+            value
+          ) =>
+            accumulator +
+            value,
+
+          0
+
+        );
+
+
       const average =
+
         dailyTotals.length
 
           ?
 
           (
-            dailyTotals.reduce(
-              (
-                sum,
-                value
-              ) =>
-                sum + value,
-              0
-            )
-
-            /
-
+            sum /
             dailyTotals.length
-
           )
 
           :
@@ -2541,13 +2806,14 @@
 
 
       const maximum =
+
         dailyTotals.length
 
           ?
 
           Math.max(
-              ...dailyTotals
-            )
+            ...dailyTotals
+          )
 
           :
 
@@ -2555,13 +2821,14 @@
 
 
       const minimum =
+
         dailyTotals.length
 
           ?
 
           Math.min(
-              ...dailyTotals
-            )
+            ...dailyTotals
+          )
 
           :
 
@@ -2596,7 +2863,8 @@
           null;
 
 
-      let change = null;
+      let change =
+        null;
 
 
       if (
@@ -2621,6 +2889,7 @@
               Number(
                 previous.total
               )
+
             )
 
             /
@@ -2688,6 +2957,9 @@
         low:
           confidence.low,
 
+        unknown:
+          confidence.unknown,
+
         inside:
           zones[
             "Inside HGU"
@@ -2745,15 +3017,26 @@
        ===================================================== */
 
     function renderSummary(
-      summaryData,
+
+      stats,
+
       trendSeries,
+
       days
+
     ) {
 
       const range =
         getSelectedRange(
           days
         );
+
+
+      if (!range) {
+
+        return;
+
+      }
 
 
       const periodLabel =
@@ -2763,161 +3046,140 @@
 
 
       document.getElementById(
-        "period"
+        "selectedPeriodLabel"
       ).textContent =
-
-        range
-
-          ?
-
-          (
-            range.start +
-
-            " – " +
-
-            range.end
-
-          )
-
-          :
-
-          "–";
+        periodLabel;
 
 
       document.getElementById(
         "activePeriod"
       ).textContent =
-
         periodLabel;
 
 
       document.getElementById(
-        "selectedPeriodLabel"
+        "anchorDate"
       ).textContent =
-
-        periodLabel;
+        formatDisplayDate(
+          range.end
+        );
 
 
       document.getElementById(
         "mapPeriod"
       ).textContent =
-
         periodLabel;
+
+
+      document.getElementById(
+        "mapAnchor"
+      ).textContent =
+        formatDisplayDate(
+          range.end
+        );
 
 
       document.getElementById(
         "total"
       ).textContent =
-
         formatNumber(
-          summaryData.total
+          stats.total
         );
 
 
       document.getElementById(
         "insideHgu"
       ).textContent =
-
         formatNumber(
-          summaryData.inside
+          stats.inside
         );
 
 
       document.getElementById(
         "zone01"
       ).textContent =
-
         formatNumber(
-          summaryData.zone01
+          stats.zone01
         );
 
 
       document.getElementById(
         "zone13"
       ).textContent =
-
         formatNumber(
-          summaryData.zone13
+          stats.zone13
         );
 
 
       document.getElementById(
         "zone35"
       ).textContent =
-
         formatNumber(
-          summaryData.zone35
+          stats.zone35
         );
 
 
       document.getElementById(
         "high"
       ).textContent =
-
         formatNumber(
-          summaryData.high
+          stats.high
         );
 
 
       document.getElementById(
         "medium"
       ).textContent =
-
         formatNumber(
-          summaryData.medium
+          stats.medium
         );
 
 
       document.getElementById(
         "low"
       ).textContent =
-
         formatNumber(
-          summaryData.low
+          stats.low
         );
 
 
       document.getElementById(
         "status"
       ).textContent =
-
-        summaryData.status;
+        stats.status;
 
 
       document.getElementById(
         "latestDayTotal"
       ).textContent =
-
         formatNumber(
-          summaryData.latestDay
+          stats.latestDay
         );
 
 
       document.getElementById(
-        "avg30"
+        "average"
       ).textContent =
-
-        summaryData.average
-          .toFixed(
-            1
-          );
-
-
-      document.getElementById(
-        "max30"
-      ).textContent =
-
-        formatNumber(
-          summaryData.maximum
+        Number(
+          stats.average
+        ).toFixed(
+          1
         );
 
 
       document.getElementById(
-        "min30"
+        "maximum"
       ).textContent =
-
         formatNumber(
-          summaryData.minimum
+          stats.maximum
+        );
+
+
+      document.getElementById(
+        "minimum"
+      ).textContent =
+        formatNumber(
+          stats.minimum
         );
 
 
@@ -2925,7 +3187,7 @@
         "vsPrevious"
       ).textContent =
 
-        summaryData.change === null
+        stats.change === null
 
           ?
 
@@ -2935,21 +3197,17 @@
 
           (
 
-            summaryData.change > 0
-
+            stats.change > 0
               ?
-
               "+"
-
               :
-
               ""
 
           )
 
           +
 
-          summaryData.change.toFixed(
+          stats.change.toFixed(
             1
           )
 
@@ -2958,161 +3216,198 @@
           "%";
 
 
-      const changeText =
+      /* ---------------------------------------------------
+         Insight
+         --------------------------------------------------- */
 
-        summaryData.change === null
+      let comparisonText =
+        "Perbandingan harian belum tersedia.";
 
-          ?
 
-          "Perubahan dibandingkan hari sebelumnya belum dapat dihitung."
+      if (
+        stats.change !== null
+      ) {
 
-          :
+        if (
+          stats.change > 0
+        ) {
 
-          summaryData.change > 0
+          comparisonText =
 
-            ?
+            "Jumlah hotspot meningkat " +
 
-            (
-              "Jumlah hotspot meningkat " +
-              summaryData.change.toFixed(
-                1
-              ) +
-              "% dibandingkan hari sebelumnya."
-            )
+            stats.change.toFixed(
+              1
+            ) +
 
-            :
+            "% dibandingkan hari sebelumnya.";
 
-            summaryData.change < 0
+        }
 
-              ?
+        else if (
+          stats.change < 0
+        ) {
 
-              (
-                "Jumlah hotspot menurun " +
-                Math.abs(
-                  summaryData.change
-                ).toFixed(
-                  1
-                ) +
-                "% dibandingkan hari sebelumnya."
-              )
+          comparisonText =
 
-              :
+            "Jumlah hotspot menurun " +
 
-              "Jumlah hotspot sama dengan hari sebelumnya.";
+            Math.abs(
+              stats.change
+            ).toFixed(
+              1
+            ) +
+
+            "% dibandingkan hari sebelumnya.";
+
+        }
+
+        else {
+
+          comparisonText =
+            "Jumlah hotspot sama dengan hari sebelumnya.";
+
+        }
+
+      }
 
 
       document.getElementById(
         "insight"
       ).textContent =
 
-        (
+        periodLabel +
 
-          periodLabel +
+        " (" +
 
-          " (" +
+        formatDisplayDate(
+          range.start
+        ) +
 
-          range.start +
+        " – " +
 
-          " – " +
+        formatDisplayDate(
+          range.end
+        ) +
 
-          range.end +
+        "): terdapat " +
 
-          "): terdapat " +
+        formatNumber(
+          stats.total
+        ) +
 
-          formatNumber(
-            summaryData.total
-          ) +
+        " hotspot dalam HGU atau radius ≤5 km. " +
 
-          " hotspot yang berada di dalam HGU " +
+        formatNumber(
+          stats.inside
+        ) +
 
-          "atau sampai 5 km dari boundary HGU. " +
+        " berada di dalam HGU, " +
 
-          "Sebanyak " +
+        formatNumber(
+          stats.zone01
+        ) +
 
-          formatNumber(
-            summaryData.inside
-          ) +
+        " pada 0–1 km, " +
 
-          " berada di dalam HGU, " +
+        formatNumber(
+          stats.zone13
+        ) +
 
-          formatNumber(
-            summaryData.zone01
-          ) +
+        " pada 1–3 km, dan " +
 
-          " pada 0–1 km, " +
+        formatNumber(
+          stats.zone35
+        ) +
 
-          formatNumber(
-            summaryData.zone13
-          ) +
+        " pada 3–5 km. " +
 
-          " pada 1–3 km, dan " +
-
-          formatNumber(
-            summaryData.zone35
-          ) +
-
-          " pada 3–5 km. " +
-
-          changeText
-
-        );
+        comparisonText;
 
 
-      /* Bars */
+      /* ---------------------------------------------------
+         Zone bars
+         --------------------------------------------------- */
 
       const denominator =
         Math.max(
-          summaryData.total,
+          stats.total,
           1
         );
 
 
       setBar(
+
         "barHgu",
+
         "countHgu",
-        summaryData.inside,
+
+        stats.inside,
+
         denominator
+
       );
 
 
       setBar(
+
         "bar01",
+
         "count01",
-        summaryData.zone01,
+
+        stats.zone01,
+
         denominator
+
       );
 
 
       setBar(
+
         "bar13",
+
         "count13",
-        summaryData.zone13,
+
+        stats.zone13,
+
         denominator
+
       );
 
 
       setBar(
+
         "bar35",
+
         "count35",
-        summaryData.zone35,
+
+        stats.zone35,
+
         denominator
+
       );
 
     }
 
 
     /* =====================================================
-       BAR
+       SET BAR
        ===================================================== */
 
     function setBar(
+
       barId,
+
       countId,
+
       value,
+
       denominator
+
     ) {
 
       const percentage =
+
         Math.min(
 
           100,
@@ -3158,14 +3453,14 @@
 
 
     /* =====================================================
-       MARKER
+       CREATE HOTSPOT MARKER
        ===================================================== */
 
-    function createMarker(
+    function createHotspotMarker(
       feature
     ) {
 
-      const properties =
+      const p =
         feature.properties ||
         {};
 
@@ -3173,7 +3468,7 @@
       const confidence =
         String(
 
-          properties.confidence ||
+          p.confidence ||
 
           "unknown"
 
@@ -3184,6 +3479,7 @@
         COLORS[
           confidence
         ] ||
+
         COLORS.unknown;
 
 
@@ -3210,19 +3506,19 @@
       }
 
 
-      const coordinates =
+      const coords =
         feature.geometry.coordinates;
-
-
-      const lat =
-        Number(
-          coordinates[1]
-        );
 
 
       const lon =
         Number(
-          coordinates[0]
+          coords[0]
+        );
+
+
+      const lat =
+        Number(
+          coords[1]
         );
 
 
@@ -3230,7 +3526,7 @@
 
         <div
           style="
-            min-width:250px;
+            min-width:255px;
             line-height:1.6;
           "
         >
@@ -3246,53 +3542,55 @@
             ${confidence.toUpperCase()}
           </div>
 
+
           <b>Status:</b>
-          ${properties.location_status ?? "-"}
+          ${p.location_status ?? "-"}
 
           <br>
 
           <b>Zona analitik:</b>
-          ${properties.zone ?? "-"}
+          ${p.zone ?? "-"}
 
           <br>
 
           <b>Jarak dari HGU:</b>
-          ${properties.distance_hgu_km ?? "-"} km
+          ${p.distance_hgu_km ?? "-"}
+          km
 
           <br>
 
           <b>Confidence:</b>
-          ${properties.confidence_value ?? "-"}
+          ${p.confidence_value ?? "-"}
 
           <br>
 
           <b>Tanggal:</b>
-          ${properties.date_hotspot ?? "-"}
+          ${p.hotspot_date ?? p.date_hotspot ?? "-"}
 
           <br>
 
           <b>Tanggal asli:</b>
-          ${properties.date_hotspot_ori ?? "-"}
+          ${p.date_hotspot_ori ?? "-"}
 
           <br>
 
           <b>Satelit:</b>
-          ${properties.sumber ?? "-"}
+          ${p.sumber ?? "-"}
 
           <br>
 
           <b>Provinsi:</b>
-          ${properties.provinsi ?? "-"}
+          ${p.provinsi ?? "-"}
 
           <br>
 
           <b>Kab/Kota:</b>
-          ${properties.kabkota ?? "-"}
+          ${p.kabkota ?? "-"}
 
           <br>
 
           <b>Desa:</b>
-          ${properties.desa ?? "-"}
+          ${p.desa ?? "-"}
 
           <br>
 
@@ -3364,7 +3662,9 @@
       filteredHotspots
     ) {
 
-      /* Remove old hotspots */
+      /* ---------------------------------------------------
+         Remove old hotspot layer
+         --------------------------------------------------- */
 
       if (
         hotspotLayer
@@ -3377,9 +3677,12 @@
       }
 
 
-      /* Make hotspot layer */
+      /* ---------------------------------------------------
+         Add new filtered hotspot layer
+         --------------------------------------------------- */
 
       hotspotLayer =
+
         L.geoJSON(
 
           filteredHotspots,
@@ -3394,7 +3697,7 @@
               ) {
 
                 const marker =
-                  createMarker(
+                  createHotspotMarker(
                     feature
                   );
 
@@ -3428,13 +3731,19 @@
         );
 
 
-      /* Fit HGU boundary */
+      /*
+       * Boundary stays fixed.
+       * We do NOT draw any 5 km buffer.
+       */
 
       if (
+
         hguLayer &&
+
         hguLayer
           .getBounds()
           .isValid()
+
       ) {
 
         map.fitBounds(
@@ -3442,10 +3751,8 @@
           hguLayer.getBounds(),
 
           {
-
             padding:
               [25, 25]
-
           }
 
         );
@@ -3460,8 +3767,11 @@
        ===================================================== */
 
     function renderTrend(
+
       trendSeries,
+
       days
+
     ) {
 
       const labels =
@@ -3556,6 +3866,7 @@
 
 
       trendChart =
+
         new Chart(
 
           document
@@ -3572,208 +3883,200 @@
               "line",
 
 
-            data:
+            data: {
 
-              {
+              labels:
+                labels,
 
-                labels:
-                  labels,
+              datasets: [
 
+                {
 
-                datasets:
+                  label:
+                    "Total",
 
-                  [
+                  data:
+                    totalData,
 
-                    {
+                  borderWidth:
+                    3,
 
-                      label:
-                        "Total",
+                  tension:
+                    .25,
 
-                      data:
-                        totalData,
+                  fill:
+                    false
 
-                      borderWidth:
-                        3,
-
-                      tension:
-                        .25,
-
-                      fill:
-                        false
-
-                    },
+                },
 
 
-                    {
+                {
 
-                      label:
-                        "Inside HGU",
+                  label:
+                    "Inside HGU",
 
-                      data:
-                        hguData,
+                  data:
+                    hguData,
 
-                      borderWidth:
-                        2,
+                  borderWidth:
+                    2,
 
-                      tension:
-                        .25,
+                  tension:
+                    .25,
 
-                      fill:
-                        false
+                  fill:
+                    false
 
-                    },
-
-
-                    {
-
-                      label:
-                        "0–1 km",
-
-                      data:
-                        zone01Data,
-
-                      borderWidth:
-                        2,
-
-                      tension:
-                        .25,
-
-                      fill:
-                        false
-
-                    },
+                },
 
 
-                    {
+                {
 
-                      label:
-                        "1–3 km",
+                  label:
+                    "0–1 km",
 
-                      data:
-                        zone13Data,
+                  data:
+                    zone01Data,
 
-                      borderWidth:
-                        2,
+                  borderWidth:
+                    2,
 
-                      tension:
-                        .25,
+                  tension:
+                    .25,
 
-                      fill:
-                        false
+                  fill:
+                    false
 
-                    },
+                },
 
 
-                    {
+                {
 
-                      label:
-                        "3–5 km",
+                  label:
+                    "1–3 km",
 
-                      data:
-                        zone35Data,
+                  data:
+                    zone13Data,
 
-                      borderWidth:
-                        2,
+                  borderWidth:
+                    2,
 
-                      tension:
-                        .25,
+                  tension:
+                    .25,
 
-                      fill:
-                        false
+                  fill:
+                    false
 
-                    }
+                },
 
-                  ]
+
+                {
+
+                  label:
+                    "3–5 km",
+
+                  data:
+                    zone35Data,
+
+                  borderWidth:
+                    2,
+
+                  tension:
+                    .25,
+
+                  fill:
+                    false
+
+                }
+
+              ]
+
+            },
+
+
+            options: {
+
+              responsive:
+                true,
+
+              maintainAspectRatio:
+                false,
+
+
+              interaction: {
+
+                mode:
+                  "index",
+
+                intersect:
+                  false
 
               },
 
 
-            options:
+              plugins: {
 
-              {
+                legend: {
 
-                responsive:
-                  true,
+                  position:
+                    "bottom"
 
-                maintainAspectRatio:
-                  false,
+                }
 
-
-                interaction:
-
-                  {
-
-                    mode:
-                      "index",
-
-                    intersect:
-                      false
-
-                  },
+              },
 
 
-                plugins:
+              scales: {
 
-                  {
+                x: {
 
-                    legend:
+                  ticks: {
 
-                      {
+                    autoSkip:
+                      true,
 
-                        position:
-                          "bottom"
+                    maxTicksLimit:
 
-                      }
+                      days === 1
 
-                  },
+                        ?
 
+                        1
 
-                scales:
+                        :
 
-                  {
+                        days === 7
 
-                    x:
+                          ?
 
-                      {
+                          7
 
-                        ticks:
+                          :
 
-                          {
-
-                            autoSkip:
-                              true,
-
-                            maxTicksLimit:
-                              days <= 7
-                                ? 7
-                                : 10
-
-                          }
-
-                      },
-
-
-                    y:
-
-                      {
-
-                        beginAtZero:
-                          true,
-
-                        ticks:
-
-                          {
-
-                            precision:
-                              0
-
-                          }
-
-                      }
+                          10
 
                   }
 
+                },
+
+
+                y: {
+
+                  beginAtZero:
+                    true,
+
+                  ticks: {
+
+                    precision:
+                      0
+
+                  }
+
+                }
+
               }
+
+            }
 
           }
 
@@ -3794,7 +4097,9 @@
         days;
 
 
-      /* Active button */
+      /* ---------------------------------------------------
+         Active button
+         --------------------------------------------------- */
 
       document
         .querySelectorAll(
@@ -3804,17 +4109,17 @@
 
           button => {
 
-            const buttonDays =
-              Number(
-                button.dataset.days
-              );
-
-
             button.classList.toggle(
 
               "active",
 
-              buttonDays === days
+              Number(
+                button.dataset.days
+              )
+
+              ===
+
+              days
 
             );
 
@@ -3822,6 +4127,10 @@
 
         );
 
+
+      /* ---------------------------------------------------
+         Filter data
+         --------------------------------------------------- */
 
       const filteredHotspots =
         getFilteredHotspots(
@@ -3835,7 +4144,7 @@
         );
 
 
-      const statistics =
+      const stats =
         calculateStatistics(
 
           filteredHotspots
@@ -3846,9 +4155,13 @@
         );
 
 
+      /* ---------------------------------------------------
+         Render
+         --------------------------------------------------- */
+
       renderSummary(
 
-        statistics,
+        stats,
 
         filteredTrend,
 
@@ -3892,11 +4205,14 @@
       }
 
 
-      /* =================================================
-         HANYA BOUNDARY HGU
-         Tidak ada buffer.
-         Tidak ada polygon zona.
-         ================================================= */
+      /*
+       * ONLY HGU BOUNDARY.
+       *
+       * No 1 km polygon.
+       * No 3 km polygon.
+       * No 5 km polygon.
+       * No buffer.
+       */
 
       hguLayer =
         L.geoJSON(
@@ -3955,7 +4271,7 @@
 
 
     /* =====================================================
-       EVENT PERIOD BUTTON
+       BUTTON EVENTS
        ===================================================== */
 
     document
@@ -3990,7 +4306,7 @@
 
 
     /* =====================================================
-       INITIALIZE
+       INITIALIZE DASHBOARD
        ===================================================== */
 
     async function initializeDashboard() {
@@ -4040,14 +4356,21 @@
           trend;
 
 
-        boundaryData =
-          boundary;
+        allSummary =
+          summary;
 
 
-        initializeBoundary(
-          boundaryData
-        );
+        /* -------------------------------------------------
+           Determine latest REAL data date
+           ------------------------------------------------- */
 
+        latestAvailableDate =
+          determineLatestAvailableDate();
+
+
+        /* -------------------------------------------------
+           Header
+           ------------------------------------------------- */
 
         document.getElementById(
           "ptName"
@@ -4058,30 +4381,59 @@
           "PT SLS";
 
 
-        const updated =
+        document.getElementById(
+          "availableDate"
+        ).textContent =
+
+          latestAvailableDate
+
+            ?
+
+            formatDisplayDate(
+              latestAvailableDate
+            )
+
+            :
+
+            "–";
+
+
+        document.getElementById(
+          "updatedHeader"
+        ).textContent =
+
           formatDateTime(
+
+            summary.last_updated_wib
+
+            ||
 
             summary.last_updated_utc
 
           );
 
 
-        document.getElementById(
-          "updatedHeader"
-        ).textContent =
-          updated;
+        /* -------------------------------------------------
+           Boundary
+           ------------------------------------------------- */
+
+        initializeBoundary(
+          boundary
+        );
 
 
-        document.getElementById(
-          "updatedMap"
-        ).textContent =
-          updated;
-
+        /* -------------------------------------------------
+           First render: 30 days
+           ------------------------------------------------- */
 
         selectPeriod(
           30
         );
 
+
+        /* -------------------------------------------------
+           Status
+           ------------------------------------------------- */
 
         document.getElementById(
           "systemStatus"
@@ -4089,8 +4441,8 @@
 
           "Data berhasil dimuat";
 
-      }
 
+      }
 
       catch (
         error
