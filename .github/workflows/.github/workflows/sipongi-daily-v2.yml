@@ -1,8 +1,10 @@
-name: SiPongi PT SLS Daily V2
+name: SiPongi Multi-PT Daily V2
 
 on:
   workflow_dispatch:
+
   schedule:
+    # 00:15 UTC = 07:15 WIB
     - cron: "15 0 * * *"
 
 permissions:
@@ -11,62 +13,271 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "sipongi-hotspot-v2"
+  group: "sipongi-multi-pt"
   cancel-in-progress: false
 
+
 jobs:
+
   update-and-deploy:
+
     runs-on: ubuntu-latest
 
     steps:
+
+      # =====================================================
+      # 1. CHECKOUT
+      # =====================================================
+
       - name: Checkout latest main
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
+
+
+      # =====================================================
+      # 2. SYNCHRONIZE BEFORE PYTHON
+      # =====================================================
 
       - name: Synchronize repository
         run: |
           git fetch origin main
           git reset --hard origin/main
+          git clean -fd
+
+
+      # =====================================================
+      # 3. SETUP PYTHON
+      # =====================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+
+
+      # =====================================================
+      # 4. INSTALL DEPENDENCIES
+      # =====================================================
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Fetch SiPongi, filter PT, update rolling 7 days
+
+      # =====================================================
+      # 5. CHECK MULTI-PT CONFIG
+      # =====================================================
+
+      - name: Validate multi-PT configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/companies.json")
+
+          if not path.exists():
+              raise SystemExit("ERROR: data/companies.json tidak ditemukan")
+
+          companies = json.loads(
+              path.read_text(encoding="utf-8")
+          )
+
+          if not isinstance(companies, list):
+              raise SystemExit(
+                  "ERROR: companies.json harus berupa array/list"
+              )
+
+          enabled = [
+              c for c in companies
+              if isinstance(c, dict)
+              and c.get("enabled", True)
+          ]
+
+          print("Active companies:")
+
+          for company in enabled:
+              print(
+                  " -",
+                  company.get("id"),
+                  "|",
+                  company.get("name"),
+                  "| province",
+                  company.get("province_code")
+              )
+
+          if not enabled:
+              raise SystemExit(
+                  "ERROR: tidak ada PT aktif"
+              )
+
+          required = [
+              "id",
+              "name",
+              "province_code",
+              "boundary"
+          ]
+
+          for company in enabled:
+
+              missing = [
+                  field
+                  for field in required
+                  if not company.get(field)
+              ]
+
+              if missing:
+                  raise SystemExit(
+                      f"ERROR: {company.get('id')} "
+                      f"missing {missing}"
+                  )
+
+          print("")
+          print(
+              f"Configuration OK: {len(enabled)} PT aktif"
+          )
+          PY
+
+
+      # =====================================================
+      # 6. RUN MULTI-PT SIPONGI
+      # =====================================================
+
+      - name: Fetch SiPongi and update all PT
         run: |
           python scripts/update_sipongi.py
 
+
+      # =====================================================
+      # 7. SHOW GENERATED OUTPUT
+      # =====================================================
+
+      - name: Show generated Multi-PT outputs
+        run: |
+          echo "=============================================="
+          echo "MULTI-PT OUTPUT"
+          echo "=============================================="
+
+          echo ""
+          echo "SITE DATA:"
+          find site/data -maxdepth 3 -type f | sort
+
+          echo ""
+          echo "HISTORY:"
+          find data/history -maxdepth 2 -type f | sort | tail -100
+
+          echo ""
+          echo "=============================================="
+          echo "DONE"
+          echo "=============================================="
+
+
+      # =====================================================
+      # 8. COMMIT UPDATED DATA
+      # =====================================================
+
       - name: Commit updated data
         run: |
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/rolling_7days.json site/data/
+          echo "Checking git status..."
+          git status --short
+
+          # -------------------------------------------------
+          # Add only generated monitoring data
+          # -------------------------------------------------
+
+          git add \
+            data/companies.json \
+            data/history/ \
+            site/data/
+
+          # -------------------------------------------------
+          # Keep legacy SLS files if they still exist
+          # -------------------------------------------------
+
+          if [ -f data/rolling_30days.json ]; then
+            git add data/rolling_30days.json
+          fi
+
+          if [ -f data/rolling_7days.json ]; then
+            git add data/rolling_7days.json
+          fi
+
+          # -------------------------------------------------
+          # Check whether there are changes
+          # -------------------------------------------------
 
           if git diff --cached --quiet; then
-            echo "No data change."
+
+            echo "No generated data changes."
+
           else
-            git commit -m "Update SiPongi hotspot data"
+
+            git commit \
+              -m "Update Multi-PT SiPongi hotspot data"
+
+            # ------------------------------------------------
+            # Re-check remote before push
+            # ------------------------------------------------
+
             git fetch origin main
+
             git rebase origin/main
+
             git push origin main
+
           fi
+
+
+      # =====================================================
+      # 9. CONFIGURE GITHUB PAGES
+      # =====================================================
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+
+      # =====================================================
+      # 10. UPLOAD SITE
+      # =====================================================
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "site"
+          path: ./site
+
+
+      # =====================================================
+      # 11. DEPLOY
+      # =====================================================
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+      # =====================================================
+      # 12. FINAL MESSAGE
+      # =====================================================
+
+      - name: Complete job
+        run: |
+          echo ""
+          echo "=============================================="
+          echo "       SIPONGI MULTI-PT COMPLETE"
+          echo "=============================================="
+          echo ""
+          echo "PT processed:"
+          cat data/companies.json
+          echo ""
+          echo "GitHub Pages deployment:"
+          echo "SUCCESS"
+          echo ""
+          echo "=============================================="
