@@ -4,8 +4,8 @@
   "properties": {
     "pt_id": "pt_bsl",
     "pt_name": "PT Bintang Sawit Lestari",
-    "period_start": "2026-08-15",
-    "period_end": "2026-09-13",
+    "period_start": "2026-08-16",
+    "period_end": "2026-09-14",
     "radius_km": 5
   },
   "features": [
@@ -302,42 +302,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.03661,
-          -0.18361
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Minggu, 16 Agustus 2026 14:56:00",
-        "date_hotspot_ori": "2026-08-16T07:56:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-16T07:56:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03661,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 0.074,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           110.98711,
           -0.18344
         ]
@@ -366,6 +330,42 @@
         "hotspot_date": "2026-08-19",
         "distance_hgu_km": 2.491,
         "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03661,
+          -0.18361
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Minggu, 16 Agustus 2026 14:56:00",
+        "date_hotspot_ori": "2026-08-16T07:56:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-16T07:56:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03661,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 0.074,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -662,22 +662,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.04088,
-          -0.24629
+          111.05734,
+          -0.18359
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
-        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
+        "date_hotspot": "Senin, 17 Agustus 2026 12:46:00",
+        "date_hotspot_ori": "2026-08-17T05:46:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Tapang Perodah",
-        "hs_id": "2026-08-16T06:03:00.000000Z",
+        "hs_id": "2026-08-17T05:46:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.04088,
+        "long": 111.05734,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -687,9 +687,9 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 2.696,
-        "zone": "1–3 km",
+        "hotspot_date": "2026-08-17",
+        "distance_hgu_km": 0.058,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -698,22 +698,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.01697,
-          -0.23115
+          111.0183,
+          -0.23197
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 22 Agustus 2026 13:12:00",
-        "date_hotspot_ori": "2026-08-22T06:12:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 22 Agustus 2026 12:53:00",
+        "date_hotspot_ori": "2026-08-22T05:53:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Mondi",
-        "hs_id": "2026-08-22T06:12:00.000000Z",
+        "hs_id": "2026-08-22T05:53:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.01697,
+        "long": 111.0183,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -724,7 +724,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-22",
-        "distance_hgu_km": 0.433,
+        "distance_hgu_km": 0.464,
         "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -734,107 +734,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.03157,
-          -0.18964
+          111.04227,
+          -0.20778
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 23 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-23T05:33:00.000000Z",
+        "date_hotspot": "Senin, 24 Agustus 2026 13:57:00",
+        "date_hotspot_ori": "2026-08-24T06:57:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Tapang Perodah",
-        "hs_id": "2026-08-23T05:33:00.000000Z",
+        "hs_id": "2026-08-24T06:57:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.03157,
+        "long": 111.04227,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
         "confidence_level": "medium",
         "kawasan": "",
         "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 0.434,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.0372,
-          -0.17729
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 23 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-23T05:33:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-23T05:33:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.0372,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 0.663,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.09923,
-          -0.20899
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sintang",
-        "desa": "Sekubang",
-        "hs_id": "2026-08-24T05:33:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.09923,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sepauk",
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 3.014,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
       }
     },
     {
@@ -842,22 +770,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.04077,
-          -0.14255
+          111.04669,
+          -0.20707
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-SNPP",
-        "date_hotspot": "Jumat, 04 September 2026 13:50:00",
-        "date_hotspot_ori": "2026-09-04T06:50:00.000000Z",
+        "date_hotspot": "Senin, 24 Agustus 2026 13:57:00",
+        "date_hotspot_ori": "2026-08-24T06:57:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Setawar",
-        "hs_id": "2026-09-04T06:50:00.000000Z",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-24T06:57:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.04077,
+        "long": 111.04669,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -867,9 +795,9 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-04",
-        "distance_hgu_km": 4.441,
-        "zone": "3–5 km",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 0.158,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -878,8 +806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.00159,
-          -0.15832
+          110.98923,
+          -0.18013
         ]
       },
       "properties": {
@@ -890,10 +818,10 @@
         "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
+        "desa": "Sungaisambang",
         "hs_id": "2026-08-26T06:35:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.00159,
+        "long": 110.98923,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -904,8 +832,224 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 4.846,
-        "zone": "3–5 km",
+        "distance_hgu_km": 2.808,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.02359,
+          -0.19629
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.02359,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 0.373,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.99168,
+          -0.18528
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.99168,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 2.218,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.99117,
+          -0.18136
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.99117,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 2.653,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.02474,
+          -0.19287
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.02474,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 0.338,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03255,
+          -0.1734
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 12 September 2026 13:18:00",
+        "date_hotspot_ori": "2026-09-12T06:18:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-09-12T06:18:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03255,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-12",
+        "distance_hgu_km": 1.286,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03507,
+          -0.15629
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Senin, 31 Agustus 2026 13:22:00",
+        "date_hotspot_ori": "2026-08-31T06:22:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-31T06:22:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03507,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-31",
+        "distance_hgu_km": 2.972,
+        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -1022,474 +1166,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.03176,
-          -0.17175
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03176,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 1.487,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.97274,
-          -0.18069
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.97274,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 3.496,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.97186,
-          -0.1655
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
-        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-16T06:03:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.97186,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 4.962,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.03255,
-          -0.1734
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 12 September 2026 13:18:00",
-        "date_hotspot_ori": "2026-09-12T06:18:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-09-12T06:18:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03255,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-12",
-        "distance_hgu_km": 1.286,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.01192,
-          -0.1516
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Jumat, 28 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-28T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-28T05:40:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.01192,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-28",
-        "distance_hgu_km": 4.547,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.04035,
-          -0.24286
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
-        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-16T06:03:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.04035,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 2.36,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.98184,
-          -0.20618
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
-        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-16T06:03:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.98184,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 1.179,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.03926,
-          -0.14068
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Jumat, 04 September 2026 13:50:00",
-        "date_hotspot_ori": "2026-09-04T06:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Setawar",
-        "hs_id": "2026-09-04T06:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03926,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-04",
-        "distance_hgu_km": 4.647,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.07434,
-          -0.20124
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Rabu, 26 Agustus 2026 13:18:00",
-        "date_hotspot_ori": "2026-08-26T06:18:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Nanga Pembubuh",
-        "hs_id": "2026-08-26T06:18:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.07434,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 0.243,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.07485,
-          -0.20462
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Rabu, 26 Agustus 2026 13:18:00",
-        "date_hotspot_ori": "2026-08-26T06:18:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Nanga Pembubuh",
-        "hs_id": "2026-08-26T06:18:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.07485,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 0.301,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.98923,
-          -0.18013
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
-        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-26T06:35:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.98923,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 2.808,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.04815,
-          -0.17212
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:50:00",
-        "date_hotspot_ori": "2026-08-20T06:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-20T06:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.04815,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 1.328,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.98803,
-          -0.18238
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.98803,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 2.583,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           111.03293,
           -0.1796
         ]
@@ -1562,22 +1238,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.99286,
-          -0.18164
+          111.04088,
+          -0.24629
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
+        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-16T06:03:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.99286,
+        "long": 111.04088,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -1587,8 +1263,8 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 2.618,
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 2.696,
         "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -1598,22 +1274,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.05734,
-          -0.18359
+          111.03864,
+          -0.24582
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Senin, 17 Agustus 2026 12:46:00",
-        "date_hotspot_ori": "2026-08-17T05:46:00.000000Z",
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Minggu, 16 Agustus 2026 13:25:00",
+        "date_hotspot_ori": "2026-08-16T06:25:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Tapang Perodah",
-        "hs_id": "2026-08-17T05:46:00.000000Z",
+        "hs_id": "2026-08-16T06:25:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.05734,
+        "long": 111.03864,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -1623,9 +1299,261 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-17",
-        "distance_hgu_km": 0.058,
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 2.514,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.06892,
+          -0.15095
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Minggu, 23 Agustus 2026 12:53:00",
+        "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Nanga Pembubuh",
+        "hs_id": "2026-08-23T05:53:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.06892,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-23",
+        "distance_hgu_km": 3.806,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.05914,
+          -0.15315
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.05914,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 3.423,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.10484,
+          -0.20813
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sintang",
+        "desa": "Sekubang",
+        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.10484,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sepauk",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 3.638,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.09923,
+          -0.20899
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sintang",
+        "desa": "Sekubang",
+        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.09923,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sepauk",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 3.014,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.07434,
+          -0.20124
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Rabu, 26 Agustus 2026 13:18:00",
+        "date_hotspot_ori": "2026-08-26T06:18:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Nanga Pembubuh",
+        "hs_id": "2026-08-26T06:18:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.07434,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-26",
+        "distance_hgu_km": 0.243,
         "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.00677,
+          -0.15751
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
+        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-26T06:35:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.00677,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-26",
+        "distance_hgu_km": 4.456,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.98195,
+          -0.16644
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Jumat, 28 Agustus 2026 12:59:00",
+        "date_hotspot_ori": "2026-08-28T05:59:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-28T05:59:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.98195,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-28",
+        "distance_hgu_km": 4.454,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -1814,94 +1742,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.98292,
-          -0.20113
+          111.01697,
+          -0.23115
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Jumat, 21 Agustus 2026 13:12:00",
-        "date_hotspot_ori": "2026-08-21T06:12:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-21T06:12:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.98292,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 1.156,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.02094,
-          -0.19533
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Jumat, 21 Agustus 2026 13:12:00",
-        "date_hotspot_ori": "2026-08-21T06:12:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-21T06:12:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.02094,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 0.668,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.0183,
-          -0.23197
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 22 Agustus 2026 12:53:00",
-        "date_hotspot_ori": "2026-08-22T05:53:00.000000Z",
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 22 Agustus 2026 13:12:00",
+        "date_hotspot_ori": "2026-08-22T06:12:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Mondi",
-        "hs_id": "2026-08-22T05:53:00.000000Z",
+        "hs_id": "2026-08-22T06:12:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.0183,
+        "long": 111.01697,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -1912,7 +1768,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-22",
-        "distance_hgu_km": 0.464,
+        "distance_hgu_km": 0.433,
         "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -1958,22 +1814,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.01346,
-          -0.15452
+          111.03157,
+          -0.18964
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Jumat, 21 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-21T06:29:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Minggu, 23 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-23T05:33:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Tapang Perodah",
-        "hs_id": "2026-08-21T06:29:00.000000Z",
+        "hs_id": "2026-08-23T05:33:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.01346,
+        "long": 111.03157,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -1983,8 +1839,80 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 4.187,
+        "hotspot_date": "2026-08-23",
+        "distance_hgu_km": 0.434,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.0372,
+          -0.17729
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Minggu, 23 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-23T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-23T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.0372,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-23",
+        "distance_hgu_km": 0.663,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.04077,
+          -0.14255
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Jumat, 04 September 2026 13:50:00",
+        "date_hotspot_ori": "2026-09-04T06:50:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Setawar",
+        "hs_id": "2026-09-04T06:50:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.04077,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-04",
+        "distance_hgu_km": 4.441,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -1994,34 +1922,178 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.09906,
-          -0.24
+          111.03176,
+          -0.17175
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Jumat, 11 September 2026 13:37:00",
-        "date_hotspot_ori": "2026-09-11T06:37:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
         "provinsi": null,
-        "kabkota": "Sintang",
-        "desa": "Sekubang",
-        "hs_id": "2026-09-11T06:37:00.000000Z",
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.09906,
+        "long": 111.03176,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
         "confidence_level": "medium",
         "kawasan": "",
-        "kecamatan": "Sepauk",
+        "kecamatan": "Sekadau Hulu",
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-11",
-        "distance_hgu_km": 4.14,
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 1.487,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.97274,
+          -0.18069
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.97274,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 3.496,
         "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03111,
+          -0.17905
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03111,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 0.85,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.04035,
+          -0.24286
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
+        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-16T06:03:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.04035,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 2.36,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.98184,
+          -0.20618
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
+        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-16T06:03:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.98184,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 1.179,
+        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -2057,78 +2129,6 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-09-11",
         "distance_hgu_km": 4.54,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.00677,
-          -0.15751
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
-        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-26T06:35:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.00677,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 4.456,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.98195,
-          -0.16644
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Jumat, 28 Agustus 2026 12:59:00",
-        "date_hotspot_ori": "2026-08-28T05:59:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-28T05:59:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.98195,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-28",
-        "distance_hgu_km": 4.454,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -2210,22 +2210,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.06979,
-          -0.14464
+          110.99419,
+          -0.17916
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Selasa, 01 September 2026 13:25:00",
-        "date_hotspot_ori": "2026-09-01T06:25:00.000000Z",
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
+        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Nanga Pembubuh",
-        "hs_id": "2026-09-01T06:25:00.000000Z",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-21T07:50:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.06979,
+        "long": 110.99419,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -2235,9 +2235,9 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-01",
-        "distance_hgu_km": 4.505,
-        "zone": "3–5 km",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 2.892,
+        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -2282,22 +2282,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.04227,
-          -0.20778
+          111.07485,
+          -0.20462
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-SNPP",
-        "date_hotspot": "Senin, 24 Agustus 2026 13:57:00",
-        "date_hotspot_ori": "2026-08-24T06:57:00.000000Z",
+        "date_hotspot": "Rabu, 26 Agustus 2026 13:18:00",
+        "date_hotspot_ori": "2026-08-26T06:18:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-24T06:57:00.000000Z",
+        "desa": "Nanga Pembubuh",
+        "hs_id": "2026-08-26T06:18:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.04227,
+        "long": 111.07485,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -2307,44 +2307,8 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.04669,
-          -0.20707
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Senin, 24 Agustus 2026 13:57:00",
-        "date_hotspot_ori": "2026-08-24T06:57:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-24T06:57:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.04669,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 0.158,
+        "hotspot_date": "2026-08-26",
+        "distance_hgu_km": 0.301,
         "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -2354,22 +2318,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.05914,
-          -0.15315
+          111.01192,
+          -0.1516
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Jumat, 28 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-28T05:40:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Tapang Perodah",
-        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "hs_id": "2026-08-28T05:40:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.05914,
+        "long": 111.01192,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -2379,8 +2343,8 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 3.423,
+        "hotspot_date": "2026-08-28",
+        "distance_hgu_km": 4.547,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -2390,44 +2354,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.10484,
-          -0.20813
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sintang",
-        "desa": "Sekubang",
-        "hs_id": "2026-08-24T05:33:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.10484,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sepauk",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 3.638,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.03111,
-          -0.17905
+          110.99286,
+          -0.18164
         ]
       },
       "properties": {
@@ -2438,10 +2366,10 @@
         "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
+        "desa": "Sungaisambang",
         "hs_id": "2026-08-20T06:29:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.03111,
+        "long": 110.99286,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -2452,43 +2380,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 0.85,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.03507,
-          -0.15629
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Senin, 31 Agustus 2026 13:22:00",
-        "date_hotspot_ori": "2026-08-31T06:22:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-31T06:22:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03507,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-31",
-        "distance_hgu_km": 2.972,
+        "distance_hgu_km": 2.618,
         "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -2498,22 +2390,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.03864,
-          -0.24582
+          110.97186,
+          -0.1655
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Minggu, 16 Agustus 2026 13:25:00",
-        "date_hotspot_ori": "2026-08-16T06:25:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Minggu, 16 Agustus 2026 13:03:00",
+        "date_hotspot_ori": "2026-08-16T06:03:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-16T06:25:00.000000Z",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-16T06:03:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.03864,
+        "long": 110.97186,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -2524,8 +2416,8 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 2.514,
-        "zone": "1–3 km",
+        "distance_hgu_km": 4.962,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -2570,222 +2462,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.99419,
-          -0.17916
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
-        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-21T07:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.99419,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 2.892,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.06892,
-          -0.15095
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Minggu, 23 Agustus 2026 12:53:00",
-        "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Nanga Pembubuh",
-        "hs_id": "2026-08-23T05:53:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.06892,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 3.806,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.02359,
-          -0.19629
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.02359,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 0.373,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.99168,
-          -0.18528
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.99168,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 2.218,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.99117,
-          -0.18136
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.99117,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 2.653,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.02474,
-          -0.19287
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
-        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-20T06:29:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.02474,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 0.338,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           111.06491,
           -0.15305
         ]
@@ -2813,6 +2489,330 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 3.482,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.06979,
+          -0.14464
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Selasa, 01 September 2026 13:25:00",
+        "date_hotspot_ori": "2026-09-01T06:25:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Nanga Pembubuh",
+        "hs_id": "2026-09-01T06:25:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.06979,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-01",
+        "distance_hgu_km": 4.505,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.98292,
+          -0.20113
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Jumat, 21 Agustus 2026 13:12:00",
+        "date_hotspot_ori": "2026-08-21T06:12:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-21T06:12:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.98292,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 1.156,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.02094,
+          -0.19533
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Jumat, 21 Agustus 2026 13:12:00",
+        "date_hotspot_ori": "2026-08-21T06:12:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-21T06:12:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.02094,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 0.668,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.01346,
+          -0.15452
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Jumat, 21 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-21T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-21T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.01346,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 4.187,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03926,
+          -0.14068
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Jumat, 04 September 2026 13:50:00",
+        "date_hotspot_ori": "2026-09-04T06:50:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Setawar",
+        "hs_id": "2026-09-04T06:50:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03926,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-04",
+        "distance_hgu_km": 4.647,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.00159,
+          -0.15832
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
+        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-26T06:35:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.00159,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-26",
+        "distance_hgu_km": 4.846,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.04815,
+          -0.17212
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:50:00",
+        "date_hotspot_ori": "2026-08-20T06:50:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-20T06:50:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.04815,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 1.328,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.98803,
+          -0.18238
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:29:00",
+        "date_hotspot_ori": "2026-08-20T06:29:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-20T06:29:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.98803,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 2.583,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.09906,
+          -0.24
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Jumat, 11 September 2026 13:37:00",
+        "date_hotspot_ori": "2026-09-11T06:37:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sintang",
+        "desa": "Sekubang",
+        "hs_id": "2026-09-11T06:37:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.09906,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sepauk",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-11",
+        "distance_hgu_km": 4.14,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -2894,42 +2894,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.09564,
-          -0.24319
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
-        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sintang",
-        "desa": "Sekubang",
-        "hs_id": "2026-08-21T07:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.09564,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sepauk",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 4.141,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           111.04441,
           -0.23529
         ]
@@ -2958,6 +2922,42 @@
         "hotspot_date": "2026-08-16",
         "distance_hgu_km": 2.179,
         "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.09564,
+          -0.24319
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
+        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sintang",
+        "desa": "Sekubang",
+        "hs_id": "2026-08-21T07:50:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.09564,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sepauk",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 4.141,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -3110,42 +3110,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.00071,
-          -0.18409
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
-        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-21T07:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.00071,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-21",
-        "distance_hgu_km": 2.347,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           111.09994,
           -0.24202
         ]
@@ -3174,6 +3138,42 @@
         "hotspot_date": "2026-08-19",
         "distance_hgu_km": 4.366,
         "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.99304,
+          -0.23231
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Minggu, 16 Agustus 2026 14:56:00",
+        "date_hotspot_ori": "2026-08-16T07:56:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Mondi",
+        "hs_id": "2026-08-16T07:56:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.99304,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-16",
+        "distance_hgu_km": 0.859,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -3218,22 +3218,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.99304,
-          -0.23231
+          111.00071,
+          -0.18409
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-MODIS",
-        "date_hotspot": "Minggu, 16 Agustus 2026 14:56:00",
-        "date_hotspot_ori": "2026-08-16T07:56:00.000000Z",
+        "date_hotspot": "Jumat, 21 Agustus 2026 14:50:00",
+        "date_hotspot_ori": "2026-08-21T07:50:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
-        "desa": "Mondi",
-        "hs_id": "2026-08-16T07:56:00.000000Z",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-21T07:50:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.99304,
+        "long": 111.00071,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -3243,9 +3243,9 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-16",
-        "distance_hgu_km": 0.859,
-        "zone": "0–1 km",
+        "hotspot_date": "2026-08-21",
+        "distance_hgu_km": 2.347,
+        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -3542,8 +3542,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.00253,
-          -0.17098
+          111.00242,
+          -0.17328
         ]
       },
       "properties": {
@@ -3557,7 +3557,7 @@
         "desa": "Sungaisambang",
         "hs_id": "2026-08-20T06:50:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.00253,
+        "long": 111.00242,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -3568,8 +3568,44 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 3.79,
+        "distance_hgu_km": 3.542,
         "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.98461,
+          -0.20115
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Rabu, 19 Agustus 2026 12:27:00",
+        "date_hotspot_ori": "2026-08-19T05:27:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Sungaisambang",
+        "hs_id": "2026-08-19T05:27:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.98461,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-19",
+        "distance_hgu_km": 0.986,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -3605,42 +3641,6 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 3.556,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.00242,
-          -0.17328
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Kamis, 20 Agustus 2026 13:50:00",
-        "date_hotspot_ori": "2026-08-20T06:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Sungaisambang",
-        "hs_id": "2026-08-20T06:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.00242,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-20",
-        "distance_hgu_km": 3.542,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -3686,22 +3686,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.98461,
-          -0.20115
+          111.00253,
+          -0.17098
         ]
       },
       "properties": {
         "confidence": "high",
         "confidence_value": null,
         "sumber": "NASA-NOAA20",
-        "date_hotspot": "Rabu, 19 Agustus 2026 12:27:00",
-        "date_hotspot_ori": "2026-08-19T05:27:00.000000Z",
+        "date_hotspot": "Kamis, 20 Agustus 2026 13:50:00",
+        "date_hotspot_ori": "2026-08-20T06:50:00.000000Z",
         "provinsi": null,
         "kabkota": "Sekadau",
         "desa": "Sungaisambang",
-        "hs_id": "2026-08-19T05:27:00.000000Z",
+        "hs_id": "2026-08-20T06:50:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.98461,
+        "long": 111.00253,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -3711,9 +3711,9 @@
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-19",
-        "distance_hgu_km": 0.986,
-        "zone": "0–1 km",
+        "hotspot_date": "2026-08-20",
+        "distance_hgu_km": 3.79,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
