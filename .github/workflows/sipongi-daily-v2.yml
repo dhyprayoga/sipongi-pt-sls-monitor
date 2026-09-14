@@ -16,48 +16,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-
   update-and-deploy:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      # =====================================================
-      # 1. CHECKOUT
-      # =====================================================
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-
-      # =====================================================
-      # 2. SYNCHRONIZE BEFORE PYTHON
-      # =====================================================
-
       - name: Synchronize with latest main
         run: |
           set -e
 
-          echo "Fetching latest main..."
           git fetch origin main
-
-          echo "Resetting runner to origin/main..."
           git reset --hard origin/main
-
-          echo "Cleaning untracked files..."
           git clean -fd
 
           echo "Repository synchronized."
-
           git status --short
-
-
-      # =====================================================
-      # 3. PYTHON
-      # =====================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -66,20 +45,10 @@ jobs:
           cache: "pip"
           cache-dependency-path: requirements.txt
 
-
-      # =====================================================
-      # 4. DEPENDENCIES
-      # =====================================================
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-
-      # =====================================================
-      # 5. VALIDATE CONFIG
-      # =====================================================
 
       - name: Validate multi-PT configuration
         run: |
@@ -95,15 +64,10 @@ jobs:
               )
 
           companies = json.loads(
-              path.read_text(
-                  encoding="utf-8"
-              )
+              path.read_text(encoding="utf-8")
           )
 
-          if not isinstance(
-              companies,
-              list
-          ):
+          if not isinstance(companies, list):
               raise SystemExit(
                   "ERROR: companies.json harus berupa list"
               )
@@ -116,7 +80,6 @@ jobs:
           print("Active companies:")
 
           for company in active:
-
               print(
                   " -",
                   company.get("id"),
@@ -126,24 +89,40 @@ jobs:
                   company.get("province_code")
               )
 
+          if not active:
+              raise SystemExit(
+                  "ERROR: tidak ada PT aktif"
+              )
+
+          required = [
+              "id",
+              "name",
+              "province_code",
+              "boundary"
+          ]
+
+          for company in active:
+
+              missing = [
+                  field
+                  for field in required
+                  if not company.get(field)
+              ]
+
+              if missing:
+                  raise SystemExit(
+                      f"ERROR: {company.get('id')} "
+                      f"missing {missing}"
+                  )
+
           print(
               f"Configuration OK: {len(active)} PT aktif"
           )
           PY
 
-
-      # =====================================================
-      # 6. FETCH + PROCESS ALL PT
-      # =====================================================
-
       - name: Fetch SiPongi and update all PT
         run: |
           python scripts/update_sipongi.py
-
-
-      # =====================================================
-      # 7. SHOW CHANGES
-      # =====================================================
 
       - name: Show generated changes
         run: |
@@ -161,11 +140,6 @@ jobs:
           echo "HISTORY:"
           find data/history -maxdepth 2 -type f | sort | tail -100
 
-
-      # =====================================================
-      # 8. COMMIT DATA
-      # =====================================================
-
       - name: Commit updated data
         run: |
           set -e
@@ -173,14 +147,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          echo "Adding generated data..."
-
           git add \
             data/companies.json \
             data/history/ \
             site/data/
 
-          # Legacy SLS files if present
           if [ -f data/rolling_30days.json ]; then
             git add data/rolling_30days.json
           fi
@@ -189,7 +160,6 @@ jobs:
             git add data/rolling_7days.json
           fi
 
-          echo ""
           echo "Staged changes:"
           git status --short
 
@@ -202,51 +172,24 @@ jobs:
             git commit \
               -m "Update Multi-PT SiPongi hotspot data"
 
-            echo ""
-            echo "Commit created:"
-            git log -1 --oneline
-
-            echo ""
-            echo "Pushing to main..."
-
+            echo "Pushing generated data..."
             git push origin HEAD:main
 
-            echo ""
             echo "Push successful."
 
           fi
 
-
-      # =====================================================
-      # 9. CONFIGURE PAGES
-      # =====================================================
-
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-
-
-      # =====================================================
-      # 10. UPLOAD SITE
-      # =====================================================
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./site
 
-
-      # =====================================================
-      # 11. DEPLOY
-      # =====================================================
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-
-      # =====================================================
-      # 12. COMPLETE
-      # =====================================================
 
       - name: Complete job
         run: |
@@ -255,9 +198,6 @@ jobs:
           echo "SIPONGI MULTI-PT COMPLETE"
           echo "=============================================="
 
-          echo ""
-          echo "Companies:"
-
           python - <<'PY'
           import json
 
@@ -265,7 +205,6 @@ jobs:
               "data/companies.json",
               encoding="utf-8"
           ) as f:
-
               companies = json.load(f)
 
           for company in companies:
