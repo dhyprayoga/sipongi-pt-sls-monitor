@@ -1,7 +1,8 @@
-name: SiPongi PT SLS Daily V2
+name: SiPongi Multi-PT Daily V2
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: "15 0 * * *"
 
@@ -11,130 +12,275 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "sipongi-hotspot-v2"
+  group: sipongi-multi-pt
   cancel-in-progress: false
 
 jobs:
+
   update-and-deploy:
+
     runs-on: ubuntu-latest
 
     steps:
 
-      # ==================================================
-      # CHECKOUT REPOSITORY
-      # ==================================================
+      # =====================================================
+      # 1. CHECKOUT
+      # =====================================================
 
-      - name: Checkout latest main
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
 
-      # ==================================================
-      # SYNCHRONIZE REPOSITORY
-      # ==================================================
+      # =====================================================
+      # 2. SYNCHRONIZE BEFORE PYTHON
+      # =====================================================
 
-      - name: Synchronize repository
+      - name: Synchronize with latest main
         run: |
+          set -e
+
+          echo "Fetching latest main..."
           git fetch origin main
+
+          echo "Resetting runner to origin/main..."
           git reset --hard origin/main
 
+          echo "Cleaning untracked files..."
+          git clean -fd
 
-      # ==================================================
-      # SETUP PYTHON
-      # ==================================================
+          echo "Repository synchronized."
+
+          git status --short
+
+
+      # =====================================================
+      # 3. PYTHON
+      # =====================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
 
 
-      # ==================================================
-      # INSTALL DEPENDENCIES
-      # ==================================================
+      # =====================================================
+      # 4. DEPENDENCIES
+      # =====================================================
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
 
-      # ==================================================
-      # FETCH SIPONGI
-      # ==================================================
+      # =====================================================
+      # 5. VALIDATE CONFIG
+      # =====================================================
 
-      - name: Fetch SiPongi, filter PT, update 30 day analysis
+      - name: Validate multi-PT configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/companies.json")
+
+          if not path.exists():
+              raise SystemExit(
+                  "ERROR: data/companies.json tidak ditemukan"
+              )
+
+          companies = json.loads(
+              path.read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          if not isinstance(
+              companies,
+              list
+          ):
+              raise SystemExit(
+                  "ERROR: companies.json harus berupa list"
+              )
+
+          active = [
+              c for c in companies
+              if c.get("enabled", True)
+          ]
+
+          print("Active companies:")
+
+          for company in active:
+
+              print(
+                  " -",
+                  company.get("id"),
+                  "|",
+                  company.get("name"),
+                  "| Province",
+                  company.get("province_code")
+              )
+
+          print(
+              f"Configuration OK: {len(active)} PT aktif"
+          )
+          PY
+
+
+      # =====================================================
+      # 6. FETCH + PROCESS ALL PT
+      # =====================================================
+
+      - name: Fetch SiPongi and update all PT
         run: |
           python scripts/update_sipongi.py
 
 
-      # ==================================================
-      # COMMIT DATA
-      # ==================================================
+      # =====================================================
+      # 7. SHOW CHANGES
+      # =====================================================
+
+      - name: Show generated changes
+        run: |
+          echo "=============================================="
+          echo "GENERATED DATA"
+          echo "=============================================="
+
+          git status --short
+
+          echo ""
+          echo "SITE DATA:"
+          find site/data -maxdepth 3 -type f | sort
+
+          echo ""
+          echo "HISTORY:"
+          find data/history -maxdepth 2 -type f | sort | tail -100
+
+
+      # =====================================================
+      # 8. COMMIT DATA
+      # =====================================================
 
       - name: Commit updated data
         run: |
+          set -e
 
           git config user.name "github-actions[bot]"
-
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          echo "Adding generated data..."
 
-          # Add hasil analisis 30 hari
+          git add \
+            data/companies.json \
+            data/history/ \
+            site/data/
 
-          git add data/rolling_30days.json
+          # Legacy SLS files if present
+          if [ -f data/rolling_30days.json ]; then
+            git add data/rolling_30days.json
+          fi
 
-          git add site/data/
+          if [ -f data/rolling_7days.json ]; then
+            git add data/rolling_7days.json
+          fi
 
-
-          # Cek apakah ada perubahan
+          echo ""
+          echo "Staged changes:"
+          git status --short
 
           if git diff --cached --quiet; then
 
-            echo "No data change."
+            echo "No changes to commit."
 
           else
 
-            git commit -m "Update SiPongi 30 day hotspot data"
+            git commit \
+              -m "Update Multi-PT SiPongi hotspot data"
 
+            echo ""
+            echo "Commit created:"
+            git log -1 --oneline
 
-            # Pastikan branch terbaru
+            echo ""
+            echo "Pushing to main..."
 
-            git fetch origin main
+            git push origin HEAD:main
 
-            git rebase origin/main
-
-
-            # Push
-
-            git push origin main
+            echo ""
+            echo "Push successful."
 
           fi
 
 
-      # ==================================================
-      # GITHUB PAGES
-      # ==================================================
+      # =====================================================
+      # 9. CONFIGURE PAGES
+      # =====================================================
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
 
-      # ==================================================
-      # UPLOAD WEBSITE
-      # ==================================================
+      # =====================================================
+      # 10. UPLOAD SITE
+      # =====================================================
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "site"
+          path: ./site
 
 
-      # ==================================================
-      # DEPLOY
-      # ==================================================
+      # =====================================================
+      # 11. DEPLOY
+      # =====================================================
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+      # =====================================================
+      # 12. COMPLETE
+      # =====================================================
+
+      - name: Complete job
+        run: |
+          echo ""
+          echo "=============================================="
+          echo "SIPONGI MULTI-PT COMPLETE"
+          echo "=============================================="
+
+          echo ""
+          echo "Companies:"
+
+          python - <<'PY'
+          import json
+
+          with open(
+              "data/companies.json",
+              encoding="utf-8"
+          ) as f:
+
+              companies = json.load(f)
+
+          for company in companies:
+
+              if company.get(
+                  "enabled",
+                  True
+              ):
+
+                  print(
+                      " -",
+                      company["name"]
+                  )
+          PY
+
+          echo ""
+          echo "GitHub Pages deployment: SUCCESS"
+          echo "=============================================="
