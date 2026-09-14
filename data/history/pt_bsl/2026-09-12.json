@@ -1,0 +1,49 @@
+{
+  "pt_id": "pt_bsl",
+  "pt_name": "PT Bintang Sawit Lestari",
+  "date": "2026-09-12",
+  "query_period": {
+    "from": "2026-08-16",
+    "to": "2026-09-14"
+  },
+  "generated_wib": "2026-09-14T14:01:06+07:00",
+  "hotspot_count": 1,
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.03255,
+          -0.1734
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 12 September 2026 13:18:00",
+        "date_hotspot_ori": "2026-09-12T06:18:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-09-12T06:18:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.03255,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-12",
+        "distance_hgu_km": 1.286,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    }
+  ]
+}

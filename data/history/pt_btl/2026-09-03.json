@@ -1,0 +1,121 @@
+{
+  "pt_id": "pt_btl",
+  "pt_name": "PT Bumi Tata Lestari",
+  "date": "2026-09-03",
+  "query_period": {
+    "from": "2026-08-16",
+    "to": "2026-09-14"
+  },
+  "generated_wib": "2026-09-14T14:01:10+07:00",
+  "hotspot_count": 3,
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.70451,
+          0.82981
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 03 September 2026 14:07:00",
+        "date_hotspot_ori": "2026-09-03T07:07:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Sangai Tekam",
+        "hs_id": "2026-09-03T07:07:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.70451,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekayam",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-03",
+        "distance_hgu_km": 0.028,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.70795,
+          0.83171
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Kamis, 03 September 2026 14:07:00",
+        "date_hotspot_ori": "2026-09-03T07:07:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Sangai Tekam",
+        "hs_id": "2026-09-03T07:07:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.70795,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekayam",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-03",
+        "distance_hgu_km": 0.098,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.70859,
+          0.80014
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Kamis, 03 September 2026 01:45:00",
+        "date_hotspot_ori": "2026-09-02T18:45:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Melenggang",
+        "hs_id": "2026-09-02T18:45:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.70859,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekayam",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-09-03",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    }
+  ]
+}
