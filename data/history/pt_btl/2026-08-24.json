@@ -3,10 +3,10 @@
   "pt_name": "PT Bumi Tata Lestari",
   "date": "2026-08-24",
   "query_period": {
-    "from": "2026-08-16",
-    "to": "2026-09-14"
+    "from": "2026-08-17",
+    "to": "2026-09-15"
   },
-  "generated_wib": "2026-09-14T14:01:10+07:00",
+  "generated_wib": "2026-09-15T07:35:53+07:00",
   "hotspot_count": 6,
   "features": [
     {
@@ -36,78 +36,6 @@
         "confidence_level": "low",
         "kawasan": "",
         "kecamatan": "Noyan",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.71698,
-          0.79299
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sanggau",
-        "desa": "Melenggang",
-        "hs_id": "2026-08-24T05:33:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.71698,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekayam",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-24",
-        "distance_hgu_km": 0.688,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.63821,
-          0.82657
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
-        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sanggau",
-        "desa": "Sangai Tekam",
-        "hs_id": "2026-08-24T05:33:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.63821,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekayam",
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
@@ -158,28 +86,28 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.64128,
-          0.82245
+          110.63821,
+          0.82657
         ]
       },
       "properties": {
-        "confidence": "high",
+        "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-NOAA20",
         "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
         "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
         "provinsi": null,
         "kabkota": "Sanggau",
-        "desa": "Noyan",
+        "desa": "Sangai Tekam",
         "hs_id": "2026-08-24T05:33:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.64128,
+        "long": 110.63821,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
-        "confidence_level": "high",
+        "confidence_level": "medium",
         "kawasan": "",
-        "kecamatan": "Noyan",
+        "kecamatan": "Sekayam",
         "nama_provinsi": "Kalimantan Barat",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
@@ -187,6 +115,42 @@
         "distance_hgu_km": 0.0,
         "zone": "Inside HGU",
         "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.71698,
+          0.79299
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Melenggang",
+        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.71698,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekayam",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 0.688,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
       }
     },
     {
@@ -223,6 +187,42 @@
         "distance_hgu_km": 0.988,
         "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.64128,
+          0.82245
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 24 Agustus 2026 12:33:00",
+        "date_hotspot_ori": "2026-08-24T05:33:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Noyan",
+        "hs_id": "2026-08-24T05:33:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.64128,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Noyan",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-24",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
       }
     }
   ]

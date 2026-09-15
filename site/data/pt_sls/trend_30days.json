@@ -1,8 +1,7 @@
 {
-  "period_start": "2026-08-16",
-  "period_end": "2026-09-14",
+  "period_start": "2026-08-17",
+  "period_end": "2026-09-15",
   "dates": [
-    "2026-08-16",
     "2026-08-17",
     "2026-08-18",
     "2026-08-19",
@@ -31,21 +30,10 @@
     "2026-09-11",
     "2026-09-12",
     "2026-09-13",
-    "2026-09-14"
+    "2026-09-14",
+    "2026-09-15"
   ],
   "series": [
-    {
-      "date": "2026-08-16",
-      "total": 76,
-      "high": 4,
-      "medium": 72,
-      "low": 0,
-      "unknown": 0,
-      "inside_hgu": 21,
-      "zone_0_1": 8,
-      "zone_1_3": 16,
-      "zone_3_5": 31
-    },
     {
       "date": "2026-08-17",
       "total": 160,
@@ -384,18 +372,30 @@
     },
     {
       "date": "2026-09-14",
-      "total": 0,
+      "total": 128,
+      "high": 10,
+      "medium": 79,
+      "low": 39,
+      "unknown": 0,
+      "inside_hgu": 14,
+      "zone_0_1": 19,
+      "zone_1_3": 45,
+      "zone_3_5": 50
+    },
+    {
+      "date": "2026-09-15",
+      "total": 4,
       "high": 0,
-      "medium": 0,
+      "medium": 4,
       "low": 0,
       "unknown": 0,
       "inside_hgu": 0,
       "zone_0_1": 0,
-      "zone_1_3": 0,
-      "zone_3_5": 0
+      "zone_1_3": 3,
+      "zone_3_5": 1
     }
   ],
   "records_without_date": 0,
-  "last_updated_wib": "2026-09-14T14:01:03+07:00",
-  "last_updated_utc": "2026-09-14T07:01:03Z"
+  "last_updated_wib": "2026-09-15T07:35:43+07:00",
+  "last_updated_utc": "2026-09-15T00:35:43Z"
 }

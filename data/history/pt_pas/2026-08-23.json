@@ -3,48 +3,12 @@
   "pt_name": "PT Plantindo Agro Subur",
   "date": "2026-08-23",
   "query_period": {
-    "from": "2026-08-16",
-    "to": "2026-09-14"
+    "from": "2026-08-17",
+    "to": "2026-09-15"
   },
-  "generated_wib": "2026-09-14T14:01:11+07:00",
+  "generated_wib": "2026-09-15T07:35:54+07:00",
   "hotspot_count": 6,
   "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.9894,
-          -2.73979
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Minggu, 23 Agustus 2026 12:53:00",
-        "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-23T05:53:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.9894,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 3.129,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
     {
       "type": "Feature",
       "geometry": {
@@ -86,8 +50,44 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.96042,
-          -2.73406
+          114.9894,
+          -2.73979
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Minggu, 23 Agustus 2026 12:53:00",
+        "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-23T05:53:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.9894,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-23",
+        "distance_hgu_km": 3.129,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.94933,
+          -2.77005
         ]
       },
       "properties": {
@@ -98,10 +98,10 @@
         "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
         "provinsi": null,
         "kabkota": "Tapin",
-        "desa": "Sawaja",
+        "desa": "Buas-Buas",
         "hs_id": "2026-08-23T05:53:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.96042,
+        "long": 114.94933,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -112,8 +112,8 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 0.296,
-        "zone": "0–1 km",
+        "distance_hgu_km": 3.542,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -194,8 +194,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.94933,
-          -2.77005
+          114.96042,
+          -2.73406
         ]
       },
       "properties": {
@@ -206,10 +206,10 @@
         "date_hotspot_ori": "2026-08-23T05:53:00.000000Z",
         "provinsi": null,
         "kabkota": "Tapin",
-        "desa": "Buas-Buas",
+        "desa": "Sawaja",
         "hs_id": "2026-08-23T05:53:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.94933,
+        "long": 114.96042,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -220,8 +220,8 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-23",
-        "distance_hgu_km": 3.542,
-        "zone": "3–5 km",
+        "distance_hgu_km": 0.296,
+        "zone": "0–1 km",
         "location_status": "OUTSIDE HGU"
       }
     }
