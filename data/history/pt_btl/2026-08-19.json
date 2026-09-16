@@ -3,48 +3,12 @@
   "pt_name": "PT Bumi Tata Lestari",
   "date": "2026-08-19",
   "query_period": {
-    "from": "2026-08-17",
-    "to": "2026-09-15"
+    "from": "2026-08-18",
+    "to": "2026-09-16"
   },
-  "generated_wib": "2026-09-15T07:35:53+07:00",
+  "generated_wib": "2026-09-16T07:33:45+07:00",
   "hotspot_count": 2,
   "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          110.6546,
-          0.84969
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Rabu, 19 Agustus 2026 13:50:00",
-        "date_hotspot_ori": "2026-08-19T06:50:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sanggau",
-        "desa": "Sangai Tekam",
-        "hs_id": "2026-08-19T06:50:00.000000Z",
-        "provinsi_id": 11,
-        "long": 110.6546,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekayam",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-19",
-        "distance_hgu_km": 1.45,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
     {
       "type": "Feature",
       "geometry": {
@@ -79,6 +43,42 @@
         "distance_hgu_km": 0.0,
         "zone": "Inside HGU",
         "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.6546,
+          0.84969
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Rabu, 19 Agustus 2026 13:50:00",
+        "date_hotspot_ori": "2026-08-19T06:50:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sanggau",
+        "desa": "Sangai Tekam",
+        "hs_id": "2026-08-19T06:50:00.000000Z",
+        "provinsi_id": 11,
+        "long": 110.6546,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekayam",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-19",
+        "distance_hgu_km": 1.45,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
       }
     }
   ]
