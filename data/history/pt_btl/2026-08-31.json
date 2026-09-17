@@ -3,10 +3,10 @@
   "pt_name": "PT Bumi Tata Lestari",
   "date": "2026-08-31",
   "query_period": {
-    "from": "2026-08-18",
-    "to": "2026-09-16"
+    "from": "2026-08-19",
+    "to": "2026-09-17"
   },
-  "generated_wib": "2026-09-16T07:33:45+07:00",
+  "generated_wib": "2026-09-17T07:33:53+07:00",
   "hotspot_count": 8,
   "features": [
     {
@@ -122,22 +122,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.7359,
-          0.88606
+          110.73765,
+          0.88595
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Senin, 31 Agustus 2026 01:02:00",
-        "date_hotspot_ori": "2026-08-30T18:02:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Senin, 31 Agustus 2026 13:22:00",
+        "date_hotspot_ori": "2026-08-31T06:22:00.000000Z",
         "provinsi": null,
         "kabkota": "Sanggau",
         "desa": "Sangai Tekam",
-        "hs_id": "2026-08-30T18:02:00.000000Z",
+        "hs_id": "2026-08-31T06:22:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.7359,
+        "long": 110.73765,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -148,7 +148,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-31",
-        "distance_hgu_km": 4.504,
+        "distance_hgu_km": 4.573,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -230,22 +230,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          110.73765,
-          0.88595
+          110.7359,
+          0.88606
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Senin, 31 Agustus 2026 13:22:00",
-        "date_hotspot_ori": "2026-08-31T06:22:00.000000Z",
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Senin, 31 Agustus 2026 01:02:00",
+        "date_hotspot_ori": "2026-08-30T18:02:00.000000Z",
         "provinsi": null,
         "kabkota": "Sanggau",
         "desa": "Sangai Tekam",
-        "hs_id": "2026-08-31T06:22:00.000000Z",
+        "hs_id": "2026-08-30T18:02:00.000000Z",
         "provinsi_id": 11,
-        "long": 110.73765,
+        "long": 110.7359,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -256,7 +256,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-31",
-        "distance_hgu_km": 4.573,
+        "distance_hgu_km": 4.504,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
