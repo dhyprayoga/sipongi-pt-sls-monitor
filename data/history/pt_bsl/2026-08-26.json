@@ -3,10 +3,10 @@
   "pt_name": "PT Bintang Sawit Lestari",
   "date": "2026-08-26",
   "query_period": {
-    "from": "2026-08-19",
-    "to": "2026-09-17"
+    "from": "2026-08-20",
+    "to": "2026-09-18"
   },
-  "generated_wib": "2026-09-17T07:33:50+07:00",
+  "generated_wib": "2026-09-18T07:33:03+07:00",
   "hotspot_count": 5,
   "features": [
     {
@@ -14,8 +14,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.07485,
-          -0.20462
+          111.07434,
+          -0.20124
         ]
       },
       "properties": {
@@ -29,7 +29,7 @@
         "desa": "Nanga Pembubuh",
         "hs_id": "2026-08-26T06:18:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.07485,
+        "long": 111.07434,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -40,44 +40,8 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 0.301,
+        "distance_hgu_km": 0.243,
         "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.00159,
-          -0.15832
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
-        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-08-26T06:35:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.00159,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 4.846,
-        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -158,8 +122,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.07434,
-          -0.20124
+          111.07485,
+          -0.20462
         ]
       },
       "properties": {
@@ -173,7 +137,7 @@
         "desa": "Nanga Pembubuh",
         "hs_id": "2026-08-26T06:18:00.000000Z",
         "provinsi_id": 11,
-        "long": 111.07434,
+        "long": 111.07485,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 1,
@@ -184,8 +148,44 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-26",
-        "distance_hgu_km": 0.243,
+        "distance_hgu_km": 0.301,
         "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.00159,
+          -0.15832
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Rabu, 26 Agustus 2026 13:35:00",
+        "date_hotspot_ori": "2026-08-26T06:35:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Sekadau",
+        "desa": "Tapang Perodah",
+        "hs_id": "2026-08-26T06:35:00.000000Z",
+        "provinsi_id": 11,
+        "long": 111.00159,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Sekadau Hulu",
+        "nama_provinsi": "Kalimantan Barat",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-26",
+        "distance_hgu_km": 4.846,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     }
