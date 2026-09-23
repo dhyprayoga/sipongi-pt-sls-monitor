@@ -1,12 +1,12 @@
 {
-  "pt_id": "pt_bsl",
-  "pt_name": "PT Bintang Sawit Lestari",
-  "date": "2026-09-12",
+  "pt_id": "pt_sls",
+  "pt_name": "PT SLS",
+  "date": "2026-09-23",
   "query_period": {
     "from": "2026-08-25",
     "to": "2026-09-23"
   },
-  "generated_wib": "2026-09-23T07:31:45+07:00",
+  "generated_wib": "2026-09-23T07:31:41+07:00",
   "hotspot_count": 1,
   "features": [
     {
@@ -14,34 +14,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          111.03255,
-          -0.1734
+          115.14396,
+          -2.68577
         ]
       },
       "properties": {
         "confidence": "medium",
         "confidence_value": null,
         "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 12 September 2026 13:18:00",
-        "date_hotspot_ori": "2026-09-12T06:18:00.000000Z",
+        "date_hotspot": "Rabu, 23 September 2026 00:32:00",
+        "date_hotspot_ori": "2026-09-22T17:32:00.000000Z",
         "provinsi": null,
-        "kabkota": "Sekadau",
-        "desa": "Tapang Perodah",
-        "hs_id": "2026-09-12T06:18:00.000000Z",
-        "provinsi_id": 11,
-        "long": 111.03255,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Muning Baru",
+        "hs_id": "2026-09-22T17:32:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.14396,
         "ori_sumber": null,
         "desa_id": null,
-        "counter": 1,
+        "counter": 2,
         "confidence_level": "medium",
         "kawasan": "",
-        "kecamatan": "Sekadau Hulu",
-        "nama_provinsi": "Kalimantan Barat",
+        "kecamatan": "Daha Selatan",
+        "nama_provinsi": "Kalimantan Selatan",
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-09-12",
-        "distance_hgu_km": 1.286,
-        "zone": "1–3 km",
+        "hotspot_date": "2026-09-23",
+        "distance_hgu_km": 4.332,
+        "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
     }
