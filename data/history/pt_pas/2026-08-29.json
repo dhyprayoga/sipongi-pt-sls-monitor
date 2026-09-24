@@ -3,10 +3,10 @@
   "pt_name": "PT Plantindo Agro Subur",
   "date": "2026-08-29",
   "query_period": {
-    "from": "2026-08-25",
-    "to": "2026-09-23"
+    "from": "2026-08-26",
+    "to": "2026-09-24"
   },
-  "generated_wib": "2026-09-23T07:31:49+07:00",
+  "generated_wib": "2026-09-24T07:34:14+07:00",
   "hotspot_count": 96,
   "features": [
     {
@@ -86,42 +86,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.95109,
-          -2.76766
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95109,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 3.278,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.9912,
           -2.73924
         ]
@@ -149,42 +113,6 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 3.307,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.951,
-          -2.76708
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.951,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 3.214,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -230,114 +158,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.79961,
-          -2.72665
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Barito Kuala",
-        "desa": "Jambu",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.79961,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Kuripan",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.863,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.9567,
-          -2.68783
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.9567,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.516,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95055,
-          -2.76405
-        ]
-      },
-      "properties": {
-        "confidence": "low",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95055,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "low",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 2.879,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.97967,
           -2.75967
         ]
@@ -374,8 +194,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.88601,
-          -2.91178
+          114.95055,
+          -2.76405
         ]
       },
       "properties": {
@@ -386,10 +206,10 @@
         "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
         "provinsi": null,
         "kabkota": "Tapin",
-        "desa": "Sungai Selai",
+        "desa": "Buas-Buas",
         "hs_id": "2026-08-29T05:40:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.88601,
+        "long": 114.95055,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -400,7 +220,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.705,
+        "distance_hgu_km": 2.879,
         "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -446,6 +266,186 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          114.95109,
+          -2.76766
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95109,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 3.278,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.88601,
+          -2.91178
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sungai Selai",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.88601,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.705,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.9567,
+          -2.68783
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.9567,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.516,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.79961,
+          -2.72665
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Barito Kuala",
+        "desa": "Jambu",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.79961,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Kuripan",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.863,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95686,
+          -2.77788
+        ]
+      },
+      "properties": {
+        "confidence": "low",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95686,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "low",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.362,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           114.95562,
           -2.68061
         ]
@@ -482,22 +482,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.95686,
-          -2.77788
+          114.951,
+          -2.76708
         ]
       },
       "properties": {
         "confidence": "low",
         "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
         "provinsi": null,
         "kabkota": "Tapin",
         "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.95686,
+        "long": 114.951,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -508,7 +508,7 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.362,
+        "distance_hgu_km": 3.214,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -914,42 +914,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.91812,
-          -2.72341
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 14:58:00",
-        "date_hotspot_ori": "2026-08-29T07:58:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T07:58:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.91812,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.94125,
           -2.73059
         ]
@@ -969,6 +933,42 @@
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.91812,
+          -2.72341
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 14:58:00",
+        "date_hotspot_ori": "2026-08-29T07:58:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T07:58:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.91812,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
         "confidence_level": "medium",
         "kawasan": "",
         "kecamatan": "Candi Laras Utara",
@@ -1022,6 +1022,582 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          114.95356,
+          -2.68557
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 00:00:00",
+        "date_hotspot_ori": "2026-08-28T17:00:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-28T17:00:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95356,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.764,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.9547,
+          -2.67906
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 00:00:00",
+        "date_hotspot_ori": "2026-08-28T17:00:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau",
+        "hs_id": "2026-08-28T17:00:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.9547,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.485,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.00001,
+          -2.74923
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.00001,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.598,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.00169,
+          -2.70935
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.00169,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.391,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.93435,
+          -2.7308
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.93435,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.92992,
+          -2.72578
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.92992,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95872,
+          -2.69309
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95872,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95625,
+          -2.77767
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95625,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.293,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.93234,
+          -2.72984
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.93234,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.96597,
+          -2.67408
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.96597,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 2.084,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.8913,
+          -2.91841
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sungai Selai",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.8913,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 2.515,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95202,
+          -2.68485
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95202,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.84,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.00111,
+          -2.75412
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.00111,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.952,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95544,
+          -2.77211
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95544,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 3.772,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95509,
+          -2.69363
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95509,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.92626,
+          -2.72633
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.92626,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           114.80384,
           -2.72601
         ]
@@ -1058,8 +1634,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.93739,
-          -2.73274
+          114.92796,
+          -2.72674
         ]
       },
       "properties": {
@@ -1073,7 +1649,7 @@
         "desa": "Buas-Buas",
         "hs_id": "2026-08-29T05:40:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.93739,
+        "long": 114.92796,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -1087,6 +1663,42 @@
         "distance_hgu_km": 0.0,
         "zone": "Inside HGU",
         "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.99571,
+          -2.75357
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.99571,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.405,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
       }
     },
     {
@@ -1130,6 +1742,150 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          114.93132,
+          -2.71964
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.93132,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.00079,
+          -2.75477
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.00079,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.957,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.00031,
+          -2.74858
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.00031,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.6,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95711,
+          -2.68198
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95711,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.163,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           114.93445,
           -2.72937
         ]
@@ -1146,6 +1902,114 @@
         "hs_id": "2026-08-28T18:21:00.000000Z",
         "provinsi_id": 12,
         "long": 114.93445,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95486,
+          -2.68627
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95486,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.687,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95938,
+          -2.68696
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95938,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.615,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.93063,
+          -2.72415
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
+        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-28T18:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.93063,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -1238,8 +2102,80 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.8913,
-          -2.91841
+          114.97182,
+          -2.70398
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.97182,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.06,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.97076,
+          -2.69677
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.97076,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.935,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95724,
+          -2.69145
         ]
       },
       "properties": {
@@ -1250,10 +2186,82 @@
         "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
         "provinsi": null,
         "kabkota": "Tapin",
-        "desa": "Sungai Selai",
+        "desa": "Sawaja",
         "hs_id": "2026-08-29T05:40:00.000000Z",
         "provinsi_id": 12,
-        "long": 114.8913,
+        "long": 114.95724,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.115,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.97491,
+          -2.69613
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.97491,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.396,
+        "zone": "1–3 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.93739,
+          -2.73274
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.93739,
         "ori_sumber": null,
         "desa_id": null,
         "counter": 2,
@@ -1264,9 +2272,45 @@
         "pulau": "",
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 2.515,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.92743,
+          -2.72313
+        ]
+      },
+      "properties": {
+        "confidence": "medium",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Buas-Buas",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.92743,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "medium",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.0,
+        "zone": "Inside HGU",
+        "location_status": "INSIDE HGU"
       }
     },
     {
@@ -1454,834 +2498,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.95872,
-          -2.69309
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95872,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95625,
-          -2.77767
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95625,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.293,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.00111,
-          -2.75412
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.00111,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.952,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95486,
-          -2.68627
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95486,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.687,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95938,
-          -2.68696
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95938,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.615,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.93132,
-          -2.71964
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.93132,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95544,
-          -2.77211
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95544,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 3.772,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.97076,
-          -2.69677
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.97076,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.935,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95724,
-          -2.69145
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95724,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.115,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.97491,
-          -2.69613
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.97491,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.396,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.99571,
-          -2.75357
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.99571,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.405,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95202,
-          -2.68485
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95202,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.84,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95356,
-          -2.68557
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 00:00:00",
-        "date_hotspot_ori": "2026-08-28T17:00:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-28T17:00:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95356,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.764,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.9547,
-          -2.67906
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 00:00:00",
-        "date_hotspot_ori": "2026-08-28T17:00:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau",
-        "hs_id": "2026-08-28T17:00:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.9547,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.485,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.93063,
-          -2.72415
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.93063,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.00001,
-          -2.74923
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.00001,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.598,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.00169,
-          -2.70935
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.00169,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.391,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.93435,
-          -2.7308
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.93435,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.92992,
-          -2.72578
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.92992,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95509,
-          -2.69363
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95509,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.92626,
-          -2.72633
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.92626,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.97182,
-          -2.70398
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.97182,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.06,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.92796,
-          -2.72674
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.92796,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.95617,
           -2.68422
         ]
@@ -2310,222 +2526,6 @@
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 0.915,
         "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.93234,
-          -2.72984
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.93234,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.96597,
-          -2.67408
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 01:21:00",
-        "date_hotspot_ori": "2026-08-28T18:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau",
-        "hs_id": "2026-08-28T18:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.96597,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 2.084,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.00079,
-          -2.75477
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.00079,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.957,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.00031,
-          -2.74858
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.00031,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.6,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.92743,
-          -2.72313
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Buas-Buas",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.92743,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.0,
-        "zone": "Inside HGU",
-        "location_status": "INSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.95711,
-          -2.68198
-        ]
-      },
-      "properties": {
-        "confidence": "medium",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95711,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "medium",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.163,
-        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     },
@@ -2894,78 +2894,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.95428,
-          -2.68807
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.95428,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 0.488,
-        "zone": "0–1 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          115.0017,
-          -2.70844
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-NOAA20",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
-        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Tengah",
-        "hs_id": "2026-08-29T05:40:00.000000Z",
-        "provinsi_id": 12,
-        "long": 115.0017,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.393,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.99638,
           -2.74978
         ]
@@ -2993,78 +2921,6 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 4.261,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.99305,
-          -2.74963
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.99305,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 3.927,
-        "zone": "3–5 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          114.99667,
-          -2.74911
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-SNPP",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
-        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Hulu Sungai Selatan",
-        "desa": "Bajayau Lama",
-        "hs_id": "2026-08-29T05:21:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.99667,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 2,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Daha Barat",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 4.256,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -3137,6 +2993,150 @@
         "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 3.937,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.99305,
+          -2.74963
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.99305,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 3.927,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.0017,
+          -2.70844
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-NOAA20",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:40:00",
+        "date_hotspot_ori": "2026-08-29T05:40:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Tengah",
+        "hs_id": "2026-08-29T05:40:00.000000Z",
+        "provinsi_id": 12,
+        "long": 115.0017,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.393,
+        "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.95428,
+          -2.68807
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.95428,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 0.488,
+        "zone": "0–1 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.99667,
+          -2.74911
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-SNPP",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 12:21:00",
+        "date_hotspot_ori": "2026-08-29T05:21:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Hulu Sungai Selatan",
+        "desa": "Bajayau Lama",
+        "hs_id": "2026-08-29T05:21:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.99667,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 2,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Daha Barat",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 4.256,
         "zone": "3–5 km",
         "location_status": "OUTSIDE HGU"
       }
@@ -3398,42 +3398,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.94951,
-          -2.67944
-        ]
-      },
-      "properties": {
-        "confidence": "high",
-        "confidence_value": null,
-        "sumber": "NASA-MODIS",
-        "date_hotspot": "Sabtu, 29 Agustus 2026 14:58:00",
-        "date_hotspot_ori": "2026-08-29T07:58:00.000000Z",
-        "provinsi": null,
-        "kabkota": "Tapin",
-        "desa": "Sawaja",
-        "hs_id": "2026-08-29T07:58:00.000000Z",
-        "provinsi_id": 12,
-        "long": 114.94951,
-        "ori_sumber": null,
-        "desa_id": null,
-        "counter": 1,
-        "confidence_level": "high",
-        "kawasan": "",
-        "kecamatan": "Candi Laras Utara",
-        "nama_provinsi": "Kalimantan Selatan",
-        "pulau": "",
-        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
-        "hotspot_date": "2026-08-29",
-        "distance_hgu_km": 1.432,
-        "zone": "1–3 km",
-        "location_status": "OUTSIDE HGU"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           114.99966,
           -2.70129
         ]
@@ -3462,6 +3426,42 @@
         "hotspot_date": "2026-08-29",
         "distance_hgu_km": 4.151,
         "zone": "3–5 km",
+        "location_status": "OUTSIDE HGU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.94951,
+          -2.67944
+        ]
+      },
+      "properties": {
+        "confidence": "high",
+        "confidence_value": null,
+        "sumber": "NASA-MODIS",
+        "date_hotspot": "Sabtu, 29 Agustus 2026 14:58:00",
+        "date_hotspot_ori": "2026-08-29T07:58:00.000000Z",
+        "provinsi": null,
+        "kabkota": "Tapin",
+        "desa": "Sawaja",
+        "hs_id": "2026-08-29T07:58:00.000000Z",
+        "provinsi_id": 12,
+        "long": 114.94951,
+        "ori_sumber": null,
+        "desa_id": null,
+        "counter": 1,
+        "confidence_level": "high",
+        "kawasan": "",
+        "kecamatan": "Candi Laras Utara",
+        "nama_provinsi": "Kalimantan Selatan",
+        "pulau": "",
+        "route_create": "https://opsroom.sipongidata.my.id/daops/laporan/groundcheck/create/form",
+        "hotspot_date": "2026-08-29",
+        "distance_hgu_km": 1.432,
+        "zone": "1–3 km",
         "location_status": "OUTSIDE HGU"
       }
     }
